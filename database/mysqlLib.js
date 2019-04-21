@@ -7,7 +7,7 @@ var pool = mysql.createPool({
     database: "bidong"
 });
 
-exports.getItems = function(callback) {
+exports.getAllItems = function(callback) {
   var sql = "SELECT * FROM Item";
   // get a connection from the pool
   pool.getConnection(function(err, connection) {
@@ -21,7 +21,7 @@ exports.getItems = function(callback) {
   });
 };
 
-exports.getSellers = function(callback) {
+exports.getAllSellers = function(callback) {
     var sql = "SELECT username FROM user, seller WHERE UserID = SellerID";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
