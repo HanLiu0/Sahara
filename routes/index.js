@@ -1,9 +1,13 @@
 var express = require('express');
-var router = express.Router();
-
+var router = require('express').Router();
+var sql = require('../database/mysqlLib');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  sql.getItems(function(err, results) {
+    console.log(results);
+    res.render('index', { products: results });
+  });
+
 });
 
 module.exports = router;

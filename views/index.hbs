@@ -1,2 +1,5 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{# each products }}
+    <p>{{ this.[Item Name] }}</p>
+    <p>{{ this.Description }}</p>
+    <p>{{ this.Price }}</p>
+{{/each}}
