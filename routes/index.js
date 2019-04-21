@@ -5,7 +5,7 @@ var sql = require('../database/mysqlLib');
 router.get('/', function(req, res, next) {
   sql.getItems(function(err, results) {
     console.log(results);
-    res.render('index', { products: results });
+    res.render('index', { title : "Products", products: results });
   });
 
 });
