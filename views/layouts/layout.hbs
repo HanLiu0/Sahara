@@ -9,6 +9,7 @@
 <body>
     <nav id="sidebar">
         <div class="sidebar-header">
+            <a onclick="toggleNav()" style="font-size: 24px; float: right; cursor: pointer" >&times;</a>
             <h3>Welcome to Savana!</h3>
         </div>
 
@@ -25,7 +26,6 @@
             <hr />
             <li><a href="#">Contact</a></li>
             <li><a href="#">Log out</a></li>
-
         </ul>
     </nav>
 
@@ -38,7 +38,7 @@
                 <div>
                     <a class='fas fa-user text-primary' style='font-size:24px' href="#">Account</a>
                     <a class='fas text-primary' style='font-size:24px' href="#">Orders</a>
-                    <a class='fas fa-shopping-cart text-primary' style='font-size:24px' href="/shopping_cart">Shopping Cart</a>
+                    <a class='fas fa-shopping-cart text-primary' style='font-size:24px' href="/shoppingCart">Shopping Cart</a>
                 </div>
             </nav>
         </div>
@@ -46,19 +46,6 @@
         {{{body}}}
 
     </div>
-
-    <script>
-        function toggleNav() {
-            var sidebar = document.getElementById("sidebar");
-            if(sidebar.style.width === "250px"){
-                document.getElementById("sidebar").style.width = "0px";
-                document.getElementById("main").style.marginLeft = "0px";
-            }
-            else{
-                document.getElementById("sidebar").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
-        }
-    </script>
+    <script type="text/javascript" src="javascripts/javascripts.js"></script>
 </body>
 </html>
