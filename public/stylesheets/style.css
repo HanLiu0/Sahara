@@ -24,6 +24,7 @@ a:focus {
 
 #sidebar {
   overflow-y: scroll;
+  overflow-x: hidden;
   background: white;
   color: #fff;
   height: 100%;
@@ -42,6 +43,8 @@ a:focus {
 }
 
 #sidebar ul.components {
+  white-space: nowrap;
+  overflow: hidden;
   padding: 20px 0;
   border-bottom: 1px solid #47748b;
 }

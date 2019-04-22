@@ -4,8 +4,13 @@ var sql = require('../database/mysqlLib');
 
 router.get('/', function(req, res, next) {
   sql.getAllItems(function(err, results) {
-    console.log(results);
-    res.render('index', { title : "Products", products: results });
+    var recommendation = [];
+    for(var i = 0 ; i < 3; i++){
+      recommendation[i] = [];
+      for(var j = 0 ; j < 5; j++)
+        recommendation[i].push(results[i*5+j]);
+    }
+    res.render('index', { title : "Products", recommendation: recommendation });
   });
 
 });
@@ -13,7 +18,6 @@ router.get('/', function(req, res, next) {
 /*
 router.get('/', function(req, res, next) {
   sql.getAllItems(function(err, results) {
-    console.log(results);
     res.render('index', { title : "Products", products: results });
   });
 

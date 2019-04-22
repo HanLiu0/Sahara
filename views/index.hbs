@@ -1,5 +1,29 @@
-{{# each products }}
-    <p>{{ this.[Item Name] }}</p>
-    <p>{{ this.Description }}</p>
-    <p>{{ this.Price }}</p>
-{{/each}}
+<div>
+</div>
+<div class="container">
+    <h1>Popular Items</h1>
+    <div id="popularItemsCarouselControls" class="carousel slide" data-ride="carousel"  data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-inner">
+                {{#each recommendation}}
+                    <div class="carousel-item {{#if @first}}active{{/if}}">
+                        <div class="row">
+                            {{#each this}}
+                                <div class="col-sm"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.ItemID}}.jpg" alt="Image"></div>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#popularItemsCarouselControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only" style="background-color: black;">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#popularItemsCarouselControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <h1>Recommendation</h1>
+</div>
