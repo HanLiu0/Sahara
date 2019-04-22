@@ -5,11 +5,11 @@
     <div id="popularItemsCarouselControls" class="carousel slide" data-ride="carousel"  data-interval="false">
         <div class="carousel-inner">
             <div class="carousel-inner">
-                {{#each recommendation}}
+                {{#each mostPopular}}
                     <div class="carousel-item {{#if @first}}active{{/if}}">
                         <div class="row">
                             {{#each this}}
-                                <div class="col-sm"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.ItemID}}.jpg" alt="Image"></div>
+                                <div class="col-sm"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image"></div>
                             {{/each}}
                         </div>
                     </div>
@@ -26,4 +26,27 @@
         </a>
     </div>
     <h1>Recommendation</h1>
+    <div id="recommendItemsCarouselControls" class="carousel slide" data-ride="carousel"  data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-inner">
+                {{#each recommend}}
+                    <div class="carousel-item {{#if @first}}active{{/if}}">
+                        <div class="row">
+                            {{#each this}}
+                                <div class="col-sm"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image"></div>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#recommendItemsCarouselControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only" style="background-color: black;">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#recommendItemsCarouselControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>

@@ -21,6 +21,34 @@ exports.getAllItems = function(callback) {
   });
 };
 
+exports.getMostPopularItems = function(callback) {
+    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
+exports.getRecommendItems = function(callback) {
+    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
 exports.getAllSellers = function(callback) {
     var sql = "SELECT username FROM user, seller WHERE UserID = SellerID";
     // get a connection from the pool

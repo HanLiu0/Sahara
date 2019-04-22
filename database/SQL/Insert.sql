@@ -264,3 +264,17 @@ INSERT INTO `bidong`.`Seller has review` (`Article ID`, `Seller ID`) VALUES ('00
 INSERT INTO `bidong`.`Seller has review` (`Article ID`, `Seller ID`) VALUES ('000000000000009', '000000000000018');
 INSERT INTO `bidong`.`Seller has review` (`Article ID`, `Seller ID`) VALUES ('000000000000010', '000000000000019');
 
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000001', '000000000000007', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000001', '000000000000003', '2');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000001', '000000000000004', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000002', '000000000000009', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000003', '000000000000005', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000004', '000000000000004', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000005', '000000000000007', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000005', '000000000000001', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000006', '000000000000002', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000007', '000000000000010', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000008', '000000000000008', '2');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000009', '000000000000004', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000010', '000000000000005', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000010', '000000000000008', '1');

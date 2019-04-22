@@ -3,14 +3,17 @@ var router = express.Router();
 var sql = require('../database/mysqlLib');
 
 router.get('/', function(req, res, next) {
-  sql.getAllItems(function(err, results) {
-    var recommendation = [];
+  sql.getMostPopularItems(function(err, results) {
+    var mostPopular = [];
     for(var i = 0 ; i < 3; i++){
-      recommendation[i] = [];
+      mostPopular[i] = [];
       for(var j = 0 ; j < 5; j++)
-        recommendation[i].push(results[i*5+j]);
+        mostPopular[i].push(results[i*5+j]);
     }
-    res.render('index', { title : "Products", recommendation: recommendation });
+    //if(user)
+      //sql.getRecommendItems
+    //else
+    res.render('index', { title : "Sahara.com: Online Shopping", mostPopular: mostPopular });
   });
 
 });
