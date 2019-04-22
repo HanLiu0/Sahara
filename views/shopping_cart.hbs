@@ -1,0 +1,20 @@
+<div id = "shoppingCart_left">
+<h1>Shopping Cart</h1>
+<table cellspacing = "0" cellpadding = "20">
+    <tr>
+        <td></td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+    </tr>
+    {{# each shopping_cart }}
+    <tr style="outline: thin solid">
+        <td><img style="max-height: 200px; width: auto;" src = "images/{{this.ItemID}}.jpg" alt="Item image for {{this.ItemID}}"></td>
+        <td>{{this.[Item Name]}}</td>
+        <td>{{this.Price}}</td>
+        <td>{{this.quantity}}</td>
+    </tr>
+    {{/each}}
+</table>
+</div>
+

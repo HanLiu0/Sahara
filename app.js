@@ -8,6 +8,7 @@ var expressHbs = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sellersRouter = require('./routes/seller');
+var shoppingCartRouter = require('./routes/shopping_cart');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/seller', sellersRouter);
+app.use('/shoppingCart',shoppingCartRouter);
 
 
 // catch 404 and forward to error handler
