@@ -3,10 +3,62 @@
 <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 </head>
 <body>
-<div class="container">
-    {{{body}}}
-</div>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Welcome to Savana!</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li><a href="#">All</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Entertainment</a></li>
+            <li><a href="#">Home &amp; Kitchen</a></li>
+            <li><a href="#">Music Instrument</a></li>
+            <li><a href="#">Pet Supplies</a></li>
+            <li><a href="#">Snakes/Food</a></li>
+            <li><a href="#">Electronics</a></li>
+            <hr />
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Log out</a></li>
+
+        </ul>
+    </nav>
+
+    <div id="main">
+        <div class="pos-f-t">
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler" onclick="toggleNav()">
+                    <span class="navbar-toggler-icon text-primary"></span>
+                </button>
+                <div>
+                    <a class='fas fa-user text-primary' style='font-size:24px' href="#">Account</a>
+                    <a class='fas text-primary' style='font-size:24px' href="#">Orders</a>
+                    <a class='fas fa-shopping-cart text-primary' style='font-size:24px' href="/shopping_cart">Shopping Cart</a>
+                </div>
+            </nav>
+        </div>
+
+        {{{body}}}
+
+    </div>
+
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("sidebar");
+            if(sidebar.style.width === "250px"){
+                document.getElementById("sidebar").style.width = "0px";
+                document.getElementById("main").style.marginLeft = "0px";
+            }
+            else{
+                document.getElementById("sidebar").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+        }
+    </script>
 </body>
 </html>
