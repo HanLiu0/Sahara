@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');
 
@@ -11,7 +12,6 @@ var sellersRouter = require('./routes/seller');
 var shoppingCartRouter = require('./routes/shopping_cart');
 var loginRouter = require('./routes/login');
 var accountOverviewRouter = require('./routes/account_overview');
-var editAccountInformationRouter = require('./routes/edit_account_information');
 
 var app = express();
 
@@ -21,6 +21,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -32,7 +34,6 @@ app.use('/seller', sellersRouter);
 app.use('/shoppingCart', shoppingCartRouter);
 app.use('/login', loginRouter);
 app.use('/account_overview', accountOverviewRouter);
-app.use('/edit_account_information', editAccountInformationRouter);
 
 
 // catch 404 and forward to error handler

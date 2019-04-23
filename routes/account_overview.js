@@ -9,4 +9,12 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/edit_account_information', function(req, res, next) {
+    res.render('edit_account_information', { title : "Edit Account Information"});
+});
+
+router.post('/edit_account_information', function(req, res, next) {
+    sql.editAccountInformation(req.body);
+    res.redirect('/');
+});
 module.exports = router;

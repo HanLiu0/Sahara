@@ -22,7 +22,7 @@ exports.getAllItems = function(callback) {
 };
 
 exports.getMostPopularItems = function(callback) {
-    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity";
+    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity DESC";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
@@ -81,6 +81,20 @@ exports.getAllItemsFromShoppingCart = function(callback){
                 }
                 callback(false, results);
             });
+        });
+    });
+}
+
+exports.editAccountInformation = function(data, callback){
+    var sql = 'UPDATE `customer` SET `First Name` = ' + data.firstName + 'SET `Last Name` = ' + data.lastName +
+        'SET `Middle Name` = ' + data.middleName;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
         });
     });
 }
