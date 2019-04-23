@@ -9,3 +9,7 @@ function toggleNav() {
         document.getElementById("main").style.marginLeft = "250px";
     }
 }
+
+function getItemTypes(){
+    return ["Books", "Clothing/ Shoes/ Jewelry", "Electronics", "Entertainment", "Furniture", "Health care", "Home &amp; Kitchen", "Music Instruments", "Pet Supplies", "Snake/Food", "Toy/Game/Movie"];
+}
