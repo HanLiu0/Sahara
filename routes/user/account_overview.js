@@ -4,13 +4,13 @@ var sql = require('../../database/mysqlLib');
 
 router.get('/', isLoggedIn, function(req, res, next) {
     sql.getMostPopularItems(function(err, results) {
-        res.render('account_overview', { title : "Your Account"});
+        res.render('user/account_overview', { title : "Your Account"});
     });
 
 });
 
 router.get('/edit_account_information', isLoggedIn, function(req, res, next) {
-    res.render('edit_account_information', { title : "Edit Account Information"});
+    res.render('user/edit_account_information', { title : "Edit Account Information"});
 });
 
 router.post('/edit_account_information', function(req, res, next) {
@@ -19,19 +19,19 @@ router.post('/edit_account_information', function(req, res, next) {
 });
 
 router.get('/payment_options', function(req, res, next) {
-    res.render('payment_options', { title : "Payment Options"});
+    res.render('user/payment_options', { title : "Payment Options"});
 });
 
 router.get('/listed_items', function(req, res, next) {
-    res.render('listed_items', { title : "Listed Items"});
+    res.render('user/listed_items', { title : "Listed Items"});
 });
 
 router.get('/add_item', function(req, res, next) {
-    res.render('add_item', { title : "Add Item"});
+    res.render('user/add_item', { title : "Add Item"});
 });
 
 router.get('/edit_seller_information', function(req, res, next) {
-    res.render('edit_seller_information', { title : "Edit Seller Information"});
+    res.render('user/edit_seller_information', { title : "Edit Seller Information"});
 });
 module.exports = router;
 

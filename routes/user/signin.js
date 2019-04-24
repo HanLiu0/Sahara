@@ -4,11 +4,11 @@ var sql = require('../../database/mysqlLib');
 var passport = require('passport/lib');
 
 router.get('/', function(req, res, next) {
-        res.render('signin', { title : "Sign In Page" });
+        res.render('user/signin', { title : "Sign In Page" });
 });
 
 router.post('/', passport.authenticate('local.signin', {
-    failureRedirect: '/signin',
+    failureRedirect: 'signin',
     failureFlash: true
 }), function (req, res, next) {
         res.redirect('/');
