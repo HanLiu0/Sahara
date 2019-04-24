@@ -7,6 +7,47 @@ var pool = mysql.createPool({
     database: "bidong"
 });
 
+exports.addUser = function(email, password, callback){
+    var sql = "INSERT INTO users (`Email Address`, `Username`, `Password`) values ('" + email + "','" + email +"','"+ password +"')";;
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+}
+exports.getUserByID = function(id, callback) {
+    var sql = "SELECT * FROM `user` WHERE `UserID` =" + id;
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
+exports.getUserByEmail = function(email, callback) {
+    var sql = "SELECT * FROM `user` WHERE `Email Address` = '" + email + "'";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
 exports.getAllItems = function(callback) {
   var sql = "SELECT * FROM Item";
   // get a connection from the pool
