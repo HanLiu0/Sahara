@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/shoppingCart', shoppingCartRouter);
+app.use('/shopping_cart', shoppingCartRouter);
 app.use('/signin', signinRouter);
 app.use('/account_overview', accountOverviewRouter);
 

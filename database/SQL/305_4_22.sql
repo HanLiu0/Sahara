@@ -377,7 +377,7 @@ CREATE TABLE `bidong`.`refund contains items` (
   ON UPDATE NO ACTION);
 
 delimiter //
-CREATE TRIGGER `bidong`.`computeTotalPriceInShoppingCart` AFTER INSERT
+CREATE TRIGGER `bidong`.`computeTotalPriceInShoppingCartWhenINSERT` AFTER INSERT
 ON `bidong`.`shopping cart contains items` FOR EACH ROW
     BEGIN
            SET @amount=( SELECT `Price` FROM `item` WHERE (ItemID=NEW.ItemID));
@@ -386,4 +386,16 @@ ON `bidong`.`shopping cart contains items` FOR EACH ROW
            SET `bidong`.`shopping cart`.`Total Price` = `bidong`.`shopping cart`.`Total Price` + @amount * NEW.`quantity`
            WHERE `bidong`.`shopping cart`.`ShoppingCart Id` = NEW.`shoppingCart Id`;
 	END;//
-    delimiter ;
+delimiter ;
+
+delimiter //
+CREATE TRIGGER `bidong`.`computeTotalPriceInShoppingCartWhenDELECT` AFTER DELETE
+    ON `bidong`.`shopping cart contains items` FOR EACH ROW
+BEGIN
+    SET @amount=( SELECT `Price` FROM `item` WHERE (ItemID=OLD.ItemID));
+
+    UPDATE `bidong`.`shopping cart`
+    SET `bidong`.`shopping cart`.`Total Price` = `bidong`.`shopping cart`.`Total Price` - @amount * OLD.`quantity`
+    WHERE `bidong`.`shopping cart`.`ShoppingCart Id` = OLD.`shoppingCart Id`;
+END;//
+delimiter ;

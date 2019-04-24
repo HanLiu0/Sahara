@@ -1,30 +1,74 @@
-<div id = "shoppingCart_left" style = "width:60%">
-<h1>Shopping Cart</h1>
-<table cellspacing = "0" cellpadding = "20">
-    <tr>
-        <td></td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Quantity</td>
-    </tr>
-    {{# each shopping_cart }}
-    <tr style="outline: thin solid">
-        <td><img style="max-height: 200px; width: auto;" src = "images/{{this.ItemID}}.jpg" alt="Item image for {{this.ItemID}}"></td>
-        <td>{{this.[Item Name]}}</td>
-        <td>{{this.Price}}</td>
-        <td>{{this.quantity}}</td>
-    </tr>
-    {{/each}}
-</table>
+<div class = "container">
+    <div style = "position: relative">
+    <div id = "shoppingCart_left" style = "width:60%; float:left">
+    <h1>Shopping Cart</h1>
+    <table cellspacing = "0" cellpadding = "20">
+        <tr>
+            <td></td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Remove</td>
+        </tr>
+        {{# each shopping_cart }}
+        <tr style="outline: thin solid">
+            <td><img style="max-height: 120px; width: auto;" src = "images/{{this.ItemID}}.jpg" alt="Item image for {{this.ItemID}}"></td>
+            <td><a href = "#">{{this.[Item Name]}}</a></td>
+            <td style = "text-align:center">${{this.Price}}</td>
+            <td style = "text-align:center">
+                <form method="post" action="edit_shopping_cart_info">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{this.quantity}}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+                </form>
+            </td>
+            <td>
+                <form method="delete" action="edit_shopping_cart_info">
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+    </div>
+    <div id = "shoppingCart_right" style = "width:30%; float: right; text-align: center; background-color:#d9e6f2; margin-top: 100px; padding-bottom: 10px" >
+        <h1>Subtotal:<br /> ${{shopping_cart.0.[Total Price]}}</h1>
+        <a href= "#" role = "button" class="btn btn-outline-warning">Proceed to Checkout</a>
+    </div>
+    <div id = "shoppingCart_bottom">
+        <div id="shoppingCart_Recommend" class="carousel slide" data-ride="carousel"  data-interval="false">
+                <div class="carousel-inner" style = "padding-top: 50px">
+                    <div class="carousel-inner">
+                        {{#each recommend}}
+                            <div class="carousel-item {{#if @first}}active{{/if}}">
+                                <div class="row">
+                                    {{#each this}}
+                                        <div class="col-sm"><a href= "#"><img height = 150 style="overflow:hidden" src="images/{{this}}.jpg" alt="Image for {{this}}"></a></div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#shoppingCart_Recommend" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only" style="background-color: black;">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#shoppingCart_Recommend" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+        </div>
+    </div>
+    </div>
 </div>
-<div id = "shoppingCart_right" style = "width:20%" >
-    <h1>Subtotal: ${{shopping_cart.0.[Total Price]}}</h1>
-    <a href= "">Proceed to checkout</a>
-</div>
-<div id = "shoppingCart_bottom">
-    <h1>Recommendation</h1>
-</div>
-
 
 
 

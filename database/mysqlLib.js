@@ -63,7 +63,9 @@ exports.getAllItems = function(callback) {
 };
 
 exports.getMostPopularItems = function(callback) {
-    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity DESC";
+    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) " +
+        "AS Quantity FROM `order contains item` T  " +
+        "GROUP BY T.`Item ID` ORDER BY Quantity DESC";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
@@ -76,7 +78,8 @@ exports.getMostPopularItems = function(callback) {
     });
 };
 
-exports.getRecommendItems = function(callback) {
+//BUG
+exports.getRecommendItemsFromOrderHistory = function(callback) {
     var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
@@ -115,15 +118,24 @@ exports.getAllItemsFromShoppingCart = function(callback){
                 " INNER JOIN `shopping cart` On `shopping cart`.`ShoppingCart Id` = `shopping cart contains items`.`shoppingCart Id`" +
                 " WHERE `shopping cart contains items`.`shoppingCart Id` = " + results[0]['ShoppingCart Id'];
             connection.query(sql2, function(err, results) {
-                if (err) {
-                    console.log(err);
-                    callback(true);
-                    return;
-                }
-                callback(false, results);
+                if (err) { console.log(err); callback(true); return;}
+
+                //This gets the items in current stock.
+                var sql3 = "SELECT * FROM `item` INNER JOIN `warehouse has item`"+
+                    " ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0";
+                connection.query(sql3, function(err, recmFromShoppingCart){
+                    connection.release();
+                    callback(false, results, recmFromShoppingCart);
+                });
             });
         });
     });
+}
+exports.deleteShoppingCartInformation = function(data, callback){
+
+}
+exports.editShoppingCartInformation = function(data, callback){
+
 }
 
 exports.editAccountInformation = function(data, callback){
