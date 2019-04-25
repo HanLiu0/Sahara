@@ -1,8 +1,8 @@
 <div class = "container">
     <div style = "position: relative">
-    <div id = "shoppingCart_left" style = "width:60%; float:left">
+    <div id = "shoppingCart_left" style = "width:60%;">
     <h1>Shopping Cart</h1>
-    <table cellspacing = "0" cellpadding = "20">
+    <table cellspacing = "0" cellpadding = "20" >
         <tr>
             <td></td>
             <td>Name</td>
@@ -30,7 +30,7 @@
                 </form>
             </td>
             <td>
-                <form method="delete" action="edit_shopping_cart_info">
+                <form method="post" action="/:this.id?">
                     <button type="submit" class="btn btn-danger">Remove</button>
                 </form>
             </td>
@@ -38,7 +38,7 @@
         {{/each}}
     </table>
     </div>
-    <div id = "shoppingCart_right" style = "width:30%; float: right; text-align: center; background-color:#d9e6f2; margin-top: 100px; padding-bottom: 10px" >
+    <div id = "shoppingCart_right" style = "width:30%; text-align: center; background-color:#d9e6f2; margin-top: 100px; padding-bottom: 10px" >
         <h1>Subtotal:<br /> ${{shopping_cart.0.[Total Price]}}</h1>
         <a href= "#" role = "button" class="btn btn-outline-warning">Proceed to Checkout</a>
     </div>
@@ -50,7 +50,7 @@
                             <div class="carousel-item {{#if @first}}active{{/if}}">
                                 <div class="row">
                                     {{#each this}}
-                                        <div class="col-sm"><a href= "#"><img height = 150 style="overflow:hidden" src="images/{{this}}.jpg" alt="Image for {{this}}"></a></div>
+                                        <div class="col-sm"><a href= "#"><img height = 150 style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a></div>
                                     {{/each}}
                                 </div>
                             </div>

@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     //if(user)
     //sql.getRecommendItems
     //else
-    console.log(mostPopular);
+    //console.log(mostPopular);
     res.render('index', { title : "Sahara.com: Online Shopping", mostPopular: mostPopular });
   });
 
