@@ -32,7 +32,7 @@ passport.use('local.signup', new LocalStrategy({
                 if (rows.length) {
                     return done(null, false, {message: 'That username is already taken.'});
                 }
-                mysql.addUser(req.body.username, email, password, function (err, rows) {
+                mysql.addUser(req.body.username, email, password, req, function (err, rows) {
                     mysql.getUserByEmail(email, function (err, rows) {
                         return done(null, rows[0]);
                     });
