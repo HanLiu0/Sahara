@@ -51,7 +51,16 @@ passport.use('local.signin', new LocalStrategy({
             if (err)
                 return done(err);
             if (!rows.length) {
-                return done(null, false,{message: 'No user found.'});
+                mysql.getUserByUsername(email,function(err,rows){
+                    if(!rows.length)
+                        return done(null, false,{message: 'No user found.'});
+                    else{
+                        if (!( rows[0]['Password'] === password))
+                            return done(null, false, {message: 'Wrong password.'});
+
+                        return done(null, rows[0]);
+                    }
+                });
             }
             if (!( rows[0]['Password'] === password))
                 return done(null, false, {message: 'Wrong password.'});

@@ -40,7 +40,15 @@
                 </div>
                 {{#if login}}
                 <div>
-                    <a class='fas fa-user text-light' style='font-size:24px' href="/account_overview">Account</a>
+                    <span class="dropdown">
+                        <a href="/account_overview" class="fas text-light dropdown-toggle" style='font-size:24px' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/account_overview">Your Account</a>
+                            <a class="dropdown-item" href="#">Your Orders</a>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                    </span>
                     <a class='fas text-light' style='font-size:24px' href="#">Orders</a>
                     <a class='fas fa-shopping-cart text-light' style='font-size:24px' href="/shopping_cart">Shopping Cart</a>
                 </div>
