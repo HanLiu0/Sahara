@@ -196,6 +196,7 @@ exports.getAllItemsFromShoppingCart = function(userId, callback){
             var sql2 = "Select * From `shopping cart contains items`" +
                 " INNER JOIN `item` On `shopping cart contains items`.`ItemID` = `Item`.`ItemID`" +
                 " INNER JOIN `shopping cart` On `shopping cart`.`ShoppingCart Id` = `shopping cart contains items`.`shoppingCart Id`" +
+                " INNER JOIN `warehouse has item` ON `warehouse has item`.`Item ID` = `shopping cart contains items`.`ItemID`"+
                 " WHERE `shopping cart contains items`.`shoppingCart Id` = " + results[0]['ShoppingCart Id'];
             connection.query(sql2, function(err, results) {
                 if (err) { console.log(err); callback(true); return;}
