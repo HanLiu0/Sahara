@@ -25,7 +25,7 @@
             <li><a href="#">Electronics</a></li>
             <hr />
             <li><a href="#">Contact</a></li>
-            <li><a href="#">Log out</a></li>
+            <li><a href="user/logout">Log out</a></li>
         </ul>
     </nav>
 
@@ -41,12 +41,12 @@
                 {{#if login}}
                 <div>
                     <span class="dropdown">
-                        <a href="/account_overview" class="fas text-light dropdown-toggle" style='font-size:24px' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="/user/account_overview" class="fas text-light dropdown-toggle" style='font-size:24px' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Account</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/account_overview">Your Account</a>
-                            <a class="dropdown-item" href="#">Your Orders</a>
-                            <a class="dropdown-item" href="#">Log Out</a>
+                            <a class="dropdown-item" href="/user/account_overview">Your Account</a>
+                            <a class="dropdown-item" href="/">Your Orders</a>
+                            <a class="dropdown-item" href="/user/logout">Log Out</a>
                         </div>
                     </span>
                     <a class='fas text-light' style='font-size:24px' href="#">Orders</a>
@@ -66,7 +66,7 @@
     </div>
     <footer class="footer">
             <p>
-                <a href="">Home</a>
+                <a href="/">Home</a>
                 <a href="">About</a>
                 <a href="">?????</a>
                 <a href="">????</a>
