@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sql = require('../database/mysqlLib');
 
-router.get('/', function(req, res, next) {
-    sql.getAllItemsFromShoppingCart(function(err, ShoppingResults,AllItemsInWarehouse) {
+router.get('/',isLoggedIn, function(req, res, next) {
+    sql.getAllItemsFromShoppingCart(req.user, function(err, ShoppingResults,AllItemsInWarehouse) {
         var mostRecommend = [];
         for(var i = 0 ; i < 2; i++){
             mostRecommend[i] = [];
@@ -18,16 +18,27 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.delete('/', function(req, res, next) {
-    console.log(req.body);
-    sql.deleteShoppingCartInformation(req.body);
-    res.redirect('/');
+router.get('/remove_from_shopping_cart/:id', function(req, res, next) {
+    sql.removeItemFromShoppingCart(req.params.id, req.user);
+    res.redirect('/shopping_cart');
 });
 
-router.post('/', function(req, res, next){
-    console.log(req.body);
-    sql.editShoppingCartInformation(req.body);
-    res.redirect('/');
+router.get('/reduce_in_shopping_cart/:id', function(req, res, next){
+    sql.reduceItemInShoppingCart(req.params.id, req.user);
+    res.redirect('/shopping_cart');
 });
+router.get('/add_in_shopping_cart/:id', function(req, res, next){
+    sql.addItemInShoppingCart(req.params.id, req.user);
+    res.redirect('/shopping_cart');
+});
+
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/signin');
+}
+

@@ -16,23 +16,21 @@
             <td><a href = "#">{{this.[Item Name]}}</a></td>
             <td style = "text-align:center">${{this.Price}}</td>
             <td style = "text-align:center">
-                <form method="post" action="edit_shopping_cart_info">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+            {{#if login}}
+
+            {{ else }}
+
+            {{/if}}
+
+
+                <a href="shopping_cart/reduce_in_shopping_cart/{{this.ItemID}}">-</a>
                     {{this.quantity}}
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </div>
-                </form>
+                <a href="shopping_cart/add_in_shopping_cart/{{this.ItemID}}">+</a>
             </td>
             <td>
-                <form method="post" action="/:this.id?">
-                    <button type="submit" class="btn btn-danger">Remove</button>
-                </form>
+                <a class="btn btn-danger" href="shopping_cart/remove_from_shopping_cart/{{this.ItemID}}">Remove</a>
             </td>
         </tr>
         {{/each}}
