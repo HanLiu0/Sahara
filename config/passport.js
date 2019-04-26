@@ -25,17 +25,19 @@ passport.use('local.signup', new LocalStrategy({
                 return done(err);
             if (rows.length) {
                 return done(null, false, {message : 'That email is already taken.'});
-            } else {
-                var newUserMysql = new Object();
-
-                newUserMysql.email    = email;
-                newUserMysql.password = password;
-
-                mysql.addUser(email, password,function(err,rows){
-                    newUserMysql.id = rows[0]['UserID'];
-                    return done(null, newUserMysql);
-                });
             }
+            mysql.getUserByUsername(req.body.username, function(err, rows) {
+                if (err)
+                    return done(err);
+                if (rows.length) {
+                    return done(null, false, {message: 'That username is already taken.'});
+                }
+                mysql.addUser(req.body.username, email, password, function (err, rows) {
+                    mysql.getUserByEmail(email, function (err, rows) {
+                        return done(null, rows[0]);
+                    });
+                });
+            });
         });
     }));
 

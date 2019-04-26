@@ -14,6 +14,7 @@ require('./config/passport');
 var indexRouter = require('./routes/index');
 var shoppingCartRouter = require('./routes/shopping_cart');
 var signinRouter = require('./routes/user/signin');
+var signupRouter = require('./routes/user/signup');
 var accountOverviewRouter = require('./routes/user/account_overview');
 
 var app = express();
@@ -48,6 +49,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/shopping_cart', shoppingCartRouter);
 app.use('/signin', signinRouter);
+app.use('/signup', signupRouter);
 app.use('/account_overview', accountOverviewRouter);
 
 

@@ -5,14 +5,14 @@ var passport = require('passport/lib');
 
 router.get('/', function(req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signin', { title : "Sign In Page", messages: messages, errors: messages.length > 0 });
+    res.render('user/signup', { title : "Sign Up Page", messages: messages, errors: messages.length > 0 });
 });
 
-router.post('/', passport.authenticate('local.signin', {
-    failureRedirect: 'signin',
+router.post('/', passport.authenticate('local.signup', {
+    failureRedirect: 'signup',
     failureFlash: true
 }), function (req, res, next) {
-        res.redirect('/');
+    res.redirect('/');
 });
 
 module.exports = router;
