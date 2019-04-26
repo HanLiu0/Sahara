@@ -19,8 +19,8 @@ INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`,`Str
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES (000000000000019,'alibabaInc','cantThinkOfAny','alibaba@mayun.com','999 Alibaba Rd',NULL,'Long Island','NY','USA',NULL,'8002345678');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES (000000000000020,'abcInc','00000','abc@gmail.com','908 Abc Road',NULL,'Long Island','NY','USA',NULL,'8000000000');
 
-INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000011', 'GoGole');
-INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000012', 'EbEby');
+INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000011', 'GoGoGo');
+INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000012', 'EBaby');
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000013', 'AppleBanana');
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000014', 'BananaApple');
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000015', 'Yayoyo');
@@ -30,16 +30,29 @@ INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000019', 'Alibabaaaa');
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`) VALUES ('000000000000020', 'Abccc');
 
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('1', 'Cecilia', 'Chapman', 'Sea');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('2', 'Iris', 'Watson');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('3', 'Celeste', 'Slater', 'Shan');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('4', 'Theodore', 'Iowe', 'Marry');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('5', 'Calista', 'Wise');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('6', 'Kyla', 'Olsen');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('7', 'Forrest', 'Ray');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('8', 'Hiroko', 'Potter');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('9', 'Nyssa', 'Vazquez');
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('10', 'Araon', 'Hawkins', 'Cook');
+
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000001', 'Cecilia', 'Chapman', 'Sea');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000002', 'Iris', 'Watson');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000003', 'Celeste', 'Slater', 'Shan');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000004', 'Theodore', 'Iowe', 'Marry');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000005', 'Calista', 'Wise');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000006', 'Kyla', 'Olsen');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000007', 'Forrest', 'Ray');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000008', 'Hiroko', 'Potter');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000009', 'Nyssa', 'Vazquez');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000010', 'Chole', 'Zheng', 'Apple');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000011', 'Cindy', 'Walker', 'Banana');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000012', 'Alan', 'Tucker');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000013', 'Stark', 'Orange', 'Pineapple');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000014', 'Esmaili', 'Straw', 'Barry');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000015', 'Mckenna', 'Piazza');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000016', 'McDonnell', 'Kind');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000017', 'Kevin', 'Lin');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000018', 'Di', 'Wang');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`) VALUES ('000000000000019', 'Blue', 'Berry');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) VALUES ('000000000000020', 'Water', 'Mellon', 'PineappleII');
+
+
 
 INSERT INTO `bidong`.`order` (`order number`, `coupon`, `order date`, `Total price`) VALUES ('000000000000001', '20%OFF', '2019-04-01', '99.78');
 INSERT INTO `bidong`.`order` (`order number`, `coupon`, `order date`, `Total price`) VALUES ('000000000000002', '15%OFF', '2019-04-02', '99.99');
