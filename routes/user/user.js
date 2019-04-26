@@ -51,7 +51,7 @@ router.get('/account_overview/payment_options', isLoggedIn, function(req, res, n
     res.render('user/payment_options', { title : "Payment Options"});
 });
 
-router.get('/account_overview//listed_items', isLoggedIn, function(req, res, next) {
+router.get('/account_overview/listed_items', isLoggedIn, function(req, res, next) {
     res.render('user/listed_items', { title : "Listed Items"});
 });
 
@@ -61,6 +61,10 @@ router.get('/account_overview/add_item', isLoggedIn, function(req, res, next) {
 
 router.get('/account_overview/edit_seller_information', isLoggedIn, function(req, res, next) {
     res.render('user/edit_seller_information', { title : "Edit Seller Information"});
+});
+
+router.post('/account_overview/edit_seller_information', isLoggedIn, function(req, res, next) {
+
 });
 module.exports = router;
 

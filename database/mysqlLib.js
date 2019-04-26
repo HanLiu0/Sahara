@@ -7,16 +7,24 @@ var pool = mysql.createPool({
     database: "bidong"
 });
 
-exports.addUser = function(username, email, password, callback){
-    var sql = "INSERT INTO user (`Email Address`, `Username`, `Password`) values ('" + email + "','" + username +"','"+ password +"')";;
-    // get a connection from the pool
+exports.addUser = function(username, email, password, req, callback){
+    var sql1 = "INSERT INTO user (`Email Address`, `Username`, `Password`) values ('" + email + "','" + username +"','"+ password +"')";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         // make the query
-        connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
+        connection.query(sql1, function(err, results) {
+                var userid = results.insertId;
+                var sql2 = "INSERT INTO customer (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) values ('" + results.insertId + "','" +
+                    req.body.firstName +"','"+ req.body.lastName + "','" + req.body.middleName + "')";
+                var sql3 = "INSERT INTO `shopping cart` (`ShoppingCart Id`) values ('" + results.insertId +"')";
+                connection.query(sql2, function(err, results) {
+                    connection.query(sql3, function(err, results) {
+                        var sql4 = "INSERT INTO `customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) values ('" + userid + "', '" +results.insertId +"')";
+                        connection.release();
+                        if(err) { console.log(err); callback(true); return; }
+                        callback(false, results);
+                    });
+                });
         });
     });
 };
