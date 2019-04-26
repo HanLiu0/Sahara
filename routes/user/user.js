@@ -60,11 +60,15 @@ router.get('/account_overview/add_item', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/account_overview/edit_seller_information', isLoggedIn, function(req, res, next) {
-    res.render('user/edit_seller_information', { title : "Edit Seller Information"});
+    var messages = req.flash('editSellerMessage');
+    res.render('user/edit_seller_information', { title : "Edit Seller Information", messages: messages[0], errors: messages.length > 0});
 });
 
 router.post('/account_overview/edit_seller_information', isLoggedIn, function(req, res, next) {
-
+    sql.editSellerInformation(req,function(err, results1){
+        req.flash('editSellerMessage', 'Successfully changed');
+        res.redirect('/user/account_overview/edit_seller_information');
+    });
 });
 module.exports = router;
 

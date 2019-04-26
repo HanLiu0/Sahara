@@ -42,24 +42,32 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="account_overview/listed_items"><h5 class="card-title">Your Listed Items</h5></a>
-                            <p class="card-text">All items currently listed online.</p>
+                    {{#if login}}
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="account_overview/listed_items"><h5 class="card-title">Your Listed Items</h5></a>
+                                <p class="card-text">All items currently listed online.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="account_overview/add_item"><h5 class="card-title">Add Item</h5></a>
-                            <p class="card-text">List a new item.</p>
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="account_overview/add_item"><h5 class="card-title">Add Item</h5></a>
+                                <p class="card-text">List a new item.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="account_overview/edit_seller_information"><h5 class="card-title">Edit Seller Information</h5></a>
-                            <p class="card-text">Edit company name, address, and phone number.</p>
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="account_overview/edit_seller_information"><h5 class="card-title">Edit Seller Information</h5></a>
+                                <p class="card-text">Edit company name, address, and phone number.</p>
+                            </div>
                         </div>
-                    </div>
+                    {{else}}
+                        <div class="card">
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                    {{/if}}
                 </div>
             </div>
         </div>

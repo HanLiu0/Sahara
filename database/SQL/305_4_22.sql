@@ -3,13 +3,6 @@ CREATE TABLE `bidong`.`user` (
   `Email Address` VARCHAR(254) NOT NULL,
   `Username` CHAR(20) NOT NULL,
   `Password` CHAR(20) NOT NULL,
-  `Phone Number` CHAR(10) NULL,
-  `Street Address Line 1` VARCHAR(40) NULL,
-  `Street Address Line 2` VARCHAR(40) NULL,
-  `City` VARCHAR(20) NULL,
-  `State/Province/Region` VARCHAR(20) NULL,
-  `Country` VARCHAR(20) NULL,
-  `Zip Code` CHAR(10) NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE(`Email Address`),
   UNIQUE(`Username`));
@@ -19,6 +12,13 @@ CREATE TABLE `bidong`.`customer` (
   `First Name` VARCHAR(20) NOT NULL,
   `Last Name` VARCHAR(20) NOT NULL,
   `Middle Name` VARCHAR(20) NULL,
+  `Phone Number` CHAR(10) NULL,
+  `Street Address Line 1` VARCHAR(40) NULL,
+  `Street Address Line 2` VARCHAR(40) NULL,
+  `City` VARCHAR(20) NULL,
+  `State/Province/Region` VARCHAR(20) NULL,
+  `Country` VARCHAR(20) NULL,
+  `Zip Code` CHAR(10) NULL,
   PRIMARY KEY (`CustomerID`),
   CONSTRAINT `UserFK in customer`
     FOREIGN KEY (`CustomerID`) REFERENCES `bidong`.`user` (`UserID`)
@@ -29,6 +29,13 @@ CREATE TABLE `bidong`.`customer` (
 CREATE TABLE `bidong`.`seller` (
   `SellerID` INT(15) ZEROFILL NOT NULL AUTO_INCREMENT,
   `Company Name` VARCHAR(45) NOT NULL,
+  `Phone Number` CHAR(10) NULL,
+  `Street Address Line 1` VARCHAR(40) NULL,
+  `Street Address Line 2` VARCHAR(40) NULL,
+  `City` VARCHAR(20) NULL,
+  `State/Province/Region` VARCHAR(20) NULL,
+  `Country` VARCHAR(20) NULL,
+  `Zip Code` CHAR(10) NULL,
   PRIMARY KEY (`SellerID`),
   CONSTRAINT `UserFK in seller`
     FOREIGN KEY (`SellerID`) REFERENCES `bidong`.`user` (`UserID`)

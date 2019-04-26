@@ -112,6 +112,33 @@ exports.editAccountInformation = function(req, callback){
     });
 };
 
+exports.editAccountInformation = function(req, callback){
+    var sql1 = 'UPDATE `customer` ' +
+        'SET `First Name` = \'' + req.body.firstName + '\', `Last Name` = \'' + req.body.lastName +
+        '\', `Middle Name` = \'' + req.body.middleName  +
+        '\' WHERE (`CustomerID` = ' + req.user +'); ';
+    var sql2 = 'UPDATE `user` ' +
+        'Set `Street Address Line 1` = \'' + req.body.address1 + '\', ' +
+        '`Street Address Line 2` = \'' + req.body.address2 + '\', ' +
+        '`City` = \'' + req.body.city + '\', ' +
+        '`State/Province/Region` = \'' + req.body.state + '\', ' +
+        '`Country` = \'' + req.body.country + '\', ' +
+        '`Zip Code` = \'' + req.body.zipCode + '\', ' +
+        '`Phone Number` = \'' + req.body.phoneNumber + '\' ' +
+        'WHERE (`userID` = ' + req.user + ');';
+
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); }
+        // make the query
+        connection.query(sql1, function(err, results) {
+            connection.query(sql2, function (err, results) {
+                connection.release();
+                callback(false, results);
+            });
+        });
+    });
+};
+
 exports.changePassword = function(req, callback){
     var oldPassword = req.body.currentPassword;
     var error = false;
