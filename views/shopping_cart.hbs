@@ -16,18 +16,10 @@
             <td><a href = "#">{{this.[Item Name]}}</a></td>
             <td style = "text-align:center">${{this.Price}}</td>
             <td style = "text-align:center">
-
-
-            {{#if login}}
-
-            {{ else }}
-
-            {{/if}}
-
-
-                <a href="shopping_cart/reduce_in_shopping_cart/{{this.ItemID}}">-</a>
-                    {{this.quantity}}
-                <a href="shopping_cart/add_in_shopping_cart/{{this.ItemID}}">+</a>
+            <form method="post" action = "shopping_cart/edit_in_shopping_cart/{{this.ItemID}}">
+                <input name = "quantity" type="number" min = "1" max = "{{this.Quantity}}" value = {{this.quantity}}>
+                <input type="submit">
+            </form>
             </td>
             <td>
                 <a class="btn btn-danger" href="shopping_cart/remove_from_shopping_cart/{{this.ItemID}}">Remove</a>
@@ -35,6 +27,7 @@
         </tr>
         {{/each}}
     </table>
+
     </div>
     <div id = "shoppingCart_right" style = "width:30%; text-align: center; background-color:#d9e6f2; margin-top: 100px; padding-bottom: 10px" >
         <h1>Subtotal:<br /> ${{shopping_cart.0.[Total Price]}}</h1>

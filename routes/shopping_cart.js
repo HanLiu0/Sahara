@@ -23,15 +23,10 @@ router.get('/remove_from_shopping_cart/:id', function(req, res, next) {
     res.redirect('/shopping_cart');
 });
 
-router.get('/reduce_in_shopping_cart/:id', function(req, res, next){
-    sql.reduceItemInShoppingCart(req.params.id, req.user);
+router.post('/edit_in_shopping_cart/:id', function(req, res, next){
+    sql.editItemInShoppingCart(req.params.id, req.user, req.body.quantity);
     res.redirect('/shopping_cart');
 });
-router.get('/add_in_shopping_cart/:id', function(req, res, next){
-    sql.addItemInShoppingCart(req.params.id, req.user);
-    res.redirect('/shopping_cart');
-});
-
 
 module.exports = router;
 

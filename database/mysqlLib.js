@@ -267,49 +267,21 @@ exports.removeItemFromShoppingCart = function(itemID, userID, callback){
     });
 }
 
-exports.addItemInShoppingCart = function(itemID,userID, callback){
+exports.editItemInShoppingCart = function(itemID,userID, quantity, callback){
     var sql1 = "SELECT `ShoppingCart Id` FROM `customer owns shopping cart` WHERE `Customer Id` = " + userID;
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql1, function(err, shoppingCartId) {
-            var sql0 = "SELECT `quantity` FROM `shopping cart contains items` WHERE `shoppingCart Id` = "
-                + shoppingCartId[0]['ShoppingCart Id'] + " AND ItemID = "+ itemID;
-            connection.query(sql0, function (err, quantityA) {
-                var quantity = parseInt(quantityA[0]['quantity'], 10) + 1;
-                var sql2 = 'UPDATE `shopping cart contains items` SET quantity = ' + quantity +
-                    ' WHERE `shoppingCart Id` = ' + shoppingCartId[0]['ShoppingCart Id']
-                    + ' AND `ItemID` = ' + itemID;
-                connection.query(sql2, function (err, results) {
-                    connection.release();
-                    if (err) {
-                        console.log(err);callback(true);return;
-                    }
-                });
-
+            var sql2 = 'UPDATE `shopping cart contains items` SET quantity = ' + quantity +
+                ' WHERE `shoppingCart Id` = ' + shoppingCartId[0]['ShoppingCart Id']
+                + ' AND `ItemID` = ' + itemID;
+            connection.query(sql2, function (err, results) {
+                connection.release();
+                if (err) {
+                    console.log(err);callback(true);return;
+                }
             });
-        });
-    });
-}
 
-exports.reduceItemInShoppingCart = function(itemID,userID, callback){
-    var sql1 = "SELECT `ShoppingCart Id` FROM `customer owns shopping cart` WHERE `Customer Id` = " + userID;
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        connection.query(sql1, function(err, shoppingCartId) {
-            var sql0 = "SELECT `quantity` FROM `shopping cart contains items` WHERE `shoppingCart Id` = "
-                + shoppingCartId[0]['ShoppingCart Id'] + " AND ItemID = "+ itemID;
-            connection.query(sql0, function (err, quantityA) {
-                var quantity = parseInt(quantityA[0]['quantity'], 10) - 1;
-                var sql2 = 'UPDATE `shopping cart contains items` SET quantity = ' + quantity +
-                    ' WHERE `shoppingCart Id` = ' + shoppingCartId[0]['ShoppingCart Id']
-                    + ' AND `ItemID` = ' + itemID;
-                connection.query(sql2, function (err, results) {
-                    connection.release();
-                    if (err) {
-                        console.log(err);callback(true);return;
-                    }
-                });
-            });
         });
     });
 }

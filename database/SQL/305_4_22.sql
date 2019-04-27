@@ -413,10 +413,10 @@ CREATE TRIGGER `bidong`.`computeTotalPriceInShoppingCartWhenUPDATE` AFTER UPDATE
 BEGIN
     SET @amount=( SELECT `Price` FROM `item` WHERE (ItemID=NEW.ItemID));
     IF NEW.`quantity`> OLD.`quantity` THEN
-        UPDATE `bidong`.`shopping cart` SET `bidong`.`shopping cart`.`Total Price` = `bidong`.`shopping cart`.`Total Price` + @amount
+        UPDATE `bidong`.`shopping cart` SET `bidong`.`shopping cart`.`Total Price` = `bidong`.`shopping cart`.`Total Price` + @amount*(NEW.`quantity`- OLD.`quantity`)
         WHERE `bidong`.`shopping cart`.`ShoppingCart Id` = NEW.`shoppingCart Id`;
     ELSE
-        UPDATE `bidong`.`shopping cart` SET `bidong`.`shopping cart`.`Total Price` = `bidong`.`shopping cart`.`Total Price` - @amount
+        UPDATE `bidong`.`shopping cart` SET `bidong`.`shopping cart`.`Total Price` = `bidong`.`shopping cart`.`Total Price` - @amount*(OLD.`quantity`- NEW.`quantity`)
         WHERE `bidong`.`shopping cart`.`ShoppingCart Id` = NEW.`shoppingCart Id`;
     END IF;
 END;//

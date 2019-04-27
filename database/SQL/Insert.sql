@@ -75,6 +75,16 @@ INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES (
 INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000008', 0.00);
 INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000009', 0.00);
 INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000010', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000011', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000012', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000013', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000014', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000015', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000016', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000017', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000018', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000019', 0.00);
+INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000020', 0.00);
 
 INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000001,'9876473829109374','2020-04-30','VISA','6059 Sollicitudin Road',NULL,'Burlingame ','Colorado ','USA','26278');
 INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000002,'378282246310005','2022-05-31','AMERICAN EXPRESS','1379 Nulla. Av.',NULL,'Asbury Park','Montana ','USA','69679');
@@ -197,6 +207,16 @@ INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart
 INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000008', '000000000000008');
 INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000009', '000000000000009');
 INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000010', '000000000000010');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000011', '000000000000011');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000012', '000000000000012');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000013', '000000000000013');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000014', '000000000000014');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000015', '000000000000015');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000016', '000000000000016');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000017', '000000000000017');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000018', '000000000000018');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000019', '000000000000019');
+INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) VALUES ('000000000000020', '000000000000020');
 
 INSERT INTO `bidong`.`shopping cart contains items` (`shoppingCart Id`, `quantity`, `ItemID`) VALUES ('000000000000001', '1', '000000000000001');
 INSERT INTO `bidong`.`shopping cart contains items` (`shoppingCart Id`, `quantity`, `ItemID`) VALUES ('000000000000001', '1', '000000000000002');
