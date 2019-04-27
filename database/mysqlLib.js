@@ -20,9 +20,15 @@ exports.addUser = function(username, email, password, req, callback){
                 connection.query(sql2, function(err, results) {
                     connection.query(sql3, function(err, results) {
                         var sql4 = "INSERT INTO `customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) values ('" + userid + "', '" +results.insertId +"')";
-                        connection.release();
-                        if(err) { console.log(err); callback(true); return; }
-                        callback(false, results);
+                        connection.query(sql4, function(err, results) {
+                            connection.release();
+                            if (err) {
+                                console.log(err);
+                                callback(true);
+                                return;
+                            }
+                            callback(false, results);
+                        });
                     });
                 });
         });
@@ -164,6 +170,54 @@ exports.changePassword = function(req, callback){
                 });
             });
         }
+    });
+};
+
+
+exports.addSeller = function(req, callback){
+    var sql = 'INSERT INTO `seller`(`SellerID`, `Company Name`, `Street Address Line 1`, `Street Address Line 2`, `City`,' +
+        '`State/Province/Region`, `Country`, `Zip Code`, `Phone Number`) values (\'' +
+        req.user + '\', \'' +
+        req.body.companyName + '\', \'' +
+        req.body.address1 + '\', \'' +
+        req.body.address2 + '\', \'' +
+        req.body.city + '\', \'' +
+        req.body.state + '\', \'' +
+        req.body.country + '\', \'' +
+        req.body.zipCode + '\', \'' +
+        req.body.phoneNumber + '\')';
+
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            callback(false, results);
+        });
+    });
+};
+
+exports.addItem = function(req, callback){
+    var sql1 = "INSERT INTO item (`Item Name`, `Type`, `Price`, `Description`) values ('" + req.body.itemName + "','" + req.body.type +"','"+ req.body.price+"','"+ req.body.description +"')";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql1, function(err, results) {
+            var itemID = results.insertId;
+            var sql2 = "INSERT INTO `warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) values ('" + itemID + "','11111','" + req.body.quantity + "')";
+            var sql3 = "INSERT INTO `seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) values ('" + itemID + "','11111','" + req.user + "')";
+            connection.query(sql2, function(err, results) {
+                connection.query(sql3, function(err, results) {
+                        connection.release();
+                        if (err) {
+                            console.log(err);
+                            callback(true);
+                            return;
+                        }
+                        callback(false, itemID);
+                });
+            });
+        });
     });
 };
 

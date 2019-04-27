@@ -8,6 +8,8 @@ var logger = require('morgan');
 var expressHbs = require('express-handlebars');
 var session = require('express-session');
 var flash = require('connect-flash');
+var fileUpload = require('express-fileupload');
+
 
 require('./config/passport');
 
@@ -39,6 +41,7 @@ app.use(flash());
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 
 app.use(function(req, res, next) {
     res.locals.login = req.isAuthenticated();

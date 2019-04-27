@@ -1,4 +1,7 @@
 <div class="container">
+    {{#if errors}}
+        <p>{{messages}}</p>
+    {{/if}}
      <h1>Your Account</h1>
     <div class="row">
         <div class="col-1" style="padding-right:0px;">
@@ -42,7 +45,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    {{#if login}}
+                    {{#if isSeller}}
                         <div class="card">
                             <div class="card-body">
                                 <a href="account_overview/listed_items"><h5 class="card-title">Your Listed Items</h5></a>
@@ -64,7 +67,60 @@
                     {{else}}
                         <div class="card">
                             <div class="card-body">
-
+                                <h1>Sign up to be a Seller</h1>
+                                <form method="post" action="seller_sign_up">
+                                    <h4>Company Information</h4>
+                                    <div class="form-group row">
+                                        <label for="firstName" class="col-sm-2 col-form-label">Company Name:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="companyName" placeholder="Company Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="phoneNumber" class="col-sm-2 col-form-label">Company Phone Number:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number">
+                                        </div>
+                                    </div>
+                                    <h4>Address</h4>
+                                    <div class="form-group row">
+                                        <label for="address1" class="col-sm-2 col-form-label">Street Address Line 1:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="address1" placeholder="Street Address Line 1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="address2" class="col-sm-2 col-form-label">Street Address Line 2:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="address2" placeholder="Street Address Line 2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="city" class="col-sm-2 col-form-label">City:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="city" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="state" class="col-sm-2 col-form-label">State/Province/Region:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="state" placeholder="State/Province/Region">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="country" class="col-sm-2 col-form-label">Country:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="country" placeholder="Country">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="zipCode" class="col-sm-2 col-form-label">Zip Code:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="zipCode" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2">Done</button>
+                                </form>
                             </div>
                         </div>
                     {{/if}}

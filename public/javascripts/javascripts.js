@@ -10,6 +10,10 @@ function toggleNav() {
     }
 }
 
-function getItemTypes(){
-    return ["Books", "Clothing/ Shoes/ Jewelry", "Electronics", "Entertainment", "Furniture", "Health care", "Home &amp; Kitchen", "Music Instruments", "Pet Supplies", "Snake/Food", "Toy/Game/Movie"];
+function readText(input) {
+    if (input.files && input.files[0]) {
+        var image = document.getElementById("image");
+        document.getElementById("fileLabel").innerText = image.value;
+
+    }
 }

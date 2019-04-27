@@ -12,7 +12,16 @@ router.get('/logout', function (req, res, next) {
 });
 
 router.get('/account_overview', function (req, res, next) {
-    res.render('user/account_overview', {title: "Your Account"});
+    sql.getSellerByID(req.user, function(err, result){
+        var isSeller = result.length > 0;
+        var messages = req.flash('addSellerMessage');
+        console.log(isSeller);
+        res.render('user/account_overview', {
+            title: "Your Account",
+            isSeller: isSeller,
+            messages: messages[0], errors: messages.length > 0
+        });
+    });
 });
 
 router.get('/account_overview/edit_account_information', function (req, res, next) {
@@ -48,20 +57,54 @@ router.post('/account_overview/change_password', function (req, res, next) {
 });
 
 router.get('/account_overview/payment_options', function (req, res, next) {
-    res.render('user/payment_options', {title: "Payment Options"});
-});
-
-router.get('/account_overview/listed_items', function (req, res, next) {
-    res.render('user/listed_items', {title: "Listed Items"});
-});
-
-router.get('/account_overview/add_item', function (req, res, next) {
-    res.render('user/add_item', {
-        title: "Add Item"
+    res.render('user/payment_options', {
+        title: "Payment Options"
     });
 });
 
-router.get('/account_overview/edit_seller_information', function (req, res, next) {
+router.post('/seller_sign_up', function (req, res, next) {
+    sql.addSeller(req, function (err, results1) {
+        req.flash('addSellerMessage', 'Successfully signed up');
+        res.redirect('/user/account_overview');
+    });
+});
+
+router.get('/account_overview/listed_items', isSeller , function (req, res, next) {
+    res.render('user/listed_items', {
+        title: "Listed Items"
+    });
+});
+
+router.get('/account_overview/add_item', isSeller, function (req, res, next) {
+    var messages = req.flash('addItemMessage');
+    res.render('user/add_item', {
+        title: "Add Item",
+        messages: messages[0],
+        errors: messages.length > 0,
+        itemTypes: getItemTypes()
+    });
+});
+
+router.post('/account_overview/add_item', isSeller, function (req, res, next) {
+    sql.addItem(req, function (err, results) {
+        var imageFile = req.files.image;
+        var s = results + "";
+        while (s.length < 15)
+            s = "0" + s;
+        imageFile.mv('./public/images/' + s + ".jpg", function(err){
+            if(err){
+                console.log(err);
+                return;
+            }
+            else{
+                req.flash('addItemMessage', 'Successfully added');
+                res.redirect('/user/account_overview/add_item');
+            }
+        });
+    });
+});
+
+router.get('/account_overview/edit_seller_information', isSeller, function (req, res, next) {
     sql.getSellerByID(req.user, function (err, results) {
         var messages = req.flash('editSellerMessage');
         res.render('user/edit_seller_information', {
@@ -73,7 +116,7 @@ router.get('/account_overview/edit_seller_information', function (req, res, next
     });
 });
 
-router.post('/account_overview/edit_seller_information', function (req, res, next) {
+router.post('/account_overview/edit_seller_information', isSeller, function (req, res, next) {
     sql.editSellerInformation(req, function (err, results1) {
         req.flash('editSellerMessage', 'Successfully changed');
         res.redirect('/user/account_overview/edit_seller_information');
@@ -87,4 +130,17 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     res.redirect('/signin');
+}
+
+function isSeller(req, res, next) {
+    sql.getSellerByID(req.user, function(err, result){
+       if(result.length > 0)
+           return next();
+        else
+            res.redirect('/user/account_overview');
+    });
+}
+
+function getItemTypes(){
+    return ["Books", "Clothing/ Shoes/ Jewelry", "Electronics", "Entertainment", "Furniture", "Health care", "Home & Kitchen", "Music Instruments", "Pet Supplies", "Snake/Food", "Toy/Game/Movie"];
 }

@@ -1,0 +1,47 @@
+<div class="container">
+    {{#if errors}}
+        <p>{{messages}}</p>
+    {{/if}}
+    <a href="/user/account_overview" class="btn btn-primary mb-2">Back</a>
+    <h1>Add Item</h1>
+    <form method="post" action="add_item" encType="multipart/form-data">
+        <div class="form-group row">
+            <label for="itemName" class="col-sm-2 col-form-label">Item Name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="itemName" placeholder="Item Name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="type" class="col-sm-2 col-form-label">Type:</label>
+            <select class="custom-select col-sm-10" id="type" name="type">
+                {{#each itemTypes}}
+                    <option {{#if first}}selected{{/if}}>{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group row">
+            <label for="price" class="col-sm-2 col-form-label">Price:</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="price" placeholder="Price" min="0.01" step="0.01" max="99999.99" value="0.01">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="quantity" class="col-sm-2 col-form-label">Quantity:</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="quantity" placeholder="Quantity" min="1" step="1" max="999" value="1">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="image" class="col-form-label">Image:</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="image" name="image" accept="image/*" onchange="readText(this)"; required>
+                <label class="custom-file-label" id="fileLabel" for="image">Choose file</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Done</button>
+    </form>
+</div>
