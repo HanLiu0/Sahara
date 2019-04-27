@@ -50,21 +50,23 @@ passport.use('local.signin', new LocalStrategy({
         mysql.getUserByEmail(email,function(err,rows){
             if (err)
                 return done(err);
-            if (!rows.length) {
+            else if (!rows.length) {
                 mysql.getUserByUsername(email,function(err,rows){
                     if(!rows.length)
                         return done(null, false,{message: 'No user found.'});
                     else{
                         if (!( rows[0]['Password'] === password))
                             return done(null, false, {message: 'Wrong password.'});
-
-                        return done(null, rows[0]);
+                        else {
+                            return done(null, rows[0]);
+                        }
                     }
                 });
+            }else if (!(rows[0]['Password'] === password)){
+                    return done(null, false, {message: 'Wrong password.'});
             }
-            if (!( rows[0]['Password'] === password))
-                return done(null, false, {message: 'Wrong password.'});
-
-            return done(null, rows[0]);
+            else{
+                return done(null, rows[0]);
+            }
         });
     }));

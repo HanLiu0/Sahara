@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="container text-center">
     {{#if errors}}
         {{#each messages}}
             <p>{{this}}</p>
@@ -6,10 +6,18 @@
     {{/if}}
     <form method="post" action="signin">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="email" class="sr-only">Email address or Username</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email address or Username</label>
+            <div class="col-sm-10">
+                <input type="text" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+        </div>
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me

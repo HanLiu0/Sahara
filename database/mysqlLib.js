@@ -85,56 +85,61 @@ exports.getCustomerByID = function(id, callback) {
     });
 };
 
-exports.editAccountInformation = function(req, callback){
-    var sql1 = 'UPDATE `customer` ' +
-        'SET `First Name` = \'' + req.body.firstName + '\', `Last Name` = \'' + req.body.lastName +
-        '\', `Middle Name` = \'' + req.body.middleName  +
-        '\' WHERE (`CustomerID` = ' + req.user +'); ';
-    var sql2 = 'UPDATE `user` ' +
-        'Set `Street Address Line 1` = \'' + req.body.address1 + '\', ' +
-        '`Street Address Line 2` = \'' + req.body.address2 + '\', ' +
-        '`City` = \'' + req.body.city + '\', ' +
-        '`State/Province/Region` = \'' + req.body.state + '\', ' +
-        '`Country` = \'' + req.body.country + '\', ' +
-        '`Zip Code` = \'' + req.body.zipCode + '\', ' +
-        '`Phone Number` = \'' + req.body.phoneNumber + '\' ' +
-        'WHERE (`userID` = ' + req.user + ');';
-
-        pool.getConnection(function(err, connection) {
-            if(err) { console.log(err); }
-            // make the query
-            connection.query(sql1, function(err, results) {
-                connection.query(sql2, function (err, results) {
-                    connection.release();
-                    callback(false, results);
-                });
-            });
+exports.getSellerByID = function(id, callback) {
+    var sql = "SELECT * FROM `seller` WHERE `SellerID` =" + id;
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
     });
 };
 
 exports.editAccountInformation = function(req, callback){
-    var sql1 = 'UPDATE `customer` ' +
+    var sql = 'UPDATE `seller` ' +
         'SET `First Name` = \'' + req.body.firstName + '\', `Last Name` = \'' + req.body.lastName +
-        '\', `Middle Name` = \'' + req.body.middleName  +
-        '\' WHERE (`CustomerID` = ' + req.user +'); ';
-    var sql2 = 'UPDATE `user` ' +
-        'Set `Street Address Line 1` = \'' + req.body.address1 + '\', ' +
+        '\', `Middle Name` = \'' + req.body.middleName  + '\', ' +
+        ' `Street Address Line 1` = \'' + req.body.address1 + '\', ' +
         '`Street Address Line 2` = \'' + req.body.address2 + '\', ' +
         '`City` = \'' + req.body.city + '\', ' +
         '`State/Province/Region` = \'' + req.body.state + '\', ' +
         '`Country` = \'' + req.body.country + '\', ' +
         '`Zip Code` = \'' + req.body.zipCode + '\', ' +
         '`Phone Number` = \'' + req.body.phoneNumber + '\' ' +
-        'WHERE (`userID` = ' + req.user + ');';
+        'WHERE (`CustomerID` = ' + req.user + ');';
+
+        pool.getConnection(function(err, connection) {
+            if(err) { console.log(err); }
+            // make the query
+            connection.query(sql, function(err, results) {
+                    connection.release();
+                    callback(false, results);
+            });
+    });
+};
+
+exports.editSellerInformation = function(req, callback){
+    var sql = 'UPDATE `seller` ' +
+        'SET `Company Name` = \'' + req.body.companyName + '\',' +
+        '`Street Address Line 1` = \'' + req.body.address1 + '\', ' +
+        '`Street Address Line 2` = \'' + req.body.address2 + '\', ' +
+        '`City` = \'' + req.body.city + '\', ' +
+        '`State/Province/Region` = \'' + req.body.state + '\', ' +
+        '`Country` = \'' + req.body.country + '\', ' +
+        '`Zip Code` = \'' + req.body.zipCode + '\', ' +
+        '`Phone Number` = \'' + req.body.phoneNumber + '\' ' +
+        'WHERE (`SellerID` = ' + req.user + ');';
 
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); }
         // make the query
-        connection.query(sql1, function(err, results) {
-            connection.query(sql2, function (err, results) {
+        connection.query(sql, function(err, results) {
                 connection.release();
                 callback(false, results);
-            });
         });
     });
 };
