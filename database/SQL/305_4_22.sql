@@ -73,6 +73,8 @@ CREATE TABLE `bidong`.`payment` (
   `Credit Card Number` CHAR(16) NOT NULL,
   `Expiry Date` DATE NOT NULL,
   `Payment Type` CHAR(20) NOT NULL,
+  `CardHolder's Firstname` CHAR(20) NOT NULL,
+  `CardHolder's Lastname` CHAR(20) NOT NULL,
   `Street Address Line 1` VARCHAR(40) NOT NULL,
   `Street Address Line 2` VARCHAR(40),
   `City` VARCHAR(20) NOT NULL,

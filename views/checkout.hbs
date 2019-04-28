@@ -1,16 +1,54 @@
+<script>
+    function updateBillingAddress(payment){
+        document.getElementById("checkout_billing_address").innerHTML = payment;
+    }
+    function updateCheckoutInfo(shippingCost){
+        var resultArray = calcuateEverything({{shopping_cart.0.[Total Price]}}, shippingCost);
+        var result = "Items: {{totalItem}} <br />Shipping & handling: $ "+ (shippingCost).toFixed(2)+
+                "<br />Total before tax: $ "+ (resultArray[0]).toFixed(2)+
+                "<br />Tax: $ "+ (resultArray[1]).toFixed(2)+
+                "<br />Order total: $ " +(resultArray[2]).toFixed(2);
+        document.getElementById("checkout_placeorder").innerHTML = result;
+    }
+    function calcuateEverything(amount, shipment){
+        var result =[];
+        result[0] = parseFloat(shipment,10)+parseFloat(amount,10);      //index 0 is the total price before tax
+        result[1] = Math.round(result[0]*0.0875*100)/100;           //index 1 is the tax
+        result[2] = result[1]+result[0];                            //index 2 is the total after the tax
+        return result;
+    }
+
+</script>
+
 <div class = "container">
     <h1>Review Your Order</h1>
     <div class="row">
         <div class="col-8">
-            <h4>Pay With:</h4>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+            <div class = "row">
+                <div class = "col">
+                    <h4>Pay With:</h4>
+                    <div class="form-group">
+                        <select class="form-control" onchange="updateBillingAddress(value)">
+                                <option></option>
+                            {{# each paymentInfo}}
+                                <option value = "{{this.[CardHolder's Firstname]}} {{this.[CardHolder's Lastname]}} <br />
+                                {{this.[Street Address Line 1]}}
+                                {{this.[Street Address Line 2]}}<br />
+                                {{this.[City]}}, {{this.[State/Province/Region]}} {{this.[Zip Code]}}<br />
+                                {{this.[Country]}}">
+                                    Card ending with {{this.[Credit Card Number]}}
+                                </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class = "col">
+                    <h4>Billing Address</h4>
+                    <p id = "checkout_billing_address"></p>
+                </div>
 
-                    <option>1</option>
-
-                </select>
             </div>
+            <a class="btn btn-light" href ="/user/account_overview/payment_options">Add a new payment</a>
             <div class = "row">
                 <div class="col">
                     <h4>Ship to:</h4>
@@ -22,6 +60,10 @@
                 </div>
                 <div class="col">
                     <h4>Shipment method:</h4>
+                    <input checked="checked" type="radio" name="shipment" value="standard" onclick="updateCheckoutInfo(0.00)"> Standard 5-8 business days<br />
+                    <input type="radio" name="shipment" value="one-day" onclick="updateCheckoutInfo(25.88)"> One business day<br />
+                    <input type="radio" name="shipment" value="two-day" onclick="updateCheckoutInfo(15.66)"> Two business days<br />
+                    <input type="radio" name="shipment" value="three-day" onclick="updateCheckoutInfo(6.77)"> Three business days<br />
                 </div>
             </div>
             <h4>Review Items</h4>
@@ -44,13 +86,24 @@
         </div>
         <div class="col-4">
             <h4>Place order:</h4>
-            By placing your oder, you agree to Sahara's privacy notice and condition of use.<br />
+            By placing your oder, you agree to Sahara's privacy notice and condition of use.<br /><br />
             <strong>Order Summary:</strong><br />
-            Items:<br />
-            Shipping & handling:<br />
-            Total before tax: ${{shopping_cart.0.[Total Price]}}<br />
-            Tax:<br />
-            Order total:<br />
+            <p id = "checkout_placeorder">
+                Items: {{totalItem}} <br />
+                Shipping & handling: $ 0.00<br />
+                Total before tax: $ {{shopping_cart.0.[Total Price]}}<br />
+                Tax: $
+                <script type="text/javascript">
+                    var a = calcuateEverything({{shopping_cart.0.[Total Price]}},0);
+                    document.write(a[1]);
+                </script><br />
+                Order total: $
+                <script type="text/javascript">
+                    var a = calcuateEverything({{shopping_cart.0.[Total Price]}},0);
+                    document.write(a[2]);
+                </script>
+                <br />
+            </p>
             <a href= "/checkout" role = "button" class="btn btn-outline-warning">Place Order</a>
         </div>
     </div>

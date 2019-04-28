@@ -13,24 +13,24 @@ exports.addUser = function(username, email, password, req, callback){
         if(err) { console.log(err); callback(true); return; }
         // make the query
         connection.query(sql1, function(err, results) {
-                var userid = results.insertId;
-                var sql2 = "INSERT INTO customer (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) values ('" + results.insertId + "','" +
-                    req.body.firstName +"','"+ req.body.lastName + "','" + req.body.middleName + "')";
-                var sql3 = "INSERT INTO `shopping cart` (`ShoppingCart Id`) values ('" + results.insertId +"')";
-                connection.query(sql2, function(err, results) {
-                    connection.query(sql3, function(err, results) {
-                        var sql4 = "INSERT INTO `customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) values ('" + userid + "', '" +results.insertId +"')";
-                        connection.query(sql4, function(err, results) {
-                            connection.release();
-                            if (err) {
-                                console.log(err);
-                                callback(true);
-                                return;
-                            }
-                            callback(false, results);
-                        });
+            var userid = results.insertId;
+            var sql2 = "INSERT INTO customer (`CustomerID`, `First Name`, `Last Name`, `Middle Name`) values ('" + results.insertId + "','" +
+                req.body.firstName +"','"+ req.body.lastName + "','" + req.body.middleName + "')";
+            var sql3 = "INSERT INTO `shopping cart` (`ShoppingCart Id`) values ('" + results.insertId +"')";
+            connection.query(sql2, function(err, results) {
+                connection.query(sql3, function(err, results) {
+                    var sql4 = "INSERT INTO `customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) values ('" + userid + "', '" +results.insertId +"')";
+                    connection.query(sql4, function(err, results) {
+                        connection.release();
+                        if (err) {
+                            console.log(err);
+                            callback(true);
+                            return;
+                        }
+                        callback(false, results);
                     });
                 });
+            });
         });
     });
 };
@@ -118,13 +118,13 @@ exports.editAccountInformation = function(req, callback){
         '`Phone Number` = \'' + req.body.phoneNumber + '\' ' +
         'WHERE (`CustomerID` = ' + req.user + ');';
 
-        pool.getConnection(function(err, connection) {
-            if(err) { console.log(err); }
-            // make the query
-            connection.query(sql, function(err, results) {
-                    connection.release();
-                    callback(false, results);
-            });
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            callback(false, results);
+        });
     });
 };
 
@@ -144,8 +144,8 @@ exports.editSellerInformation = function(req, callback){
         if(err) { console.log(err); }
         // make the query
         connection.query(sql, function(err, results) {
-                connection.release();
-                callback(false, results);
+            connection.release();
+            callback(false, results);
         });
     });
 };
@@ -208,31 +208,53 @@ exports.addItem = function(req, callback){
             var sql3 = "INSERT INTO `seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) values ('" + itemID + "','11111','" + req.user + "')";
             connection.query(sql2, function(err, results) {
                 connection.query(sql3, function(err, results) {
-                        connection.release();
-                        if (err) {
-                            console.log(err);
-                            callback(true);
-                            return;
-                        }
-                        callback(false, itemID);
+                    connection.release();
+                    if (err) {
+                        console.log(err);
+                        callback(true);
+                        return;
+                    }
+                    callback(false, itemID);
                 });
             });
         });
     });
 };
 
-exports.getAllItems = function(callback) {
-  var sql = "SELECT * FROM Item";
-  // get a connection from the pool
-  pool.getConnection(function(err, connection) {
-    if(err) { console.log(err); callback(true); return; }
-    // make the query
-    connection.query(sql, function(err, results) {
-      connection.release();
-      if(err) { console.log(err); callback(true); return; }
-      callback(false, results);
+exports.editItem = function(id, req, callback){
+    var sql1 = 'UPDATE `item` ' +
+        'SET `Item Name` = \'' + req.body.itemName + '\',' +
+        '`Type` = \'' + req.body.type + '\', ' +
+        '`Price` = \'' + req.body.price + '\', ' +
+        '`Description` = \'' + req.body.description + '\', ' +
+        'WHERE (`ItemID` = ' + id + ');';
+    var sql2 = 'UPDATE `warehouse has item` ' +
+        'SET `Quantity` = \'' + req.body.quantity + '\',' +
+        'WHERE (`Item ID` = ' + id + ');';
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); }
+        // make the query
+        connection.query(sql1, function(err, results) {
+            connection.query(sql2, function(err, results) {
+                connection.release();
+                callback(false, results);
+            });
+        });
     });
-  });
+};
+
+exports.getItemsFromWarehouse = function(callback) {
+    var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item` ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
 };
 
 exports.getMostPopularItems = function(callback) {
@@ -251,9 +273,13 @@ exports.getMostPopularItems = function(callback) {
     });
 };
 
-//BUG
-exports.getRecommendItemsFromOrderHistory = function(callback) {
-    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity";
+exports.getRecommendItemsFromOrderHistory = function(req, callback) {
+    var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item`"+
+        " ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0 AND"+
+        " `item`.`Type` IN (Select Type From `order contains item`" +
+        " INNER JOIN `item` On `order contains item`.`Item ID` = `Item`.`ItemID`" +
+        " INNER JOIN `checkout` On `checkout`.`order number` = `order contains item`.`Order ID` " +
+        " WHERE `checkout`.`shoppingCart ID` = '" + req.user + "')";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
@@ -268,6 +294,21 @@ exports.getRecommendItemsFromOrderHistory = function(callback) {
 
 exports.getAllSellers = function(callback) {
     var sql = "SELECT username FROM user, seller WHERE UserID = SellerID";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
+exports.getSellerItems = function(req, callback) {
+    var sql = "SELECT * FROM item INNER JOIN `seller supplies item` ON `seller supplies item`.`Item ID` = `item`.`ItemID` WHERE `seller supplies item`.`Seller ID` = " +
+        req.user;
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
@@ -345,3 +386,32 @@ exports.editItemInShoppingCart = function(itemID,userID, quantity, callback){
     });
 }
 
+exports.getCheckoutInfo = function(userId, callback){
+    var sql = "SELECT * FROM `customer` WHERE `CustomerID` = " + userId;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+}
+
+exports.getPayments = function(userId, callback){
+    var sql = "SELECT * FROM `customer saves payment` INNER JOIN `payment` " +
+        "ON `customer saves payment`.`PaymentId` = `payment`.`PaymentId` " +
+        "WHERE `CustomerID` = " + userId;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+}
+
+exports.updateOrder = function(userId, callback){
+    console.log("apple");
+}
