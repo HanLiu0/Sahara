@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="HbsClassMap">
+    <option name="psiMap">
+      <map>
+        <entry key="$PROJECT_DIR$/views/index.hbs" />
+        <entry key="$PROJECT_DIR$/views/shopping_cart.hbs" />
+      </map>
+    </option>
+  </component>
+</project>

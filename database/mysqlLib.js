@@ -221,30 +221,8 @@ exports.addItem = function(req, callback){
     });
 };
 
-exports.editItem = function(id, req, callback){
-    var sql1 = 'UPDATE `item` ' +
-        'SET `Item Name` = \'' + req.body.itemName + '\',' +
-        '`Type` = \'' + req.body.type + '\', ' +
-        '`Price` = \'' + req.body.price + '\', ' +
-        '`Description` = \'' + req.body.description + '\', ' +
-        'WHERE (`ItemID` = ' + id + ');';
-    var sql2 = 'UPDATE `warehouse has item` ' +
-        'SET `Quantity` = \'' + req.body.quantity + '\',' +
-        'WHERE (`Item ID` = ' + id + ');';
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); }
-        // make the query
-        connection.query(sql1, function(err, results) {
-            connection.query(sql2, function(err, results) {
-                connection.release();
-                callback(false, results);
-            });
-        });
-    });
-};
-
-exports.getItemsFromWarehouse = function(callback) {
-  var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item` ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0";
+exports.getAllItems = function(callback) {
+  var sql = "SELECT * FROM Item";
   // get a connection from the pool
   pool.getConnection(function(err, connection) {
     if(err) { console.log(err); callback(true); return; }
@@ -273,13 +251,9 @@ exports.getMostPopularItems = function(callback) {
     });
 };
 
-exports.getRecommendItemsFromOrderHistory = function(req, callback) {
-    var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item`"+
-        " ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0 AND"+
-        " `item`.`Type` IN (Select Type From `order contains item`" +
-        " INNER JOIN `item` On `order contains item`.`Item ID` = `Item`.`ItemID`" +
-        " INNER JOIN `checkout` On `checkout`.`order number` = `order contains item`.`Order ID` " +
-        " WHERE `checkout`.`shoppingCart ID` = '" + req.user + "')";
+//BUG
+exports.getRecommendItemsFromOrderHistory = function(callback) {
+    var sql = "SELECT T.`Item ID`, SUM(T.Quantity) AS Quantity FROM `order contains item` T  GROUP BY T.`Item ID` ORDER BY Quantity";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
@@ -294,21 +268,6 @@ exports.getRecommendItemsFromOrderHistory = function(req, callback) {
 
 exports.getAllSellers = function(callback) {
     var sql = "SELECT username FROM user, seller WHERE UserID = SellerID";
-    // get a connection from the pool
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        // make the query
-        connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
-        });
-    });
-};
-
-exports.getSellerItems = function(req, callback) {
-    var sql = "SELECT * FROM item INNER JOIN `seller supplies item` ON `seller supplies item`.`Item ID` = `item`.`ItemID` WHERE `seller supplies item`.`Seller ID` = " +
-        req.user;
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }

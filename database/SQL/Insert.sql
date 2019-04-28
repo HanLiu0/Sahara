@@ -31,7 +31,7 @@ INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`,`Street Address Line 1
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES ('000000000000020', 'Abccc','1599 Curabitur Rd.',NULL,'Ciara','NC','USA','13251','6316329999');
 
 
-INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES ('000000000000001', 'Cecilia', 'Chapman', 'Sea','711 Nulla St.',NULL,'Mankato ','Mississippi','USA','96522','2575637401');
+INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES ('000000000000001', 'Cecilia', 'Chapman', 'Sea','711 Nulla St.',NULL,'Mankato','Mississippi','USA','96522','2575637401');
 INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES ('000000000000002', 'Iris', 'Watson','8998 Fusce Rd.','PO Box 283 ','Frederick ','Nebraska','USA','20620','9173368797');
 INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES ('000000000000003', 'Celeste', 'Slater', 'Shan','606 Ullamcorper St',NULL,'Roseville ','NH','USA','11523','6469098975');
 INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middle Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`) VALUES ('000000000000004', 'Theodore', 'Iowe', 'Marry','8989 43th St',NULL,'Brooklyn','NY','USA','11228','3523336786');
@@ -54,16 +54,16 @@ INSERT INTO `bidong`.`customer` (`CustomerID`, `First Name`, `Last Name`, `Middl
 
 
 
-INSERT INTO `bidong`.`order` (`order number`, `coupon`, `order date`, `Total price`) VALUES ('000000000000001', '20%OFF', '2019-04-01', '99.78');
-INSERT INTO `bidong`.`order` (`order number`, `coupon`, `order date`, `Total price`) VALUES ('000000000000002', '15%OFF', '2019-04-02', '99.99');
+INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000001', '2019-04-01', '99.78');
+INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000002', '2019-04-02', '99.99');
 INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000003', '2019-04-02', '190.00');
 INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000004', '2019-04-04', '10.14');
 INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000005', '2019-04-04', '55.55');
 INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000006', '2019-04-04', '66.66');
-INSERT INTO `bidong`.`order` (`order number`, `coupon`, `order date`, `Total price`) VALUES ('000000000000007', '5%OFF', '2019-04-05', '23.52');
+INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000007', '2019-04-05', '23.52');
 INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000008', '2019-04-06', '88.88');
 INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000009', '2019-04-07', '43.53');
-INSERT INTO `bidong`.`order` (`order number`, `coupon`, `order date`, `Total price`) VALUES ('000000000000010', '20%OFF', '2019-04-10', '56.53');
+INSERT INTO `bidong`.`order` (`order number`, `order date`, `Total price`) VALUES ('000000000000010', '2019-04-10', '56.53');
 
 INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000001', 0.00);
 INSERT INTO `bidong`.`shopping cart` (`ShoppingCart Id`, `Total Price`) VALUES ('000000000000002', 0.00);
@@ -96,6 +96,16 @@ INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`
 INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000008,'0902764937890123','2020-12-31','DISCOVER','Metus Road','Ap #345-3847','Independence','CO ','USA','30135');
 INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000009,'8888666633335555','2019-11-30','MASTERCARD','9561 Lacus. Road','P.O. Box 558','Laughlin ','Hawaii ','USA','99602');
 INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000010,'9152739465097666','2021-09-30','VISA','Ipsum Avenue','Ap #364-2006','Wilmington','Ohio ','USA','91750');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000011,'9876473829109374','2020-04-30','VISA','6059 Sollicitudin Road',NULL,'Burlingame ','Colorado ','USA','26278');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000012,'378282246310005','2022-05-31','AMERICAN EXPRESS','1379 Nulla. Av.',NULL,'Asbury Park','Montana ','USA','69679');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000013,'6574736283930126','2019-10-31','VISA','2410 Odio Avenue','P.O. Box 120','Pass Christian','Delaware ','USA','03869');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000014,'4111111111111111','2020-08-31','VISA','7014 Amet Street','P.O. Box 686','Corona','Oklahoma ','USA','55246');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000015,'8829829384719203','2020-08-31','MASTERCARD','4764 Sed Road','P.O. Box 547','Grand Rapids','CT ','USA','87323');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000016,'371449635398431','2021-08-31','AMERICAN EXPRESS','427-5827 Ac St.',NULL,'Schaumburg ','Arkansas','USA','84872');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000017,'9182538646323456','2021-07-31','DISCOVER','754-6427 Nunc Ave',NULL,'Kennewick ','AL','USA','41329');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000018,'0902764937890123','2020-12-31','DISCOVER','Metus Road','Ap #345-3847','Independence','CO ','USA','30135');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000019,'8888666633335555','2019-11-30','MASTERCARD','9561 Lacus. Road','P.O. Box 558','Laughlin ','Hawaii ','USA','99602');
+INSERT INTO `bidong`.`payment` (`PaymentId`,`Credit Card Number`,`Expiry Date`,`Payment Type`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES (000000000000020,'9152739465097666','2021-09-30','VISA','Ipsum Avenue','Ap #364-2006','Wilmington','Ohio ','USA','91750');
 
 INSERT INTO `bidong`.`warehouse` (`Warehouse ID`, `Phone Number`, `Street Address Line 1`, `Street Address Line 2`, `City`, `State/Province/Region`, `Country`, `Zip Code`) VALUES ('11111', '7181234567', '4978 Sit St', 'P.O. Box 262', 'Flushing', 'NY', 'USA', '11513');
 
@@ -174,6 +184,17 @@ INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES
 INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000008', '000000000000008');
 INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000009', '000000000000009');
 INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000010', '000000000000010');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000001', '000000000000020');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000002', '000000000000011');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000003', '000000000000012');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000004', '000000000000013');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000005', '000000000000014');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000006', '000000000000015');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000007', '000000000000016');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000008', '000000000000017');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000009', '000000000000018');
+INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000010', '000000000000019');
+
 
 INSERT INTO `bidong`.`checkout` (`shoppingCart ID`, `order number`) VALUES ('000000000000001', '000000000000001');
 INSERT INTO `bidong`.`checkout` (`shoppingCart ID`, `order number`) VALUES ('000000000000001', '000000000000002');

@@ -64,7 +64,6 @@ CREATE TABLE `bidong`.`shopping cart` (
 
   CREATE TABLE `bidong`.`order` (
   `order number` INT(15) ZEROFILL NOT NULL AUTO_INCREMENT,
-  `coupon` VARCHAR(40) NULL,
   `order date` DATE NOT NULL,
   `Total price` DECIMAL(11,2) NOT NULL,
   PRIMARY KEY (`order number`));
