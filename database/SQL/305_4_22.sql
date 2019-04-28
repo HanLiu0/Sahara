@@ -105,7 +105,6 @@ CREATE TABLE `bidong`.`refund` (
 
 CREATE TABLE `bidong`.`shipment` (
   `Tracking Number` CHAR(22) NOT NULL,
-  `Type` VARCHAR(20) NOT NULL,
   `Details` VARCHAR(000254) NULL,
   `Street Address Line 1` VARCHAR(40) NOT NULL,
   `Street Address Line 2` VARCHAR(40) NULL,
@@ -203,8 +202,7 @@ CREATE TABLE `bidong`.`checkout` (
 CREATE TABLE `bidong`.`payment pays order` (
   `Payment ID` INT(15) ZEROFILL NOT NULL,
   `Order Number` INT(15) ZEROFILL NOT NULL,
-  PRIMARY KEY (`Payment ID`),
-  UNIQUE (`Order Number`),
+  PRIMARY KEY (`Order Number`),
   CONSTRAINT `orderFK in pay`
     FOREIGN KEY (`order number`)
     REFERENCES `bidong`.`order` (`order number`)

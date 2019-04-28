@@ -148,27 +148,27 @@ INSERT INTO `bidong`.`item review` (`Item Article ID`,`Rating`,`Detail`) VALUES 
 INSERT INTO `bidong`.`item review` (`Item Article ID`,`Rating`,`Detail`) VALUES (000000000000009,4,'This is an excellent smart device with one major flaw that makes it unbearable.');
 INSERT INTO `bidong`.`item review` (`Item Article ID`,`Rating`,`Detail`) VALUES (000000000000010,3,'It has made my life easier.');
 
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000001','UPS','First Class Mail','711-2880 Nulla St',NULL,'Mankato ','USA','Mississippi ','96522',6.75);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000002','USPS','Express Mail','P.O. Box 283 8562 Fusce Rd.',NULL,'Frederick ','USA','Nebraska ','20620',11.50);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000003','FeDex','Media Mail','606-3727 Ullamcorper. Street','FL2','Roseville ','USA','NH','11523',5.00);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000004','DHL','Priority Mail','Ap #867-859 Sit Rd.',NULL,'Azusa ','USA','NY','39531',2.50);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000005','USPS','Media Mail','7292 Dictum Av.',NULL,' San Antonio','USA','MI','47096',1.67);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000006','DHL','Express Mail','Ap #651-8679 Sodales Av.','FL1','Tamuning','USA','PA','10955',20.60);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000007','UPS','Media Mail','191-103 Integer Rd.',NULL,'Tamuning','USA','New Mexico','08219',6.92);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000008','FeDex','Priority Mail','P.O. Box 887 2508 Dolor. Av.',NULL,'Muskegon ','USA','KY','12482',4.12);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000009','UPS','Express Mail','511-5762 At Rd.','APT 1','Chelsea ','USA','MI','67708',9.63);
-INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Type`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000010','USPS','International Package Shipments','935-9940 Tortor. Street',NULL,'Santa Rosa','USA','MN','98804',8.24);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000001','First Class Mail','711-2880 Nulla St',NULL,'Mankato ','USA','Mississippi ','96522',6.75);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000002','Express Mail','P.O. Box 283 8562 Fusce Rd.',NULL,'Frederick ','USA','Nebraska ','20620',11.50);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000003','Media Mail','606-3727 Ullamcorper. Street','FL2','Roseville ','USA','NH','11523',5.00);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000004','Priority Mail','Ap #867-859 Sit Rd.',NULL,'Azusa ','USA','NY','39531',2.50);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000005','Media Mail','7292 Dictum Av.',NULL,' San Antonio','USA','MI','47096',1.67);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000006','Express Mail','Ap #651-8679 Sodales Av.','FL1','Tamuning','USA','PA','10955',20.60);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000007','Media Mail','191-103 Integer Rd.',NULL,'Tamuning','USA','New Mexico','08219',6.92);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000008','Priority Mail','P.O. Box 887 2508 Dolor. Av.',NULL,'Muskegon ','USA','KY','12482',4.12);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000009','Express Mail','511-5762 At Rd.','APT 1','Chelsea ','USA','MI','67708',9.63);
+INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('KEY0000000000000000010','International Package Shipments','935-9940 Tortor. Street',NULL,'Santa Rosa','USA','MN','98804',8.24);
 
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000001', '2017-05-12', 'Software Developer');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000002', '2008-03-16', 'Shipment Handler');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000003', '2018-07-01', 'Data Scientist');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000004', '2013-05-20', 'Data Engineer');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000005', '2017-05-10', 'Manager');
-INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000006', '2012-12-23', 'AWS');
+INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000006', '2012-12-23', 'SWS');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000007', '2013-07-15', 'Managerr');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000008', '2016-01-20', 'Alexa');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000009', '2015-10-15', 'Shipment Handler');
-INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000010', '2012-02-10', 'AWS');
+INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000010', '2012-02-10', 'SWS');
 
 INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000005', '000000000000009', 'Debit Card', '17.89', 'Item broken.');
 INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000009', '000000000000004', 'Gift Card', '10.14', 'Product Didn’t Match the Website Or Catalog Description.');
@@ -274,7 +274,7 @@ INSERT INTO `bidong`.`seller review write by` (`Write Date`,`Article ID`,`Custom
 INSERT INTO `bidong`.`seller review write by` (`Write Date`,`Article ID`,`Customer ID`) VALUES ('2019-01-23',000000000000009,000000000000009);
 INSERT INTO `bidong`.`seller review write by` (`Write Date`,`Article ID`,`Customer ID`) VALUES ('2019-01-28',000000000000010,000000000000010);
 
-INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000001', '11111', '99');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000001', '11111', '1');
 INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000002', '11111', '200');
 INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000003', '11111', '500');
 INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000004', '11111', '400');
@@ -342,3 +342,35 @@ INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) V
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000009', '000000000000004', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000010', '000000000000005', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ('000000000000010', '000000000000008', '1');
+
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000001', 'KEY0000000000000000001');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000002', 'KEY0000000000000000002');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000003', 'KEY0000000000000000003');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000004', 'KEY0000000000000000004');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000005', 'KEY0000000000000000005');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000006', 'KEY0000000000000000006');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000007', 'KEY0000000000000000007');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000008', 'KEY0000000000000000008');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000009', 'KEY0000000000000000009');
+INSERT INTO `bidong`.`order has shipment` (`Order ID`, `Tracking Number`) VALUES ('000000000000010', 'KEY0000000000000000010');
+
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000002', 'KEY0000000000000000001', '2019-01-02');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000009', 'KEY0000000000000000002', '2019-02-12');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000002', 'KEY0000000000000000003', '2019-03-12');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000009', 'KEY0000000000000000004', '2018-12-06');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000002', 'KEY0000000000000000005', '2019-03-19');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000002', 'KEY0000000000000000006', '2019-02-22');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000002', 'KEY0000000000000000007', '2018-12-23');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000009', 'KEY0000000000000000008', '2019-04-18');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000002', 'KEY0000000000000000009', '2019-04-03');
+INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('000000000000009', 'KEY0000000000000000010', '2019-04-25');
+
+INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000002', '000000000000004', '1');
+INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000009', '000000000000003', '1');
+INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000004', '000000000000001', '2');
+INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000004', '000000000000004', '1');
+
+INSERT INTO `bidong`.`employee reports to` (`Supervisor ID`, `Employee ID`) VALUES ('000000000000005', '000000000000001');
+INSERT INTO `bidong`.`employee reports to` (`Supervisor ID`, `Employee ID`) VALUES ('000000000000005', '000000000000004');
+INSERT INTO `bidong`.`employee reports to` (`Supervisor ID`, `Employee ID`) VALUES ('000000000000007', '000000000000002');
+INSERT INTO `bidong`.`employee reports to` (`Supervisor ID`, `Employee ID`) VALUES ('000000000000007', '000000000000009');

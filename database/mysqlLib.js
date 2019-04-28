@@ -19,7 +19,7 @@ exports.addUser = function(username, email, password, req, callback){
             var sql3 = "INSERT INTO `shopping cart` (`ShoppingCart Id`) values ('" + results.insertId +"')";
             connection.query(sql2, function(err, results) {
                 connection.query(sql3, function(err, results) {
-                    var sql4 = "INSERT INTO `customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) values ('" + userid + "', '" +results.insertId +"')";
+                    var sql4 = "INSERT INTO `bidong`.`customer owns shopping cart` (`Customer Id`, `ShoppingCart Id`) values ('" + userid + "', '" +results.insertId +"')";
                     connection.query(sql4, function(err, results) {
                         connection.release();
                         if (err) {
@@ -412,6 +412,123 @@ exports.getPayments = function(userId, callback){
     });
 }
 
-exports.updateOrder = function(userId, callback){
-    console.log("apple");
+//1. insert into order, order contain items来记录order里的items。用checkout把order和customer连起来
+exports.updateOrder = function(itemsInShoppingCart, totalPrice, date, paymentID, callback){
+    var shoppingCartId = itemsInShoppingCart[0]['shoppingCart Id'];
+    var sql1 = "INSERT INTO `order` (`order date`, `Total price`) values ('" + date +"','"+ totalPrice+ "')";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, order) {
+            var orderID = order.insertId;
+            var sql2 = "INSERT INTO `checkout` (`shoppingCart ID`, `order number`) VALUES ('"+ shoppingCartId+"','"+orderID +"')";
+            connection.query(sql2, function(err, checkout) {
+                var sql3 = " INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `quantity`) VALUES ";
+                for (var i = 0; i < itemsInShoppingCart.length; i++) {
+                    var ItemID = itemsInShoppingCart[i]['ItemID'];
+                    var quantity = itemsInShoppingCart[i]['quantity'];
+                    if(i!= itemsInShoppingCart.length-1){
+                        sql3 = sql3 +"('"+ orderID+ "', '"+ ItemID+ "', '"+quantity+"'), ";
+                    }
+                    else{
+                        sql3 = sql3 +"('"+ orderID+ "', '"+ ItemID+ "', '"+quantity+"'); ";
+                    }
+                }
+                connection.query(sql3, function(err, orderContainsItem) {
+                    var sql4 = "INSERT INTO `payment pays order` (`Payment ID`, `Order Number`) VALUES ('"+ paymentID+ "', '"+orderID+"')";
+                    connection.query(sql4, function(err, orderContainsItem) {
+                        connection.release();
+                        if (err) {
+                            console.log(err);
+                            callback(true);
+                            return;
+                        }
+                        callback(false, orderID);
+                    });
+                });
+            });
+        });
+    });
+}
+
+//2. clear shopping cart contains items。
+exports.clearShoppingCart = function(shoppingCartID, callback){
+    var sql = "DELETE FROM `shopping cart contains items` WHERE `shoppingCart Id` = " + shoppingCartID;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+}
+
+//4. insert shipment，employee ships shipment, order has shipment。
+exports.updateShipments = function(checkoutInfo, orderID, shipmentType, date, callback){
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        var trackingNumber= '';
+        var characters= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < 22; i++ ) {
+            trackingNumber += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        var shipmentPrice=0;
+        switch (shipmentType) {
+            case 'one-day':
+                shipmentPrice = 25.88;
+                break;
+            case 'two-day':
+                shipmentPrice = 15.66;
+                break;
+            case 'three-day':
+                shipmentPrice = 6.77;
+                break;
+            default:
+        }
+        var sql1 = "INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('" +
+            trackingNumber +"','"+ shipmentType+ "','"+ checkoutInfo[0]['Street Address Line 1']+"','"+checkoutInfo[0]['Street Address Line 2']+
+            "','"+ checkoutInfo[0]['City'] + "','"+ checkoutInfo[0]['State/Province/Region'] + "','"+checkoutInfo[0]['Country']+ "','"+ checkoutInfo[0]['Zip Code'] +"','"+shipmentPrice+ "')";
+        connection.query(sql1, function(err, shipment) {
+            var sql2 = "INSERT INTO `order has shipment`(`Order ID`, `Tracking Number`) VALUES ('"+ orderID+"', '"+trackingNumber+"')";
+            connection.query(sql2, function(err, orderHasShipment) {
+                var sql3 = "SELECT `Employee ID` FROM `employee` ORDER BY RAND () LIMIT 1";
+                connection.query(sql3, function(err, randomEmployee) {
+                    var sql4 = "INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`, `Date`) VALUES ('" +
+                        randomEmployee[0]['Employee ID']+"', '"+trackingNumber+"', '"+date+"')";
+                    connection.query(sql4, function(err, employeeHandlesShipment) {
+                        connection.release();
+                        if (err) {
+                            console.log(err);
+                            callback(true);
+                            return;
+                        }
+                        callback(false, trackingNumber);
+                    });
+                });
+            });
+        });
+    });
+}
+//5. warehouse has item --
+exports.updateWarehouse = function(itemsInShoppingCart, callback){
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        var sql = "";
+        for (var i = 0; i < itemsInShoppingCart.length; i++) {
+            var ItemID = itemsInShoppingCart[i]['ItemID'];
+            var quantity = itemsInShoppingCart[i]['quantity'];
+            var warehouseQuantity = itemsInShoppingCart[i]['Quantity'];
+            var newQuantity = parseInt(warehouseQuantity,10) - parseInt(quantity,10);
+            if(newQuantity>0){  //If there are still items in the warehouse.
+                sql = "UPDATE `warehouse has item` SET `Quantity` = '"+newQuantity +"' WHERE `Item ID` = '"+ ItemID +"'; ";
+            }
+            else{
+                sql = "DELETE FROM `warehouse has item` WHERE `Item ID` = '"+ ItemID+"'; ";
+            }
+            connection.query(sql);
+        }
+            connection.release();
+            callback(false);
+    });
 }
