@@ -15,7 +15,6 @@ router.get('/account_overview', function (req, res, next) {
     sql.getSellerByID(req.user, function(err, result){
         var isSeller = result.length > 0;
         var messages = req.flash('addSellerMessage');
-        console.log(isSeller);
         res.render('user/account_overview', {
             title: "Your Account",
             isSeller: isSeller,
@@ -69,9 +68,31 @@ router.post('/seller_sign_up', function (req, res, next) {
     });
 });
 
-router.get('/account_overview/listed_items', isSeller , function (req, res, next) {
-    res.render('user/listed_items', {
-        title: "Listed Items"
+router.get('/account_overview/listed_items/:page?', isSeller , function (req, res, next) {
+    var messages = req.flash('editItemMessage');
+    sql.getItemsFromWarehouse(function (err, results) {
+        var page = 1;
+        if(req.params.page != undefined)
+            page = req.params.page[req.params.page.length -1];
+        var totalPages = [];
+        for(var i = 1; (i-1)*10 < results.length; i+=1)
+            totalPages.push(i);
+        var items = results.slice((page-1)*10, page*10);
+        res.render('user/listed_items', {
+            title: "Listed Items",
+            items: items,
+            totalPages: totalPages,
+            itemTypes: getItemTypes(),
+            messages: messages[0],
+            errors: messages.length > 0
+        });
+    });
+});
+
+router.post('/account_overview/edit_item/:id', isSeller, function (req, res, next) {
+    sql.editItem(req.params.id, req, function (err, results) {
+        req.flash('editItemMessage', 'Successfully edited');
+        res.redirect('/user/account_overview/listed_items');
     });
 });
 

@@ -7,75 +7,88 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 </head>
 <body>
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <a onclick="toggleNav()" style="font-size: 24px; float: right; cursor: pointer" >&times;</a>
-            <h3>Welcome to Sahara!</h3>
-        </div>
+    <div style="margin-left: auto;margin-right: auto; min-width: 1200px;">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <a onclick="toggleNav()" style="font-size: 24px; float: right; cursor: pointer" >&times;</a>
+                <h3>Welcome to Sahara!</h3>
+            </div>
 
-        <ul class="list-unstyled components">
-            <li><a href="#">All</a></li>
-            <li><a href="#">Books</a></li>
-            <li><a href="#">Electronics</a></li>
-            <li><a href="#">Entertainment</a></li>
-            <li><a href="#">Home &amp; Kitchen</a></li>
-            <li><a href="#">Music Instrument</a></li>
-            <li><a href="#">Pet Supplies</a></li>
-            <li><a href="#">Snakes/Food</a></li>
-            <li><a href="#">Electronics</a></li>
-            <hr />
-            <li><a href="#">Contact</a></li>
-            <li><a href="user/logout">Log out</a></li>
-        </ul>
-    </nav>
+            <ul class="list-unstyled components">
+                <li><a href="#">All</a></li>
+                <li><a href="#">Books</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Entertainment</a></li>
+                <li><a href="#">Home &amp; Kitchen</a></li>
+                <li><a href="#">Music Instrument</a></li>
+                <li><a href="#">Pet Supplies</a></li>
+                <li><a href="#">Snakes/Food</a></li>
+                <li><a href="#">Electronics</a></li>
+                <hr />
+                <li><a href="#">Contact</a></li>
+                <li><a href="user/logout">Log out</a></li>
+            </ul>
+        </nav>
 
-    <div id="main">
-        <div class="pos-f-t">
-            <nav class="navbar navbar-dark bg-dark">
-                <div>
-                    <button class="navbar-toggler" onclick="toggleNav()">
-                        <span class="navbar-toggler-icon text-primary"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">Sahara</a>
-                </div>
-                {{#if login}}
-                <div>
-                    <span class="dropdown">
-                        <a href="/user/account_overview" class="fas text-light dropdown-toggle" style='font-size:24px' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Account</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/user/account_overview">Your Account</a>
-                            <a class="dropdown-item" href="/">Your Orders</a>
-                            <a class="dropdown-item" href="/user/logout">Log Out</a>
+        <div id="main" style="overflow: hidden">
+            <div class="pos-f-t">
+                <nav class="navbar navbar-dark bg-dark">
+                    <div class="d-flex">
+                        <button class="navbar-toggler" onclick="toggleNav()">
+                            <span class="navbar-toggler-icon text-primary"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">Sahara</a>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" style="min-width: 500px" aria-label="Text input with dropdown button">
                         </div>
-                    </span>
-                    <a class='fas text-light' style='font-size:24px' href="#">Orders</a>
-                    <a class='fas fa-shopping-cart text-light' style='font-size:24px' href="/shopping_cart">Shopping Cart</a>
-                </div>
-                {{ else }}
-                    <div>
-                        <a class='fas fa-user text-light' style='font-size:24px' href="/signin">Sign in</a>
-                        <a class='fas text-light' style='font-size:24px' href="/signup">Sign up</a>
                     </div>
-                {{/if}}
-            </nav>
+                    {{#if login}}
+                    <div>
+                        <span class="dropdown">
+                            <a href="/user/account_overview" class="fas text-light dropdown-toggle" style='font-size:24px' id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Account</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/user/account_overview">Your Account</a>
+                                <a class="dropdown-item" href="/">Your Orders</a>
+                                <a class="dropdown-item" href="/user/logout">Log Out</a>
+                            </div>
+                        </span>
+                        <a class='fas text-light' style='font-size:24px' href="#">Orders</a>
+                        <a class='fas fa-shopping-cart text-light' style='font-size:24px' href="/shopping_cart">Shopping Cart</a>
+                    </div>
+                    {{ else }}
+                        <div>
+                            <a class='fas fa-user text-light' style='font-size:24px' href="/signin">Sign in</a>
+                            <a class='fas text-light' style='font-size:24px' href="/signup">Sign up</a>
+                        </div>
+                    {{/if}}
+                </nav>
+            </div>
+
+            {{{body}}}
+
         </div>
-
-        {{{body}}}
-
+        <footer class="footer">
+                <p>
+                    <a href="/">Home</a>
+                    <a href="">About</a>
+                    <a href="">?????</a>
+                    <a href="">????</a>
+                </p>
+            <p><a href="#main">Back to top</a></p>
+        </footer>
+        <script src="/javascripts/javascripts.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </div>
-    <footer class="footer">
-            <p>
-                <a href="/">Home</a>
-                <a href="">About</a>
-                <a href="">?????</a>
-                <a href="">????</a>
-            </p>
-        <p><a href="#main">Back to top</a></p>
-    </footer>
-    <script src="/javascripts/javascripts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

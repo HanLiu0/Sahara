@@ -262,7 +262,12 @@ INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`
 INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000007', '11111', '99');
 INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000008', '11111', '99');
 INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000009', '11111', '200');
-INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000010', '11111', '1000');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000010', '11111', '999');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000011', '11111', '999');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000012', '11111', '999');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000013', '11111', '999');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000014', '11111', '999');
+INSERT INTO `bidong`.`warehouse has item` (`Item ID`, `Warehouse ID`, `Quantity`) VALUES ('000000000000015', '11111', '999');
 
 INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000001', '11111', '000000000000012');
 INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000002', '11111', '000000000000012');
@@ -273,7 +278,12 @@ INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller 
 INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000007', '11111', '000000000000018');
 INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000008', '11111', '000000000000020');
 INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000009', '11111', '000000000000019');
-INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000010', '11111', '000000000000013');
+INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000010', '11111', '000000000000011');
+INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000011', '11111', '000000000000011');
+INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000012', '11111', '000000000000011');
+INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000013', '11111', '000000000000012');
+INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000014', '11111', '000000000000013');
+INSERT INTO `bidong`.`seller supplies item` (`Item ID`, `Warehouse ID`, `Seller ID`) VALUES ('000000000000015', '11111', '000000000000014');
 
 INSERT INTO `bidong`.`Item has review` (`Article ID`,`Item ID`) VALUES (000000000000004,000000000000002);
 INSERT INTO `bidong`.`Item has review` (`Article ID`,`Item ID`) VALUES (000000000000009,000000000000002);

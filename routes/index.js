@@ -10,21 +10,42 @@ router.get('/', function(req, res, next) {
       for(var j = 0 ; j < 5; j++)
         mostPopular[i].push(results[i*5+j]);
     }
-    //if(user)
-    //sql.getRecommendItems
-    //else
-    //console.log(mostPopular);
-    res.render('index', { title : "Sahara.com: Online Shopping", mostPopular: mostPopular });
+    if(req.user != undefined){
+      sql.getRecommendItemsFromOrderHistory(req, function(err, results){
+        if(results.length > 0) {
+          var recommend = [];
+          for (var i = 0; i < 2; i++) {
+            recommend[i] = [];
+            for (var j = 0; j < 5; j++)
+              recommend[i].push(results[i * 5 + j]);
+          }
+          res.render('index', { title : "Sahara.com: Online Shopping", mostPopular: mostPopular, recommend: recommend });
+        }
+        else{
+          sql.getItemsFromWarehouse(function(err, results){
+            var recommend = [];
+            for (var i = 0; i < 2; i++) {
+              recommend[i] = [];
+              for (var j = 0; j < 5; j++)
+                recommend[i].push(results[i * 5 + j]);
+            }
+            res.render('index', { title : "Sahara.com: Online Shopping", mostPopular: mostPopular, recommend: recommend });
+          });
+        }
+      });
+    }
+    else{
+      sql.getItemsFromWarehouse(function(err, results){
+        var recommend = [];
+        for (var i = 0; i < 2; i++) {
+          recommend[i] = [];
+          for (var j = 0; j < 5; j++)
+            recommend[i].push(results[i * 5 + j]);
+        }
+        res.render('index', { title : "Sahara.com: Online Shopping", mostPopular: mostPopular, recommend: recommend });
+      });
+    }
   });
 
 });
-
-/*
-router.get('/', function(req, res, next) {
-  sql.getAllItems(function(err, results) {
-    res.render('index', { title : "Products", products: results });
-  });
-
-});
-*/
 module.exports = router;
