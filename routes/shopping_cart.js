@@ -4,17 +4,28 @@ var sql = require('../database/mysqlLib');
 
 router.get('/',isLoggedIn, function(req, res, next) {
     sql.getAllItemsFromShoppingCart(req.user, function(err, ShoppingResults,AllItemsInWarehouse) {
-        var mostRecommend = [];
-        for(var i = 0 ; i < 2; i++){
-            mostRecommend[i] = [];
-            for(var j = 0 ; j < 5; j++){
-                if(AllItemsInWarehouse[i*5+j] == null){
-                    break;
+        sql.getRecommendItemsFromOrderHistory(req, function(err, recomFromOrderHis){
+            var mostRecommend = [];
+            if(AllItemsInWarehouse.length!=0){
+                for(var i = 0 ; i < 2; i++){
+                    mostRecommend[i] = [];
+                    for(var j = 0 ; j < 5; j++){
+                        mostRecommend[i].push(AllItemsInWarehouse[i*5+j]);
+                    }
                 }
-                mostRecommend[i].push(AllItemsInWarehouse[i*5+j]);
             }
-        }
-    res.render('shopping_cart', {title: "Sahara.com Shopping Cart", shopping_cart: ShoppingResults, recommend: mostRecommend});
+            else if (recomFromOrderHis.length!=0){
+                for(var i = 0 ; i < 2; i++){
+                    mostRecommend[i] = [];
+                    for(var j = 0 ; j < 5; j++){
+                        mostRecommend[i].push(recomFromOrderHis[i*5+j]);
+                    }
+                }
+            }
+            res.render('shopping_cart', {title: "Sahara.com Shopping Cart",
+                shopping_cart: ShoppingResults, recommend: mostRecommend});
+
+        });
     });
 });
 

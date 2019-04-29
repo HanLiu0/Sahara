@@ -1,7 +1,9 @@
 <div class = "container">
     <div class = "row">
-        <div class ="col-8">
+            <div class ="col-8">
             <h1>Shopping Cart</h1>
+
+            {{#if this.shopping_cart}}
             <table cellspacing = "0" cellpadding = "20" >
                 <tr>
                     <td></td>
@@ -27,13 +29,19 @@
                 </tr>
                 {{/each}}
             </table>
+            {{else}}
+                <p>Your shopping cart is empty, <a href = "/">click here</a> to buy something!</p>
+            {{/if}}
         </div>
         <div class="col-4" >
+        {{#if this.shopping_cart}}
             <h1>Subtotal:<br /> ${{shopping_cart.0.[Total Price]}}</h1>
             <a href= "/checkout" role = "button" class="btn btn-outline-warning">Proceed to Checkout</a>
+        {{/if}}
         </div>
     </div>
     <div>
+        {{# if recommend}}
         <div id = "shoppingCart_bottom">
             <div id="shoppingCart_Recommend" class="carousel slide" data-ride="carousel"  data-interval="false">
                     <div class="carousel-inner" style = "padding-top: 50px">
@@ -59,6 +67,9 @@
                     </a>
             </div>
         </div>
+        {{else}}
+            <p>Welcome to Sahara! Go to our <a href="#">items</a> page to view all the items we have!</p>
+        {{/if}}
     </div>
 </div>
 
