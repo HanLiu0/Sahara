@@ -14,7 +14,7 @@
                 </tr>
                 {{# each shopping_cart }}
                 <tr style="outline: thin solid">
-                    <td><img style="max-height: 120px; width: auto;" src = "images/{{this.ItemID}}.jpg" alt="Item image for {{this.ItemID}}"></td>
+                    <td><a href= "item/{{this.[Item ID]}}"><img style="max-height: 120px; width: auto;" src = "images/{{this.ItemID}}.jpg" alt="Item image for {{this.ItemID}}"></td>
                     <td><a href = "#">{{this.[Item Name]}}</a></td>
                     <td style = "text-align:center">${{this.Price}}</td>
                     <td style = "text-align:center">
@@ -50,7 +50,7 @@
                                 <div class="carousel-item {{#if @first}}active{{/if}}">
                                     <div class="row">
                                         {{#each this}}
-                                            <div class="col-sm"><a href= "#"><img height = 150 style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a></div>
+                                            <div class="col-sm"><a href= "item/{{this.[Item ID]}}"><img height = 150 style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a></div>
                                         {{/each}}
                                     </div>
                                 </div>

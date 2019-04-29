@@ -9,8 +9,8 @@
                     <div class="carousel-item {{#if @first}}active{{/if}}">
                         <div class="row">
                             {{#each this}}
-                                <div class="col-sm"><a href= "#"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a></div>
-                            {{/each}}
+                                <div class="col-sm"><a href= "item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a></div>
+                {{/each}}
                         </div>
                     </div>
                 {{/each}}
@@ -33,7 +33,7 @@
                     <div class="carousel-item {{#if @first}}active{{/if}}">
                         <div class="row">
                             {{#each this}}
-                                <div class="col-sm"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image"></div>
+                                <div class="col-sm"><a href= "item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image"></div>
                             {{/each}}
                         </div>
                     </div>
