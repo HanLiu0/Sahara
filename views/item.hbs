@@ -1,0 +1,48 @@
+<style>
+    th, td {
+        text-align: left;
+        padding: 20px;
+    }
+</style>
+
+<table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
+    <col style="width:60%">
+    <tr>
+        <td COLSPAN=2><b>From </b>{{item.[Type]}}</td>
+    </tr>
+    <tr>
+        <th style="font-size:30px;">{{item.[Item Name]}} <br> by {{item.[Company Name]}}</th>
+        <td>add-to-cart button</td>
+    </tr>
+    <tr>
+        {{#if no_review}}
+            <td><b>No Rating</b></td>
+        {{else}}
+            <td><b>Rating: </b>{{item.[Rating]}}</td>
+        {{/if}}
+    </tr>
+    <tr>
+        <td><img style="height: auto; width: auto; max-width: 450px; max-height: 450px;" class="d-block w-100" style="overflow:hidden" src="../images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[ItemID]}}"></td>
+    </tr>
+    <tr>
+        <td style="font-size:20px;"><b>${{item.[Price]}}</b></td>
+    </tr>
+    <tr>
+        <td><b>Description: </b><br>{{item.[Description]}}</td>
+    </tr>
+    <tr>
+        <td><b>Customer Reviews: </b><br>
+            {{#if no_review}}
+                No Review so far...
+            {{else}}
+                {{# each list}}
+                    <b>{{this.[Username]}}: </b>
+                    {{this.[Detail]}}<br>
+                    <p style="font-size:10px;">{{this.[Write Date]}} Rating: {{this.[Rating]}}</p><br><br>
+                {{/each}}
+            {{/if}}
+        </td>
+    </tr>
+</table>
+
+
