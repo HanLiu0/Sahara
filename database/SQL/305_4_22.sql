@@ -260,7 +260,7 @@ PRIMARY KEY (`Article ID`, `Item ID`),
 
 
 CREATE TABLE `bidong`.`item review write by` (
-  `Write Date` DATE NOT NULL,
+  `Write Date` DATETIME NOT NULL,
   `Article ID` INT(15) ZEROFILL NOT NULL,
   `Customer ID` INT(15) ZEROFILL NOT NULL,
 PRIMARY KEY (`Article ID`, `Customer ID`),

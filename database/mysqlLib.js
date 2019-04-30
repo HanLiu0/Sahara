@@ -610,6 +610,7 @@ exports.getItemByID = function(id, callback) {
                     " LEFT OUTER JOIN `user` On `user`.`UserID` = `item review write by`.`Customer ID` WHERE `item`.`ItemID`="+id+
                     " GROUP BY `item`.`ItemID`";
                 connection.query(sql3, function(err, results) {
+                    console.log(results);
                     connection.release();
                     if(err) { console.log(err); callback(true); return; }
                     callback(false, copyResults, copyResults2, results);
@@ -621,20 +622,49 @@ exports.getItemByID = function(id, callback) {
 
 //sql.editItemReview(req.params.id, req.user, req.body.rating,req.body.detail,date);
 exports.editItemReview = function(itemID,userID, rating, detail, newdate, callback){
-    var sql1 = "INSERT INTO `item review`(`Rating`,`Detail`) VALUES (rating,detail)";
+    var sql1 = "INSERT INTO `item review`(`Rating`,`Detail`) VALUES ('"+rating+"','"+detail+"')";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql1, function(err, result) {
             articleID = result.insertId;
-            var sql2 = "INSERT INTO `item has review`(`Article ID`,`Item ID`) VALUES (articleID,itemID)"+
-                "INSERT INTO `item review write by`(`Write Date`, `Article ID`, `Customer ID`) VALUES (newdate,articleID,userID)";
+            var sql2 = "INSERT INTO `Item has review`(`Article ID`,`Item ID`) VALUES ('"+articleID+"','"+itemID+"')";
             connection.query(sql2, function (err, results) {
-                connection.release();
-                if (err) {
-                    console.log(err);return;
-                }
+                var sql3 = "INSERT INTO `item review write by`(`Write Date`, `Article ID`, `Customer ID`) VALUES ('"+newdate+"','"+articleID+"','"+userID+"')";
+                connection.query(sql3, function (err, results) {
+                    connection.release();
+                    if (err) {
+                        console.log(err);return;
+                    }
+                });
             });
 
         });
     });
-}
+};
+
+exports.addToShoppingCart = function(itemID,userID, quantity, callback){
+    var sql1 = "SELECT `ShoppingCart Id` FROM `customer owns shopping cart` WHERE `customer owns shopping cart`.`Customer Id`="+userID;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, result) {
+            SCID = result[0]['ShoppingCart Id'];
+            var sql2 = "SELECT * FROM `shopping cart contains items` WHERE `shopping cart contains items`.`shoppingCart Id`="+SCID+" AND `shopping cart contains items`.`ItemID`="+itemID;
+            connection.query(sql2, function (err, results) {
+                if(results[0]===undefined) //shopping cart doesn't contain item
+                    var sql3 = "INSERT INTO `shopping cart contains items`(`shoppingCart Id`, `quantity`, `ItemID`) VALUES ('"+SCID+"','"+1+"','"+itemID+"')";
+                else
+                    var sql3 = 'UPDATE `shopping cart contains items` ' +
+                        'SET `quantity` = \'' + results[0]['quantity']+'\'+\''+quantity + '\'' +
+                        ' WHERE `shopping cart contains items`.`shoppingCart Id`='+SCID+' AND `shopping cart contains items`.`ItemID`='+itemID;
+                connection.query(sql3, function (err, results) {
+                    connection.release();
+                    if (err) {
+                        console.log(err);return;
+                    }
+                });
+            });
+
+        });
+    });
+};
+

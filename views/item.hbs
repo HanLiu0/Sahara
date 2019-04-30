@@ -12,7 +12,10 @@
     </tr>
     <tr>
         <th style="font-size:30px;">{{item.[Item Name]}} <br> by {{item.[Company Name]}}</th>
-        <td>add-to-cart button</td>
+        <td><form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
+            Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
+            <input type="submit" value="Add To Cart">
+        </form></td>
     </tr>
     <tr>
         {{#if no_review}}
@@ -45,7 +48,7 @@
                 Overall Rating: <input name = "rating" type="number" min = "1" max = "5" required="required">
                 <br>Write Your Review:
                 <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
-                <input type="submit">
+                <input type="submit" value="Submit Review">
             </form>
         </td>
     </tr>
