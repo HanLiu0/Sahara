@@ -600,9 +600,20 @@ exports.getItemByID = function(id, callback) {
                 " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
                 " LEFT OUTER JOIN `user` On `user`.`UserID` = `item review write by`.`Customer ID` WHERE `item`.`ItemID`="+id;
             connection.query(sql2, function(err, results) {
-                connection.release();
-                if(err) { console.log(err); callback(true); return; }
-                callback(false, copyResults, results);
+                var copyResults2 = results;
+                var sql3 = "SELECT `item`.`ItemID`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item` INNER JOIN `seller supplies item`"+
+                    " ON `seller supplies item`.`Item ID` = `item`.`ItemID`"+
+                    " INNER JOIN `seller` On `seller supplies item`.`Seller ID` = `seller`.`SellerID`"+
+                    " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
+                    " LEFT OUTER JOIN `item review write by` On `item review write by`.`Article ID` = `item has review`.`Article ID`"+
+                    " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
+                    " LEFT OUTER JOIN `user` On `user`.`UserID` = `item review write by`.`Customer ID` WHERE `item`.`ItemID`="+id+
+                    " GROUP BY `item`.`ItemID`";
+                connection.query(sql3, function(err, results) {
+                    connection.release();
+                    if(err) { console.log(err); callback(true); return; }
+                    callback(false, copyResults, copyResults2, results);
+                });
             });
         });
     });
