@@ -554,10 +554,29 @@ exports.addPayment = function(req, callback){
             var sql2 = "INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('" +
                 req.user+"','"+paymentId+"')";
             connection.query(sql2, function(err, results) {
+                connection.release();
                 if(err) { console.log(err); callback(true); return; }
                 callback(false, results);
-                connection.release();
             });
         });
     });
+}
+
+
+
+exports.getOrderHistory = function(userId, callback){
+    var sql1 = "";
+    /*
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err) {
+
+            connection.query(sql2, function(err) {
+                connection.release();
+                if(err) { console.log(err); callback(true); return; }
+
+            });
+        });
+    });*/
+    callback(false);
 }

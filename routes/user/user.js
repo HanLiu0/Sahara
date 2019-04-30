@@ -164,6 +164,13 @@ router.post('/account_overview/edit_seller_information', isSeller, function (req
         res.redirect('/user/account_overview/edit_seller_information');
     });
 });
+
+router.get('/account_overview/order_history', function (req, res, next) {
+    sql.getOrderHistory(req.user, function (err, results) {
+        res.render('user/order_history', {
+        });
+    });
+});
 module.exports = router;
 
 
