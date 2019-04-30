@@ -115,7 +115,11 @@
                 </script>
                 <br />
             </p>
+            {{#if paymentInfo}}
             <input class="btn btn-outline-warning" type="submit" value = "Place Order">
+            {{else}}
+                <p>Please go add a payment before placing an order!</p>
+            {{/if}}
         </div>
     </div>
 </form>
