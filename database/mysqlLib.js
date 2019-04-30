@@ -619,19 +619,19 @@ exports.getItemByID = function(id, callback) {
     });
 };
 
-//sql.editItemReview(req.params.id, req.user, req.body.rating,req.body.detail,req.date);
-exports.editItemReview = function(itemID,userID, rating, detail, date, callback){
-    var sql1 = "SELECT `ShoppingCart Id` FROM `customer owns shopping cart` WHERE `Customer Id` = " + userID;
+//sql.editItemReview(req.params.id, req.user, req.body.rating,req.body.detail,date);
+exports.editItemReview = function(itemID,userID, rating, detail, newdate, callback){
+    var sql1 = "INSERT INTO `item review`(`Rating`,`Detail`) VALUES (rating,detail)";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
-        connection.query(sql1, function(err, shoppingCartId) {
-            var sql2 = 'UPDATE `shopping cart contains items` SET quantity = ' + quantity +
-                ' WHERE `shoppingCart Id` = ' + shoppingCartId[0]['ShoppingCart Id']
-                + ' AND `ItemID` = ' + itemID;
+        connection.query(sql1, function(err, result) {
+            articleID = result.insertId;
+            var sql2 = "INSERT INTO `item has review`(`Article ID`,`Item ID`) VALUES (articleID,itemID)"+
+                "INSERT INTO `item review write by`(`Write Date`, `Article ID`, `Customer ID`) VALUES (newdate,articleID,userID)";
             connection.query(sql2, function (err, results) {
                 connection.release();
                 if (err) {
-                    console.log(err);callback(true);return;
+                    console.log(err);return;
                 }
             });
 
