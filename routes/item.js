@@ -8,6 +8,11 @@ router.get('/:id', isLoggedIn, function (req, res, next) {
     });
 });
 
+router.post('/item_review/:id', function(req, res, next){
+    //sql.editItemReview(req.params.id, req.user, req.body.rating,req.body.detail,req.date);
+    res.redirect('/item/'+req.params.id); //refresh a page
+});
+
 module.exports = router;
 
 function isLoggedIn(req, res, next) {

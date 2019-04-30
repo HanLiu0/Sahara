@@ -18,7 +18,7 @@
         {{#if no_review}}
             <td><b>No Rating (0)</b></td>
         {{else}}
-            <td><b>Rating: </b>{{rate.[CumRate]}} ({{rate.[numOfReview]}})</td>
+            <td><b>Rating: </b>{{rate.[CumRate]}} out of 5 ({{rate.[numOfReview]}})</td>
         {{/if}}
     </tr>
     <tr>
@@ -28,7 +28,7 @@
         <td style="font-size:20px;"><b>${{item.[Price]}}</b></td>
     </tr>
     <tr>
-        <td><b>Description: </b><br>{{item.[Description]}}</td>
+        <td><b>Product Description: </b><br>{{item.[Description]}}</td>
     </tr>
     <tr>
         <td><b>Customer Reviews: </b><br>
@@ -38,9 +38,15 @@
                 {{# each list}}
                     <b>{{this.[Username]}}: </b>
                     {{this.[Detail]}}<br>
-                    <p style="font-size:10px;">{{this.[Write Date]}} Rating: {{this.[Rating]}}</p><br><br>
+                    <p style="font-size:10px;">{{this.[Write Date]}} Rating: {{this.[Rating]}}</p><br>
                 {{/each}}
             {{/if}}
+            <form method="post" action = "/item/item_review/{{item.[ItemID]}}">
+                Overall Rating: <input name = "rating" type="number" min = "1" max = "5" required="required">
+                <br>Write Your Review:
+                <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
+                <input type="submit">
+            </form>
         </td>
     </tr>
 </table>

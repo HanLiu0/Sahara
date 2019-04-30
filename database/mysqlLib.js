@@ -618,3 +618,23 @@ exports.getItemByID = function(id, callback) {
         });
     });
 };
+
+//sql.editItemReview(req.params.id, req.user, req.body.rating,req.body.detail,req.date);
+exports.editItemReview = function(itemID,userID, rating, detail, date, callback){
+    var sql1 = "SELECT `ShoppingCart Id` FROM `customer owns shopping cart` WHERE `Customer Id` = " + userID;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, shoppingCartId) {
+            var sql2 = 'UPDATE `shopping cart contains items` SET quantity = ' + quantity +
+                ' WHERE `shoppingCart Id` = ' + shoppingCartId[0]['ShoppingCart Id']
+                + ' AND `ItemID` = ' + itemID;
+            connection.query(sql2, function (err, results) {
+                connection.release();
+                if (err) {
+                    console.log(err);callback(true);return;
+                }
+            });
+
+        });
+    });
+}
