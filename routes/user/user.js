@@ -55,11 +55,32 @@ router.post('/account_overview/change_password', function (req, res, next) {
     });
 });
 
+
+
 router.get('/account_overview/payment_options', function (req, res, next) {
-    res.render('user/payment_options', {
-        title: "Payment Options"
-    });
+    sql.getPayments(req.user,function(err, payments){
+        for(var i = 0; i<payments.length; i++){
+            payments[i]['Credit Card Number'] = payments[i]['Credit Card Number'].substr(-4,4);
+        }
+        res.render('user/payment_options', {
+            title: "Payment Options",
+            payments: payments
+        });
+    })
 });
+
+router.get('/account_overview/payment_options/remove_payment/:id', function(req, res, next) {
+    sql.removePayment(req.params.id);
+    res.redirect('/user/account_overview/payment_options');
+});
+
+
+router.post('/account_overview/payment_options', function(req,res,next){
+    sql.addPayment(req,function(err, payments){
+        res.redirect('/user/account_overview/payment_options');
+    })
+});
+
 
 router.post('/seller_sign_up', function (req, res, next) {
     sql.addSeller(req, function (err, results1) {

@@ -532,3 +532,32 @@ exports.updateWarehouse = function(itemsInShoppingCart, callback){
             callback(false);
     });
 }
+
+exports.removePayment = function(paymentId){
+    var sql = "DELETE FROM `customer saves payment` WHERE `PaymentId` = " + paymentId;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+        });
+    });
+}
+exports.addPayment = function(req, callback){
+    var sql1 = "INSERT INTO `bidong`.`payment` (`Credit Card Number`,`Expiry Date`,`Payment Type`,`CardHolder's Firstname`,`CardHolder's Lastname`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`) VALUES " +
+        "('"+req.body.number+"','"+req.body.expiration+"','"+req.body.paymentMethod+"','"+req.body.firstName+"','"+req.body.lastName+"','"+
+        req.body.address+"','"+ req.body.address2+"','"+req.body.city +"','"+req.body.state+"','"+req.body.country+"','"+req.body.zip+"')";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, results) {
+            var paymentId = results.insertId;
+            var sql2 = "INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('" +
+                req.user+"','"+paymentId+"')";
+            connection.query(sql2, function(err, results) {
+                if(err) { console.log(err); callback(true); return; }
+                callback(false, results);
+                connection.release();
+            });
+        });
+    });
+}

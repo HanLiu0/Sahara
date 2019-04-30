@@ -5,7 +5,7 @@ var sql = require('../database/mysqlLib');
 router.get('/',isLoggedIn, function(req, res, next) {
     sql.getCheckoutInfo(req.user, function(err, checkoutInfo) {
         sql.getAllItemsFromShoppingCart(req.user, function(err, itemsInShoppingCart,AllItemsInWarehouse) {
-            sql.getPayments(req.user, function (err, payments, AllItemsInWarehouse) {
+            sql.getPayments(req.user, function (err, payments) {
                 for(var i = 0; i<payments.length; i++){
                     payments[i]['Credit Card Number'] = payments[i]['Credit Card Number'].substr(-4,4);
                 }

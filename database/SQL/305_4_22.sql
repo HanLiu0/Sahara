@@ -157,7 +157,7 @@ REFERENCES `bidong`.`shopping cart` (`ShoppingCart Id`)
 CREATE TABLE `bidong`.`customer saves payment` (
   `CustomerId` INT(15) ZEROFILL NOT NULL,
   `PaymentId` INT(15) ZEROFILL NOT NULL,
-  PRIMARY KEY (`CustomerId`, `PaymentId`),
+  PRIMARY KEY (`PaymentId`),
  CONSTRAINT `CustomerFK in Saves`
     FOREIGN KEY (`CustomerId`) REFERENCES `bidong`.`customer` (`CustomerID`)
     ON DELETE CASCADE
