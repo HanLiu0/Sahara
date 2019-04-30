@@ -11,11 +11,17 @@
         <td COLSPAN=2><b>From </b>{{item.[Type]}}</td>
     </tr>
     <tr>
-        <th style="font-size:30px;">{{item.[Item Name]}} <br> by {{item.[Company Name]}}</th>
-        <td><form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
+        <th style="font-size:30px;">{{item.[Item Name]}} <br> by <label><a href= "#">{{item.[Company Name]}}</label></th>
+        <td>
+            {{#if login}}
+            <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
             Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
-            <input type="submit" value="Add To Cart">
-        </form></td>
+            <input type="submit" value="Add To Cart" data-toggle="popover" title="Login before adding to cart">
+            </form>
+                {{else}}
+                <label style="font-size:30px;"><a href= "/signin">Login before adding to cart!</label>
+            {{/if}}
+        </td>
     </tr>
     <tr>
         {{#if no_review}}
@@ -44,12 +50,14 @@
                     <p style="font-size:10px;">{{this.[Write Date]}} Rating: {{this.[Rating]}}</p><br>
                 {{/each}}
             {{/if}}
+            {{#if login}}
             <form method="post" action = "/item/item_review/{{item.[ItemID]}}">
                 Overall Rating: <input name = "rating" type="number" min = "1" max = "5" required="required">
                 <br>Write Your Review:
                 <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
-                <input type="submit" value="Submit Review">
+                <input type="submit" value="Submit Review" data-toggle="popover" title="Login before submitting review">
             </form>
+            {{/if}}
         </td>
     </tr>
 </table>
