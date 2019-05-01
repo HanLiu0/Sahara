@@ -174,6 +174,14 @@ router.get('/account_overview/order_history', function (req, res, next) {
         });
     });
 });
+
+router.get('/account_overview/order_history/order_detail', function(req, res, next){
+    sql.getOrderDetail(req.user, function (err, orderDetail) {
+            res.render('user/order_detail', {
+                title: "Order Detail"
+            });
+    });
+})
 module.exports = router;
 
 function addItemToResult(orderDetail, callBack){

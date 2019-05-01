@@ -691,4 +691,19 @@ exports.addToShoppingCart = function(itemID,userID, quantity, callback){
         });
     });
 };
+exports.getOrderDetail = function(userID, callback){
+   var sql1 = "";
+   pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        //connection.query(sql1, function(err, results) {
+            connection.release();
+            if (err) {
+                console.log(err);
+                callback(true);
+                return;
+            }
+            callback(false);
+        });
+    //});
+};
 
