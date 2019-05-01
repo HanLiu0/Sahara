@@ -838,3 +838,18 @@ exports.sortAllItemReview = function(callback) {
         });
     });
 };
+
+exports.getSellerForPage = function(id, callback) {
+    var sql = "SELECT * FROM `seller`"+
+        "INNER JOIN `seller supplies item` ON `seller`.`SellerID` = `seller supplies item`.`Seller ID` WHERE `SellerID` =" + id;
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};

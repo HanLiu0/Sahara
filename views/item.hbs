@@ -11,7 +11,7 @@
         <td COLSPAN=2><b>From </b>{{item.[Type]}}</td>
     </tr>
     <tr>
-        <th style="font-size:30px;">{{item.[Item Name]}} <br> by <label><a href= "#">{{item.[Company Name]}}</label></th>
+        <th style="font-size:30px;">{{item.[Item Name]}} <br> by <label><a href= "/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</label></th>
         <td>
             {{#if login}}
             <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">

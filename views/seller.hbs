@@ -1,0 +1,5 @@
+<h1>Username</h1>
+<b>Company: </b>{{seller.[Company Name]}}<br>
+{{# each sellers}}
+    <a href= "../item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden; height: auto; width: auto; max-width: 200px; max-height: 200px;" src="../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a>
+{{/each}}
