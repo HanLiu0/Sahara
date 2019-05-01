@@ -175,11 +175,12 @@ router.get('/account_overview/order_history', function (req, res, next) {
     });
 });
 
-router.get('/account_overview/order_history/order_detail', function(req, res, next){
-    sql.getOrderDetail(req.user, function (err, orderDetail) {
-            res.render('user/order_detail', {
-                title: "Order Detail"
-            });
+router.get('/account_overview/order_history/order_detail/:id', function(req, res, next){
+    sql.getOrderDetail(req.params.id, function (err, shipmentDetail, paymentDetail) {
+        paymentDetail[0]['Credit Card Number'] = paymentDetail[0]['Credit Card Number'].substr(-4,4);
+        res.render('user/order_detail', {
+            title: "Order Detail", payment:paymentDetail, shipment: shipmentDetail
+        });
     });
 })
 module.exports = router;

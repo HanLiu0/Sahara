@@ -277,7 +277,7 @@ exports.getRecommendItemsFromOrderHistory = function(req, callback) {
     var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item`"+
         " ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0 AND"+
         " `item`.`Type` IN (Select Type From `order contains item`" +
-        " INNER JOIN `item` On `order contains item`.`Item ID` = `Item`.`ItemID`" +
+        " INNER JOIN `item` On `order contains item`.`Item ID` = `item`.`ItemID`" +
         " INNER JOIN `checkout` On `checkout`.`order number` = `order contains item`.`Order ID` " +
         " WHERE `checkout`.`shoppingCart ID` = '" + req.user + "')";
     // get a connection from the pool
@@ -329,7 +329,7 @@ exports.getAllItemsFromShoppingCart = function(userId, callback){
         connection.query(sql1, function(err, results) {
             var copyResults = results;
             var sql2 = "Select * From `shopping cart contains items`" +
-                " INNER JOIN `item` On `shopping cart contains items`.`ItemID` = `Item`.`ItemID`" +
+                " INNER JOIN `item` On `shopping cart contains items`.`ItemID` = `item`.`ItemID`" +
                 " INNER JOIN `shopping cart` On `shopping cart`.`ShoppingCart Id` = `shopping cart contains items`.`shoppingCart Id`" +
                 " INNER JOIN `warehouse has item` ON `warehouse has item`.`Item ID` = `shopping cart contains items`.`ItemID`"+
                 " WHERE `shopping cart contains items`.`shoppingCart Id` = " + results[0]['ShoppingCart Id'];
@@ -339,7 +339,7 @@ exports.getAllItemsFromShoppingCart = function(userId, callback){
                 var sql3 = "SELECT * FROM `item` INNER JOIN `warehouse has item`"+
                     " ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0 AND"+
                     " `item`.`Type` IN (Select Type From `shopping cart contains items`" +
-                    " INNER JOIN `item` On `shopping cart contains items`.`ItemID` = `Item`.`ItemID`" +
+                    " INNER JOIN `item` On `shopping cart contains items`.`ItemID` = `item`.`ItemID`" +
                     " INNER JOIN `shopping cart` On `shopping cart`.`ShoppingCart Id` = `shopping cart contains items`.`shoppingCart Id`" +
                     " WHERE `shopping cart contains items`.`shoppingCart Id` = " + copyResults[0]['ShoppingCart Id'] + ")";
                 connection.query(sql3, function(err, recmFromShoppingCart){
@@ -691,20 +691,31 @@ exports.addToShoppingCart = function(itemID,userID, quantity, callback){
         });
     });
 };
-exports.getOrderDetail = function(userID, callback){
-   var sql1 = "";
+exports.getOrderDetail = function(orderID, callback){
+    var sql1 ="Select * From `checkout`" +
+        " INNER JOIN `order` On `checkout`.`order number` = `order`.`order number`" +
+        " INNER JOIN `order has shipment` ON `order has shipment`.`Order ID` = `checkout`.`order number`"+
+        " INNER JOIN `shipment` ON `shipment`.`Tracking Number` = `order has shipment`.`Tracking Number`"+
+        " INNER JOIN `order contains item` ON `order contains item`.`Order ID` = `checkout`.`order number`"+
+        " INNER JOIN `item` ON `item`.`ItemID` = `order contains item`.`Item ID`"+
+        " WHERE `checkout`.`order number` = " + orderID ;
    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        //connection.query(sql1, function(err, results) {
-            connection.release();
-            if (err) {
-                console.log(err);
-                callback(true);
-                return;
-            }
-            callback(false);
-        });
-    //});
+       if (err) {console.log(err);callback(true);return;}
+       connection.query(sql1, function (err, shipmentDetail) {
+           var sql2 = "Select * From `payment`" +
+               " INNER JOIN `payment pays order` On `payment`.`PaymentId` = `payment pays order`.`Payment ID`" +
+               " WHERE `payment pays order`.`Order Number` = " + orderID;
+           connection.query(sql2, function (err, paymentDetail) {
+               connection.release();
+               if (err) {
+                   console.log(err);
+                   callback(true);
+                   return;
+               }
+               callback(false, shipmentDetail, paymentDetail);
+           });
+       });
+   });
 };
 
 exports.getItemByType = function(category, callback) {
