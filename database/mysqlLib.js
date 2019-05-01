@@ -563,23 +563,47 @@ exports.addPayment = function(req, callback){
 }
 
 
-
-exports.getOrderHistory = function(userId, callback){
-    var sql1 = "";
-    /*
+exports.getItemFromAnOrder = function(orderID,count, callback){
+    var sql1 = "SELECT * FROM (SELECT * FROM `item` WHERE `ItemID` IN (SELECT `Item ID` FROM `order contains item` " +
+        "WHERE `order contains item`.`Order ID` = '"+orderID+"'))tbs " +
+        "INNER JOIN `order contains item` ON `tbs`.ItemID = `order contains item`.`Item ID` " +
+        "WHERE `order contains item`.`Order ID` = '"+orderID+"'";;
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
-        connection.query(sql1, function(err) {
+        connection.query(sql1, function(err, results) {
+            connection.release();
+            if (err) {
+                console.log(err);
+                callback(true);
+                return;
+            }
+            callback(false, results, count);
+        });
+    });
+}
 
-            connection.query(sql2, function(err) {
+exports.getOrderHistory = function(userId, callback){
+    var sql1 = "SELECT `ShoppingCart Id` FROM `customer owns shopping cart` WHERE `Customer Id` = " + userId;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, results) {
+            var sql2 = "Select * From `checkout`" +
+                " INNER JOIN `order` On `checkout`.`order number` = `order`.`order number`" +
+                " INNER JOIN `order has shipment` ON `order has shipment`.`Order ID` = `checkout`.`order number`"+
+                " WHERE `checkout`.`shoppingCart ID` = " + results[0]['ShoppingCart Id'];
+            connection.query(sql2, function(err, orderDetail) {
                 connection.release();
-                if(err) { console.log(err); callback(true); return; }
-
+                if (err) {
+                    console.log(err);
+                    callback(true);
+                    return;
+                }
+                callback(false, orderDetail);
             });
         });
-    });*/
-    callback(false);
+    });
 }
+
 
 exports.getItemByID = function(id, callback) {
     var sql = "SELECT * FROM `item` INNER JOIN `seller supplies item`"+

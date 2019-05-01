@@ -166,14 +166,33 @@ router.post('/account_overview/edit_seller_information', isSeller, function (req
 });
 
 router.get('/account_overview/order_history', function (req, res, next) {
-    sql.getOrderHistory(req.user, function (err, results) {
-        res.render('user/order_history', {
+    sql.getOrderHistory(req.user, function (err, orderDetail) {
+        addItemToResult(orderDetail, function(result){
+            res.render('user/order_history', {
+                title: "Order Hisotry",order_detail:result
+            });
         });
     });
 });
 module.exports = router;
 
-
+function addItemToResult(orderDetail, callBack){
+    var count = 0;
+    for(var i=0; i<orderDetail.length; i++){
+        var orderID = orderDetail[i]['order number'];
+        var newI = i;
+        sql.getItemFromAnOrder(orderID, newI,function (err, results1, newI2) {
+            (orderDetail[newI2]['items']) = results1;
+            count++;
+            if(count == orderDetail.length){
+                callBack(orderDetail);
+            }
+        });
+    }
+    if(orderDetail.length==0){
+        callBack(orderDetail);
+    }
+}
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
