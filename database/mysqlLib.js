@@ -590,7 +590,8 @@ exports.getOrderHistory = function(userId, callback){
             var sql2 = "Select * From `checkout`" +
                 " INNER JOIN `order` On `checkout`.`order number` = `order`.`order number`" +
                 " INNER JOIN `order has shipment` ON `order has shipment`.`Order ID` = `checkout`.`order number`"+
-                " WHERE `checkout`.`shoppingCart ID` = " + results[0]['ShoppingCart Id'];
+                " WHERE `checkout`.`shoppingCart ID` = " + results[0]['ShoppingCart Id']+
+                " ORDER BY `checkout`.`order number` DESC";
             connection.query(sql2, function(err, orderDetail) {
                 connection.release();
                 if (err) {
