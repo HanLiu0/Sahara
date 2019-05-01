@@ -1,7 +1,41 @@
+{{#if all}}
+    <h1>All Items</h1>
+{{else}}
+    <h1>All of {{type}}</h1>
+{{/if}}
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Sort by<span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            {{#if all}}
+                    <a href="/view/sort4/all">Price: Low to High</a>
+            {{else}}
+                    <a href="/view/sort2/{{type}}">Price: Low to High</a>
+            {{/if}}
+        </li>
+        <li>
+            {{#if all}}
+                <a href="/view/sort5/all">Price: High to Low</a>
+            {{else}}
+                <a href="/view/sort1/{{type}}">Price: High to Low</a>
+            {{/if}}
+        </li>
+        <li>
+            {{#if all}}
+                <a href="/view/sort6/all">Avg. Customer Review</a>
+            {{else}}
+                <a href="/view/sort3/{{type}}">Avg. Customer Review</a>
+            {{/if}}
+        </li>
+    </ul>
+</div>
+<br>
 {{# each items}}
     <label><a href= "../../item/{{this.[ItemID]}}">{{this.[Item Name]}}</label><br>
     <a href= "../../item/{{this.[ItemID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" style="overflow:hidden" src="../../images/{{this.[ItemID]}}.jpg" alt="Image for {{this.[ItemID]}}">
     </a>
-        Rating: {{this.[CumRate]}} ({{this.[numOfReview]}})<br>
+        Ratings: {{this.[CumRate]}} ({{this.[numOfReview]}})<br>
     ${{this.[Price]}}<br><br>
 {{/each}}
