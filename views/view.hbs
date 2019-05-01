@@ -1,0 +1,7 @@
+{{# each items}}
+    <label><a href= "../../item/{{this.[ItemID]}}">{{this.[Item Name]}}</label><br>
+    <a href= "../../item/{{this.[ItemID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" style="overflow:hidden" src="../../images/{{this.[ItemID]}}.jpg" alt="Image for {{this.[ItemID]}}">
+    </a>
+        Rating: {{this.[CumRate]}} ({{this.[numOfReview]}})<br>
+    ${{this.[Price]}}<br><br>
+{{/each}}
