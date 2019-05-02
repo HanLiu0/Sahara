@@ -203,7 +203,6 @@ router.get('/account_overview/refund_overview', function (req, res, next) {
 
 router.get('/account_overview/select_return/:order', function (req, res, next) {
     sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
-        console.log(results);
         res.render('user/select_return', {title: "Return Page", results: results});
     });
 });
