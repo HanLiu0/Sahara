@@ -1,27 +1,41 @@
 <table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
     <col style="width:60%">
     <tr>
-        <td COLSPAN=2><h1>Return/ Refund</h1></td>
-    </tr>
+        <td COLSPAN=3><h1>Return/ Refund</h1></td>
+    </tr>]
     <tr>
-        <th>
-            <form method="post" action="/Tests/Post/">
+        <form method="post" action="/Tests/Post/">
             <fieldset>
+        <th>
                 {{#each results}}
-                    <input type="checkbox" name="favorite_pet" value="Cats" style="float:left" ><a href= "../../../item/{{this.[Item ID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" src="../../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}">
+                    <input type="checkbox" id="checkbox_{{this.[Item ID]}}" name="checkbox_{{this.[Item ID]}}" style="float:left" >
+                    <a href= "../../../item/{{this.[Item ID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" src="../../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}">
                     {{this.[Item Name]}}<br></a>
-                    {{this.[Price]}}<br>Bought quantity: {{this.[Quantity]}}<br>
+                    ${{this.[Price]}}<br>You bought: {{this.[Quantity]}}
+                        Quantity to return: <input name = "quantity" type="number" id="quantity_{{this.[Item ID]}}" min = "1" max = "{{this.Quantity}}" value = 1>
+                       <br><br>
                 {{/each}}
-                <input type="submit" value="Submit now" />
-            </fieldset>
-            </form>
         </th>
-        <td>subtotal<br>submit</td>
+        <td>
+        </td>
+        <td>
+            <input type="submit" value="Submit now" />
+        </td>
+            </fieldset>
+        </form>
     </tr>
     <tr>
-            <td>reason</td>
+            <td>
+                Reason to return? <br><input type="text" name="reason" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your reason here...">
+            </td>
     </tr>
     <tr>
-        <td>refund way</td>
+        <td>
+            Return Method: <br>
+            <input checked="checked" type="radio" name="shipment" value="standard" onclick="updateCheckoutInfo(0.00)"> Standard 5-8 business days<br />
+            <input type="radio" name="shipment" value="one-day" onclick="updateCheckoutInfo(25.88)"> One business day<br />
+            <input type="radio" name="shipment" value="two-day" onclick="updateCheckoutInfo(15.66)"> Two business days<br />
+            <input type="radio" name="shipment" value="three-day" onclick="updateCheckoutInfo(6.77)"> Three business days<br />
+        </td>
     </tr>
 </table>
