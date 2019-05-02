@@ -909,3 +909,19 @@ exports.editSellerReview = function(sellerID,userID, rating, detail, newdate, ca
         });
     });
 };
+
+exports.getAllSellers = function(callback) {
+    var sql = "SELECT * FROM `seller` INNER JOIN `user` ON `seller`.`SellerID` = `user`.`UserID` ORDER BY `user`.`Username` ASC";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
+
