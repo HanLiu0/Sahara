@@ -582,7 +582,7 @@ exports.getItemFromAnOrder = function(orderID,count, callback){
     var sql1 = "SELECT * FROM (SELECT * FROM `item` WHERE `ItemID` IN (SELECT `Item ID` FROM `order contains item` " +
         "WHERE `order contains item`.`Order ID` = '"+orderID+"'))tbs " +
         "INNER JOIN `order contains item` ON `tbs`.ItemID = `order contains item`.`Item ID` " +
-        "WHERE `order contains item`.`Order ID` = '"+orderID+"'";;
+        "WHERE `order contains item`.`Order ID` = '"+orderID+"'";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql1, function(err, results) {
@@ -650,7 +650,6 @@ exports.getItemByID = function(id, callback) {
                     " LEFT OUTER JOIN `user` On `user`.`UserID` = `item review write by`.`Customer ID` WHERE `item`.`ItemID`="+id+
                     " GROUP BY `item`.`ItemID`";
                 connection.query(sql3, function(err, results) {
-                    console.log(results);
                     connection.release();
                     if(err) { console.log(err); callback(true); return; }
                     callback(false, copyResults, copyResults2, results);
@@ -666,7 +665,7 @@ exports.editItemReview = function(itemID,userID, rating, detail, newdate, callba
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql1, function(err, result) {
-            articleID = result.insertId;
+            var articleID = result.insertId;
             var sql2 = "INSERT INTO `Item has review`(`Article ID`,`Item ID`) VALUES ('"+articleID+"','"+itemID+"')";
             connection.query(sql2, function (err, results) {
                 var sql3 = "INSERT INTO `item review write by`(`Write Date`, `Article ID`, `Customer ID`) VALUES ('"+newdate+"','"+articleID+"','"+userID+"')";
@@ -687,7 +686,7 @@ exports.addToShoppingCart = function(itemID,userID, quantity, callback){
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql1, function(err, result) {
-            SCID = result[0]['ShoppingCart Id'];
+            var SCID = result[0]['ShoppingCart Id'];
             var sql2 = "SELECT * FROM `shopping cart contains items` WHERE `shopping cart contains items`.`shoppingCart Id`="+SCID+" AND `shopping cart contains items`.`ItemID`="+itemID;
             connection.query(sql2, function (err, results) {
                 if(results[0]===undefined) //shopping cart doesn't contain item
@@ -909,7 +908,7 @@ exports.editSellerReview = function(sellerID,userID, rating, detail, newdate, ca
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql1, function(err, result) {
-            articleID = result.insertId;
+            var articleID = result.insertId;
             var sql2 = "INSERT INTO `seller has review`(`Article ID`,`Seller ID`) VALUES ('"+articleID+"','"+sellerID+"')";
             connection.query(sql2, function (err, results) {
                 var sql3 = "INSERT INTO `seller review write by`(`Write Date`, `Article ID`, `Customer ID`) VALUES ('"+newdate+"','"+articleID+"','"+userID+"')";
