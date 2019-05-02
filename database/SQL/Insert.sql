@@ -170,9 +170,10 @@ INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`)
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000009', '2015-10-15', 'Shipment Handler');
 INSERT INTO `bidong`.`employee` (`Employee ID`, `Date Join`, `Designation/Role`) VALUES ('000000000000010', '2012-02-10', 'SWS');
 
-INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000005', '000000000000009', 'Debit Card', '17.89', 'Item broken.');
-INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000009', '000000000000004', 'Gift Card', '10.14', 'Product Didn’t Match the Website Or Catalog Description.');
-INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000001', '000000000000002', 'Credit Card', '50.05', 'Product Did Not Meet Expectations.');
+INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000005', '000000000000009', 'Debit Card', '18.49', 'Item broken.');
+INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000009', '000000000000004', 'Gift Card', '411.99', 'Product Didn’t Match the Website Or Catalog Description.');
+INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000009', '000000000000010', 'Gift Card', '24.95', 'Product Didn’t Match.');
+INSERT INTO `bidong`.`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`) VALUES ('000000000000001', '000000000000002', 'Credit Card', '13.99', 'Product Did Not Meet Expectations.');
 
 INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000001', '000000000000001');
 INSERT INTO `bidong`.`customer saves payment` (`CustomerId`, `PaymentId`) VALUES ('000000000000002', '000000000000002');
@@ -331,15 +332,16 @@ INSERT INTO `bidong`.`Seller has review` (`Article ID`, `Seller ID`) VALUES ('00
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000001', '000000000000007', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000001', '000000000000003', '2');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000001', '000000000000004', '1');
-INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000002', '000000000000009', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000002', '000000000000004', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000003', '000000000000005', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000004', '000000000000001', '2');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000004', '000000000000004', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000005', '000000000000007', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000005', '000000000000001', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000006', '000000000000002', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000007', '000000000000010', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000008', '000000000000008', '2');
-INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000009', '000000000000004', '1');
+INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000009', '000000000000003', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000010', '000000000000005', '1');
 INSERT INTO `bidong`.`order contains item` (`Order ID`, `Item ID`, `Quantity`) VALUES ('000000000000010', '000000000000008', '1');
 
@@ -367,8 +369,10 @@ INSERT INTO `bidong`.`employee ships shipment` (`Employee ID`, `Tracking Number`
 
 INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000002', '000000000000004', '1');
 INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000009', '000000000000003', '1');
+INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000010', '000000000000005', '1');
 INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000004', '000000000000001', '2');
 INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ('000000000000004', '000000000000004', '1');
+
 
 INSERT INTO `bidong`.`employee reports to` (`Supervisor ID`, `Employee ID`) VALUES ('000000000000005', '000000000000001');
 INSERT INTO `bidong`.`employee reports to` (`Supervisor ID`, `Employee ID`) VALUES ('000000000000005', '000000000000004');

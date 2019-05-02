@@ -243,6 +243,21 @@ exports.editItem = function(id, req, callback){
     });
 };
 
+exports.removeItem = function(id, req, callback){
+    var sql1 = 'DELETE FROM `warehouse has item` ' +
+        'WHERE (`Item ID` = ' + id + ');';
+    pool.getConnection(function(err, connection) {
+        if (err) {
+            console.log(err);
+        }
+        // make the query
+        connection.query(sql1, function (err, results) {
+            connection.release();
+            callback(false, results);
+        });
+    });
+};
+
 exports.getItemsFromWarehouse = function(callback) {
     var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item` ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0";
     // get a connection from the pool
@@ -924,19 +939,41 @@ exports.getAllSellers = function(callback) {
     });
 };
 
-exports.getRefundByID = function(userID, callback) {
-    var sql = "SELECT * FROM `refund` INNER JOIN `order contains item` ON `refund`.`Order ID` = `order contains item`.`Order ID` " +
-        "INNER JOIN `refund contains items` ON `refund contains items`.`Item ID` = `order contains item`.`Item ID`"+
-        "WHERE `refund`.`Customer ID`="+"'"+userID+"'";
+exports.getRefundHistory = function(userId, callback){
+    var sql = "Select * From `refund`" +
+        " WHERE `refund`.`Customer ID` = " + userId+
+        " ORDER BY `refund`.`Order ID` DESC";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
+                connection.release();
+                if (err) {
+                    console.log(err);
+                    callback(true);
+                    return;
+                }
+                callback(false, results);
         });
     });
-};
+}
+
+exports.getItemFromAnRefund = function(refundID,count, callback){
+    var sql1 = "SELECT * FROM `item` " +
+        "INNER JOIN `refund contains items` ON `refund contains items`.`Item ID` = `item`.`ItemID` " +
+        "WHERE `refund contains items`.`Refund ID` = '"+refundID+"'";;
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, results) {
+            connection.release();
+            if (err) {
+                console.log(err);
+                callback(true);
+                return;
+            }
+            callback(false, results, count);
+        });
+    });
+}
 
 //sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
 exports.getReturnInfoByOrder = function(userID,orderID, callback) {

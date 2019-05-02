@@ -15,6 +15,9 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editItem{{this.ItemID}}">
                 Edit
             </button>
+            <form method="post" action="remove_item/{{this.[ItemID]}}" encType="multipart/form-data">
+                <button type="submit" class="btn btn-primary">Remove Item</button>
+            </form>
             <!-- Modal -->
             <div class="modal fade" id="editItem{{this.ItemID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

@@ -1,7 +1,0 @@
-<h1>Your Refunds</h1><br><br>
-{{# each refunds}}
-     Order Number: {{this.[Order ID]}}
-     <img style="height: auto; width: auto; max-width: 450px; max-height: 450px;" class="d-block w-100" style="overflow:hidden" src="../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}">
-     Quantity: {{this.[Quantity]}}<br>
-     Reason: {{this.[Refund Reason]}}<br>
- {{/each}}

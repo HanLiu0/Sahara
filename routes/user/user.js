@@ -91,7 +91,7 @@ router.post('/seller_sign_up', function (req, res, next) {
 
 router.get('/account_overview/listed_items/:page?', isSeller , function (req, res, next) {
     var messages = req.flash('editItemMessage');
-    sql.getItemsFromWarehouse(function (err, results) {
+    sql.getSellerItems(req,function (err, results) {
         var page = 1;
         if(req.params.page != undefined)
             page = req.params.page[req.params.page.length -1];
@@ -113,6 +113,13 @@ router.get('/account_overview/listed_items/:page?', isSeller , function (req, re
 router.post('/account_overview/edit_item/:id', isSeller, function (req, res, next) {
     sql.editItem(req.params.id, req, function (err, results) {
         req.flash('editItemMessage', 'Successfully edited');
+        res.redirect('/user/account_overview/listed_items');
+    });
+});
+
+router.post('/account_overview/remove_item/:id', isSeller, function (req, res, next) {
+    sql.removeItem(req.params.id, req, function (err, results) {
+        req.flash('editItemMessage', 'Successfully removed');
         res.redirect('/user/account_overview/listed_items');
     });
 });
@@ -184,9 +191,13 @@ router.get('/account_overview/order_history/order_detail/:id', function(req, res
     });
 });
 
-router.get('/account_overview/your_refunds', function (req, res, next) {
-    sql.getRefundByID(req.user, function (err, results) {
-        res.render('user/refund', {title: "Your Refunds", refunds: results});
+router.get('/account_overview/refund_overview', function (req, res, next) {
+    sql.getRefundHistory(req.user, function (err, results) {
+        addItemToRefund(results, function(result){
+            res.render('user/refund_overview', {
+                title: "Refund Hisotry",refunds:result
+            });
+        });
     });
 });
 
@@ -216,6 +227,25 @@ function addItemToResult(orderDetail, callBack){
         callBack(orderDetail);
     }
 }
+
+function addItemToRefund(orderDetail, callBack){
+    var count = 0;
+    for(var i=0; i<orderDetail.length; i++){
+        var orderID = orderDetail[i]['Order ID'];
+        var newI = i;
+        sql.getItemFromAnRefund(orderID, newI,function (err, results1, newI2) {
+            (orderDetail[newI2]['items']) = results1;
+            count++;
+            if(count == orderDetail.length){
+                callBack(orderDetail);
+            }
+        });
+    }
+    if(orderDetail.length==0){
+        callBack(orderDetail);
+    }
+}
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
