@@ -1,0 +1,27 @@
+<table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
+    <col style="width:60%">
+    <tr>
+        <td COLSPAN=2><h1>Return/ Refund</h1></td>
+    </tr>
+    <tr>
+        <th>
+            <form method="post" action="/Tests/Post/">
+            <fieldset>
+                {{#each results}}
+                    <input type="checkbox" name="favorite_pet" value="Cats" style="float:left" ><a href= "../../../item/{{this.[Item ID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" src="../../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}">
+                    {{this.[Item Name]}}<br></a>
+                    {{this.[Price]}}<br>Bought quantity: {{this.[Quantity]}}<br>
+                {{/each}}
+                <input type="submit" value="Submit now" />
+            </fieldset>
+            </form>
+        </th>
+        <td>subtotal<br>submit</td>
+    </tr>
+    <tr>
+            <td>reason</td>
+    </tr>
+    <tr>
+        <td>refund way</td>
+    </tr>
+</table>

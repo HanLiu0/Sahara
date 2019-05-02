@@ -928,10 +928,8 @@ exports.getRefundByID = function(userID, callback) {
     var sql = "SELECT * FROM `refund` INNER JOIN `order contains item` ON `refund`.`Order ID` = `order contains item`.`Order ID` " +
         "INNER JOIN `refund contains items` ON `refund contains items`.`Item ID` = `order contains item`.`Item ID`"+
         "WHERE `refund`.`Customer ID`="+"'"+userID+"'";
-    // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
-        // make the query
         connection.query(sql, function(err, results) {
             connection.release();
             if(err) { console.log(err); callback(true); return; }
@@ -939,4 +937,18 @@ exports.getRefundByID = function(userID, callback) {
         });
     });
 };
+
+//sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
+exports.getReturnInfoByOrder = function(userID,orderID, callback) {
+    var sql = "SELECT * FROM `order contains item` INNER JOIN `item` ON `item`.`ItemID` = `order contains item`.`Item ID` WHERE `order contains item`.`Order ID`="+"'"+orderID+"'";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
 
