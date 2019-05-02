@@ -691,10 +691,11 @@ exports.addToShoppingCart = function(itemID,userID, quantity, callback){
             connection.query(sql2, function (err, results) {
                 if(results[0]===undefined) //shopping cart doesn't contain item
                     var sql3 = "INSERT INTO `shopping cart contains items`(`shoppingCart Id`, `quantity`, `ItemID`) VALUES ('"+SCID+"','"+1+"','"+itemID+"')";
-                else
+                else {
                     var sql3 = 'UPDATE `shopping cart contains items` ' +
-                        'SET `quantity` = \'' + results[0]['quantity']+'\'+\''+quantity + '\'' +
-                        ' WHERE `shopping cart contains items`.`shoppingCart Id`='+SCID+' AND `shopping cart contains items`.`ItemID`='+itemID;
+                        'SET `quantity` = \'' + results[0]['quantity'] + '\'+\'' + quantity + '\'' +
+                        ' WHERE `shopping cart contains items`.`shoppingCart Id`=' + SCID + ' AND `shopping cart contains items`.`ItemID`=' + itemID;
+                }
                 connection.query(sql3, function (err, results) {
                     connection.release();
                     if (err) {
