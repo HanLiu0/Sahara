@@ -924,4 +924,19 @@ exports.getAllSellers = function(callback) {
     });
 };
 
+exports.getRefundByID = function(userID, callback) {
+    var sql = "SELECT * FROM `refund` INNER JOIN `order contains item` ON `refund`.`Order ID` = `order contains item`.`Order ID` " +
+        "INNER JOIN `refund contains items` ON `refund contains items`.`Item ID` = `order contains item`.`Item ID`"+
+        "WHERE `refund`.`Customer ID`="+"'"+userID+"'";
+    // get a connection from the pool
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        // make the query
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
 

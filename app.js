@@ -22,7 +22,6 @@ var checkoutRouter = require('./routes/checkout');
 var itemRouter = require('./routes/item');
 var viewRouter = require('./routes/view');
 var sellerRouter = require('./routes/seller');
-
 var app = express();
 
 // view engine setup

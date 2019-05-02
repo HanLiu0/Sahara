@@ -182,7 +182,14 @@ router.get('/account_overview/order_history/order_detail/:id', function(req, res
             title: "Order Detail", payment:paymentDetail, shipment: shipmentDetail
         });
     });
-})
+});
+
+router.get('/account_overview/your_refunds', function (req, res, next) {
+    sql.getRefundByID(req.user, function (err, results) {
+        res.render('user/refund', {title: "Your Refunds", refunds: results});
+    });
+});
+
 module.exports = router;
 
 function addItemToResult(orderDetail, callBack){
