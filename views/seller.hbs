@@ -1,5 +1,60 @@
-<h1>Username</h1>
-<b>Company: </b>{{seller.[Company Name]}}<br>
-{{# each sellers}}
-    <a href= "../item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden; height: auto; width: auto; max-width: 200px; max-height: 200px;" src="../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a>
-{{/each}}
+<button type="button" class="btn"><a href="#"><b>Go to all sellers</b></a></button>
+
+<table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
+    <col style="width:60%">
+    <tr>
+        <td COLSPAN=2><h1>{{user.[Username]}}</h1></td>
+    </tr>
+    <tr>
+        <th>Company: {{user.[Company Name]}}</th>
+        <td>
+            {{#if login}}
+            {{else}}
+                <label style="font-size:30px;"><a href= "/signin">Login before writing your review</label>
+            {{/if}}
+        </td>
+    </tr>
+    <tr>
+
+        {{# if no_review}}
+            <td><b>Overall Rating: </b>No Review ({{avg.[numOfReview]}})</td>
+        {{else}}
+            <td><b>Overall Rating: </b>{{avg.[CumRate]}} out of 5 ({{avg.[numOfReview]}})</td>
+        {{/if}}
+    </tr>
+    <tr>
+        <td>
+        {{# if no_item}}
+            No Product from this seller...
+        {{else}}
+            <b>Products from seller: </b><br>
+            {{# each items}}
+                <a href= "../../item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden; height: auto; width: auto; max-width: 200px; max-height: 200px;" src="../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a>
+                <a href= "../../item/{{this.[Item ID]}}"><b>{{this.[Item Name]}}</b></a><br>
+                ${{this.[Price]}}<br><br>
+            {{/each}}
+        {{/if}}
+        </td>
+    <tr>
+        <td><b>Customer Reviews: </b><br>
+            {{# if no_review}}
+                No Review for this seller...<br>
+            {{else}}
+                {{# each reviews}}
+                    <b>{{this.[Username]}}: </b>
+                    {{this.[Detail]}}<br><p style="font-size:10px;">{{this.[Write Date]}} Rating: {{this.[Rating]}}</p><br><br>
+                {{/each}}
+            {{/if}}
+
+            {{#if login}}
+                <form method="post" action = "/seller/seller_review/{{user.[UserID]}}">
+                    Overall Rating: <input name = "rating" type="number" min = "1" max = "5" required="required">
+                    <br>Write Your Review:
+                    <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
+                    <input type="submit" value="Submit Review" data-toggle="popover" title="Login before submitting review">
+                </form>
+            {{/if}}
+
+        </td>
+    </tr>
+</table>

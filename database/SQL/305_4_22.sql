@@ -274,7 +274,7 @@ PRIMARY KEY (`Article ID`, `Customer ID`),
     ON UPDATE NO ACTION);
 
 CREATE TABLE `bidong`.`seller review write by` (
-  `Write Date` DATE NOT NULL,
+  `Write Date` DATETIME NOT NULL,
   `Article ID` INT(15) ZEROFILL NOT NULL,
   `Customer ID` INT(15) ZEROFILL NOT NULL,
 PRIMARY KEY (`Article ID`, `Customer ID`),

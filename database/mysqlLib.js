@@ -845,11 +845,67 @@ exports.getSellerForPage = function(id, callback) {
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
-        // make the query
         connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
+            var checkItem = results;
+            var sql2 = "SELECT * FROM `seller`"+
+                "INNER JOIN `Seller has review` ON `Seller has review`.`Seller ID` = `seller`.`SellerID` WHERE `SellerID` =" + id;
+            connection.query(sql2, function(err, results) {
+                var checkReview = results;
+                var sql3 = "SELECT * FROM `seller`"+
+                    "LEFT OUTER JOIN `Seller has review` ON `Seller has review`.`Seller ID` = `seller`.`SellerID`"+
+                    "LEFT OUTER JOIN `seller review` ON `Seller has review`.`Article ID` = `seller review`.`Seller Article ID`"+
+                    "LEFT OUTER JOIN `seller review write by` ON `seller review write by`.`Article ID` = `seller review`.`Seller Article ID`"+
+                    "LEFT OUTER JOIN `user` ON `seller review write by`.`Customer ID` = `user`.`UserID` WHERE `SellerID` =" + "'"+id+"'";
+                connection.query(sql3, function(err, results) {
+                    var reviewResult = results;
+                    var sql4 = "SELECT * FROM `seller`"+
+                        "INNER JOIN `seller supplies item` ON `seller`.`SellerID` = `seller supplies item`.`Seller ID`"+
+                        "INNER JOIN `user` ON `user`.`UserID` = `seller`.`SellerID` "+
+                        "INNER JOIN `item` ON `item`.`ItemID` = `seller supplies item`.`Item ID` WHERE `SellerID` =" + id;
+                    connection.query(sql4, function(err, results) {
+                        var itemResult = results;
+                        var sql5 = "SELECT * FROM `seller`"+
+                            "INNER JOIN `user` ON `seller`.`SellerID` = `user`.`UserID` WHERE `SellerID` =" + id;
+                        connection.query(sql5, function(err, results) {
+                            var userInfo = results;
+                            var sql6 = "SELECT `seller`.`SellerID`,AVG(`seller review`.`Rating`) AS CumRate, COUNT(`seller review`.`Rating`) AS numOfReview FROM `seller`"+
+                                "LEFT OUTER JOIN `Seller has review` ON `Seller has review`.`Seller ID` = `seller`.`SellerID`"+
+                                "LEFT OUTER JOIN `seller review` ON `Seller has review`.`Article ID` = `seller review`.`Seller Article ID`"+
+                                "LEFT OUTER JOIN `seller review write by` ON `seller review write by`.`Article ID` = `seller review`.`Seller Article ID`"+
+                                "LEFT OUTER JOIN `user` ON `seller review write by`.`Customer ID` = `user`.`UserID` WHERE `SellerID` =" + "'"+id+"'"+
+                                "GROUP BY `seller`.`SellerID`";
+                            connection.query(sql6, function(err, results) {
+                                var AvgInfo = results;
+                                connection.release();
+                                if(err) { console.log(err); callback(true); return; }
+                                callback(false, checkItem, checkReview, reviewResult, itemResult, userInfo, AvgInfo);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+};
+
+
+exports.editSellerReview = function(sellerID,userID, rating, detail, newdate, callback){
+    var sql1 = "INSERT INTO `seller review`(`Rating`,`Detail`) VALUES ('"+rating+"','"+detail+"')";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql1, function(err, result) {
+            articleID = result.insertId;
+            var sql2 = "INSERT INTO `seller has review`(`Article ID`,`Seller ID`) VALUES ('"+articleID+"','"+sellerID+"')";
+            connection.query(sql2, function (err, results) {
+                var sql3 = "INSERT INTO `seller review write by`(`Write Date`, `Article ID`, `Customer ID`) VALUES ('"+newdate+"','"+articleID+"','"+userID+"')";
+                connection.query(sql3, function (err, results) {
+                    connection.release();
+                    if (err) {
+                        console.log(err);return;
+                    }
+                });
+            });
+
         });
     });
 };
