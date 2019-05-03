@@ -203,19 +203,23 @@ router.get('/account_overview/refund_overview', function (req, res, next) {
 
 router.get('/account_overview/select_return/:order', function (req, res, next) {
     sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
-        res.render('user/select_return', {title: "Return Page", results: results});
+        res.render('user/select_return', {title: "Return Page", results: results, result:results[0]});
     });
 });
 
 router.post('/account_overview/return_confirmation/:order', function(req,res,next){
-    //console.log("order: "+req.params.order);console.log("user: "+req.user);console.log("reason: "+req.body.reason);console.log("return way: "+req.body.return_way);
+    console.log("order: "+req.params.order);console.log("user: "+req.user);console.log("reason: "+req.body.reason);console.log("return way: "+req.body.return_way);
     var return_price = 0;
+    console.log("checkbox: "+req.body.checkbox);
     for(i in req.body.checkbox){
         //console.log("checkbox: "+req.body.checkbox[i]);console.log("price: "+req.body[p]);console.log("quantity: "+req.body[q]);
         var q = "quantity"+req.body.checkbox[i];
         var p = "price"+req.body.checkbox[i];
+        var o = "original_quantity"+req.body.checkbox[i];
+        var new_quantity = req.body[o]-req.body[q];
+        //console.log("price: "+req.body[p]);console.log("quantity: "+req.body[q]);
         return_price+=(req.body[q]*req.body[p]);
-        sql.addToRefundContainsItem(req.body.checkbox[i],req.body[q]);
+        sql.addToRefundContainsItem(req.body.checkbox[i],req.body[q],new_quantity, req.params.order);
     }
     //console.log("total price: "+return_price);
     sql.addToRefund(req.user, req.params.order,req.body.return_way,return_price,req.body.reason );

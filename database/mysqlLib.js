@@ -989,13 +989,16 @@ exports.getReturnInfoByOrder = function(userID,orderID, callback) {
     });
 };
 
-exports.addToRefundContainsItem = function(itemID,quantity, callback) {
+exports.addToRefundContainsItem = function(itemID,quantity,newQuantity,order,callback) {
     var sql = "INSERT INTO `refund contains items`(`Item ID`,`Quantity`) VALUES ('"+itemID+"','"+quantity+"')";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err);}
+            var sql2 = "UPDATE `order contains item` SET `Quantity` = '"+newQuantity +"' WHERE `Item ID` = '"+ itemID +"' AND `Order ID` = '"+order+"'; ";
+            connection.query(sql2, function(err, results) {
+                connection.release();
+                if(err) { console.log(err);}
+            });
         });
     });
 };
