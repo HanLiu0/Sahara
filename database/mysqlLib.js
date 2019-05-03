@@ -1022,13 +1022,21 @@ exports.addToRefund = function(user, order, return_way, return_price, reason, sq
 };
 
 exports.searchAllItem = function(keyword, callback) {
+    var words = keyword.split(" ");
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` WHERE `item`.`Item Name` LIKE "+"'%"+keyword+"%'"+
-        " GROUP BY `item`.`ItemID`";
+        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`" +
+        " WHERE ";
+        for(var i in words){
+            sql+="`item`.`Item Name` LIKE '%"+words[i]+"%' OR ";
+        }
+        sql = sql.substring(0,sql.length-3);
+        sql+=" GROUP BY `item`.`ItemID`";
+        console.log(sql);
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
+            console.log(results);
             connection.release();
             if(err) { console.log(err); callback(true); return; }
             callback(false, results);
