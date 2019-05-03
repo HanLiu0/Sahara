@@ -22,6 +22,7 @@ var checkoutRouter = require('./routes/checkout');
 var itemRouter = require('./routes/item');
 var viewRouter = require('./routes/view');
 var sellerRouter = require('./routes/seller');
+var aboutRouterAndContact = require('./routes/about_and_contact');
 var app = express();
 
 // view engine setup
@@ -61,6 +62,7 @@ app.use('/checkout', checkoutRouter);
 app.use('/item', itemRouter);
 app.use('/view', viewRouter);
 app.use('/seller', sellerRouter);
+app.use('/about_and_contact', aboutRouterAndContact);
 
 
 // catch 404 and forward to error handler

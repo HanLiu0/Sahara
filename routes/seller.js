@@ -5,13 +5,13 @@ var sql = require('../database/mysqlLib');
 
 router.get('/all_sellers',  function (req, res, next) {
     sql.getAllSellers(function (err,results) {
-        res.render('all_sellers', {title: "All Seller Page", sellers: results});
+        res.render('all_sellers', {title: "Sahara.com: All Seller", sellers: results});
     });
 });
 
 router.get('/:id',  function (req, res, next) {
     sql.getSellerForPage(req.params.id, function (err,checkItem, checkReview, reviewResult, itemResult, userInfo, avgInfo) {
-        res.render('seller', {title: "Seller Page", items: itemResult, no_review: checkReview[0]===undefined, reviews: reviewResult,
+        res.render('seller', {title: "Sahara.com: Seller Homepage", items: itemResult, no_review: checkReview[0]===undefined, reviews: reviewResult,
             no_item: checkItem[0]===undefined, user: userInfo[0], avg: avgInfo[0]});
     });
 });

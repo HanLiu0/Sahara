@@ -14,7 +14,7 @@ router.get('/',isLoggedIn, function(req, res, next) {
                     totalItem = totalItem + parseInt(itemsInShoppingCart[i]['quantity'],10);
                 }
                 res.render('checkout', {
-                    title: "Sahara.com Checkout",
+                    title: "Sahara.com: Checkout",
                     userId: req.user,
                     shopping_cart: itemsInShoppingCart,
                     checkoutInfo: checkoutInfo,
@@ -48,7 +48,7 @@ router.post('/place_order/:id', function(req, res, next){
                     sql.updateShipments(checkoutInfo, orderId, req.body.shipment,today,function (err, trackingNumber) {
                         sql.updateWarehouse(itemsInShoppingCart,function (err) {
                             res.render('place_order', {
-                                title: "Sahara.com Order Confirmation",
+                                title: "Sahara.com: Order Confirmation",
                                 order_number: orderId,
                                 order_date: today,
                                 tracking_number:trackingNumber,

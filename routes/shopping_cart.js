@@ -22,7 +22,7 @@ router.get('/',isLoggedIn, function(req, res, next) {
                     }
                 }
             }
-            res.render('shopping_cart', {title: "Sahara.com Shopping Cart",
+            res.render('shopping_cart', {title: "Sahara.com: Shopping Cart",
                 shopping_cart: ShoppingResults, recommend: mostRecommend});
 
         });

@@ -5,7 +5,7 @@ var passport = require('passport/lib');
 
 router.get('/', function(req, res, next) {
     var messages = req.flash('error');
-    res.render('user/signin', { title : "Sign In Page", messages: messages, errors: messages.length > 0 });
+    res.render('user/signin', { title : "Sahara.com: Sign In", messages: messages, errors: messages.length > 0 });
 });
 
 router.post('/', passport.authenticate('local.signin', {
