@@ -43,9 +43,7 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         {{#each totalPages}}
-            {{#if all}}
-                <li class="page-item"><a class="page-link" href="/view/all/page{{this}}">{{this}}</a></li>
-            {{/if}}
+            <li class="page-item"><a class="page-link" href="/view/all/page{{this}}">{{this}}</a></li>
         {{/each}}
     </ul>
 </nav>

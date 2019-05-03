@@ -11,7 +11,7 @@ router.get('/all/:page?',  function (req, res, next) {
         for(var i = 1; (i-1)*10 < result.length; i+=1)
             totalPages.push(i);
         var items = result.slice((page-1)*10, page*10);
-        res.render('view', {title: "Sahara.com: All items",items:items, all: true, totalPages: totalPages,});
+        res.render('view', {title: "Sahara.com: All items",items:items, all: true, totalPages: totalPages});
     });
 });
 
