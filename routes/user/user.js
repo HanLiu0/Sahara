@@ -42,7 +42,7 @@ router.post('/account_overview/edit_account_information', function (req, res, ne
 
 router.get('/account_overview/change_password', function (req, res, next) {
     var messages = req.flash('passwordMessage');
-    res.render('user/change_password', {title: "Sahara.com: Change Password", messages: messages[0], errors: messages.length > 0});
+    res.render('user/change_password', {title: "Change Password", messages: messages[0], errors: messages.length > 0});
 });
 
 router.post('/account_overview/change_password', function (req, res, next) {
@@ -63,7 +63,7 @@ router.get('/account_overview/payment_options', function (req, res, next) {
             payments[i]['Credit Card Number'] = payments[i]['Credit Card Number'].substr(-4,4);
         }
         res.render('user/payment_options', {
-            title: "Sahara.com: Payment Options",
+            title: "Payment Options",
             payments: payments
         });
     })
@@ -100,7 +100,7 @@ router.get('/account_overview/listed_items/:page?', isSeller , function (req, re
             totalPages.push(i);
         var items = results.slice((page-1)*10, page*10);
         res.render('user/listed_items', {
-            title: "Sahara.com: Listed items",
+            title: "Listed Items",
             items: items,
             totalPages: totalPages,
             itemTypes: getItemTypes(),
@@ -127,7 +127,7 @@ router.post('/account_overview/remove_item/:id', isSeller, function (req, res, n
 router.get('/account_overview/add_item', isSeller, function (req, res, next) {
     var messages = req.flash('addItemMessage');
     res.render('user/add_item', {
-        title: "Sahara.com: Add Item",
+        title: "Add Item",
         messages: messages[0],
         errors: messages.length > 0,
         itemTypes: getItemTypes()
@@ -157,7 +157,7 @@ router.get('/account_overview/edit_seller_information', isSeller, function (req,
     sql.getSellerByID(req.user, function (err, results) {
         var messages = req.flash('editSellerMessage');
         res.render('user/edit_seller_information', {
-            title: "Sahara.com: Edit Seller Information",
+            title: "Edit Seller Information",
             messages: messages[0],
             errors: messages.length > 0,
             seller: results[0]
@@ -176,7 +176,7 @@ router.get('/account_overview/order_history', function (req, res, next) {
     sql.getOrderHistory(req.user, function (err, orderDetail) {
         addItemToResult(orderDetail, function(result){
             res.render('user/order_history', {
-                title: "Sahara.com: Order Hisotry",order_detail:result
+                title: "Order Hisotry",order_detail:result
             });
         });
     });
@@ -186,7 +186,7 @@ router.get('/account_overview/order_history/order_detail/:id', function(req, res
     sql.getOrderDetail(req.params.id, function (err, shipmentDetail, paymentDetail) {
         paymentDetail[0]['Credit Card Number'] = paymentDetail[0]['Credit Card Number'].substr(-4,4);
         res.render('user/order_detail', {
-            title: "Sahara.com: Order Detail", payment:paymentDetail, shipment: shipmentDetail
+            title: "Order Detail", payment:paymentDetail, shipment: shipmentDetail
         });
     });
 });
@@ -195,7 +195,7 @@ router.get('/account_overview/refund_overview', function (req, res, next) {
     sql.getRefundHistory(req.user, function (err, results) {
         addItemToRefund(results, function(result){
             res.render('user/refund_overview', {
-                title: "Sahara.com: Refund Hisotry",refunds:result
+                title: "Refund Hisotry",refunds:result
             });
         });
     });
@@ -203,7 +203,7 @@ router.get('/account_overview/refund_overview', function (req, res, next) {
 
 router.get('/account_overview/select_return/:order', function (req, res, next) {
     sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
-        res.render('user/select_return', {title: "Sahara.com: Return Page", results: results});
+        res.render('user/select_return', {title: "Return Page", results: results});
     });
 });
 

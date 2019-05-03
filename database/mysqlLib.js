@@ -989,4 +989,28 @@ exports.getReturnInfoByOrder = function(userID,orderID, callback) {
     });
 };
 
+exports.addToRefundContainsItem = function(itemID,quantity, callback) {
+    var sql = "INSERT INTO `refund contains items`(`Item ID`,`Quantity`) VALUES ('"+itemID+"','"+quantity+"')";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err);}
+        });
+    });
+};
+//`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`)
+exports.addToRefund = function(customerID,orderID,refundWay, price, reason, callback) {
+    var sql = "INSERT INTO `refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`)  VALUES ('"+customerID+"','"+orderID+"','"+refundWay+"','"+price+"','"+reason+"')";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err);}
+        });
+    });
+};
+
+
+
 
