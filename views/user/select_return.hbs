@@ -1,3 +1,7 @@
+{{#if error}}
+    <p>No item available for return.</p>
+{{else}}
+
 <table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
     <form method="post" action="/user/account_overview/return_confirmation/{{result.[Order ID]}}">
         <fieldset>
@@ -13,7 +17,6 @@
                     {{this.[Item Name]}}<br></a>
                     ${{this.[Price]}}<br>You bought: {{this.[Quantity]}}
                 <input type="hidden" name="price{{this.[Item ID]}}" value="{{this.[Price]}}">
-                <input type="hidden" name="original_quantity{{this.[Item ID]}}" value="{{this.[Quantity]}}">
                 Quantity to return: <input name = "quantity{{this.[Item ID]}}" type="number" id="quantity{{this.[Item ID]}}" min = "1" max = "{{this.Quantity}}" value = 1><br><br>
             {{/each}}
         </th>
@@ -37,4 +40,4 @@
         </fieldset>
     </form>
 </table>
-
+{{/if}}

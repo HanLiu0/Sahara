@@ -1004,13 +1004,19 @@ exports.addToRefundContainsItem = function(itemID,quantity,newQuantity,order,cal
     });
 };
 //`refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`)
-exports.addToRefund = function(customerID,orderID,refundWay, price, reason, callback) {
-    var sql = "INSERT INTO `refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`)  VALUES ('"+customerID+"','"+orderID+"','"+refundWay+"','"+price+"','"+reason+"')";
+exports.addToRefund = function(user, order, return_way, return_price, reason, sql2, callback) {
+    var sql = "INSERT INTO `refund` (`Customer ID`, `Order ID`, `Refund Way`, `Refund Price`, `Refund Reason`)  " +
+        "VALUES ('"+user+"','"+order+"','"+return_way+"','"+return_price+"','"+ reason+"')";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err);}
+            connection.query(sql2, function(err, results) {
+                connection.release();
+                if (err) {
+                    console.log(err);
+                }
+                callback(false);
+            });
         });
     });
 };

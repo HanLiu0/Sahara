@@ -33,8 +33,8 @@
 </div>
 <br>
 {{# each items}}
-    <label><a href= "../../item/{{this.[ItemID]}}">{{this.[Item Name]}}</label><br>
-    <a href= "../../item/{{this.[ItemID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" style="overflow:hidden" src="../../images/{{this.[ItemID]}}.jpg" alt="Image for {{this.[ItemID]}}">
+    <label><a href= "/item/{{this.[ItemID]}}">{{this.[Item Name]}}</label><br>
+    <a href= "/item/{{this.[ItemID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" style="overflow:hidden" src="/images/{{this.[ItemID]}}.jpg" alt="Image for {{this.[ItemID]}}">
     </a>
         Ratings: {{this.[CumRate]}} ({{this.[numOfReview]}})<br>
     ${{this.[Price]}}<br><br>
@@ -43,7 +43,7 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         {{#each totalPages}}
-            <li class="page-item"><a class="page-link" href="/view/all/page{{this}}">{{this}}</a></li>
+            <li class="page-item"><a class="page-link" href="{{../pagelink}}page{{this}}">{{this}}</a></li>
         {{/each}}
     </ul>
 </nav>

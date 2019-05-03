@@ -202,35 +202,48 @@ router.get('/account_overview/refund_overview', function (req, res, next) {
 });
 
 router.get('/account_overview/select_return/:order', function (req, res, next) {
-    sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
-        res.render('user/select_return', {title: "Return Page", results: results, result:results[0]});
+    sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results1) {
+        sql.getItemFromAnRefund(req.params.order, 0, function(err, results2){
+            for(var i = 0 ; i < results2.length; i++){
+                for(var j = 0 ; j < results1.length; j++){
+                    if(results1[i]['Item ID'] === results2[j]['Item ID']){
+                        results1[i]['Quantity'] -= results2[j]['Quantity'];
+                    }
+                }
+            }
+            var results = [];
+            for(var i = 0 ; i < results1.length; i++){
+                if(results1[i]['Quantity'] > 0)
+                    results.push(results1[i]);
+            }
+            if(results.length != 0){
+                res.render('user/select_return', {title: "Return Page", results: results, result:results[0]});
+            }
+            else{
+                res.render('user/select_return', {title: "Return Page", error: true});
+            }
+        })
     });
 });
 
-router.get('/account_overview/return_confirmation_', function(req,res,next){
-    sql.addToRefund(user,order,way,price,reason);
-    console.log(user+ order+way+price+reason);
-});
-
 router.post('/account_overview/return_confirmation/:order', function(req,res,next){
-    //console.log("order: "+req.params.order);console.log("user: "+req.user);console.log("reason: "+req.body.reason);console.log("return way: "+req.body.return_way);
-    //user = req.user;order = req.params.order;way = req.body.return_way;reason = req.body.reason;
     var return_price = 0;
-    //console.log("checkbox: "+req.body.checkbox);
-    for(i in req.body.checkbox){
-        //console.log("checkbox: "+req.body.checkbox[i]);console.log("price: "+req.body[p]);console.log("quantity: "+req.body[q]);
-        var q = "quantity"+req.body.checkbox[i];
-        var p = "price"+req.body.checkbox[i];
-        var o = "original_quantity"+req.body.checkbox[i];
-        var new_quantity = req.body[o]-req.body[q];
-        //console.log("price: "+req.body[p]);console.log("quantity: "+req.body[q]);
-        return_price+=(req.body[q]*req.body[p]);
-        console.log(req.body.checkbox[i]+" "+req.body[q]+" "+new_quantity+" "+req.params.order);
-        //sql.addToRefundContainsItem(req.body.checkbox[i],req.body[q],new_quantity, req.params.order);
+    var checkbox = [];
+    checkbox.push(req.body.checkbox);
+    for(var i = 0 ; i < checkbox.length; i++){
+        var q = "quantity"+checkbox[i];
+        var p = "price"+checkbox[i];
     }
-   // price = return_price;
-   // sql.addToRefund(req.user, req.params.order,req.body.return_way,return_price,req.body.reason );
-    res.redirect("/");
+    var sql2 = " INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ";
+    for(var i = 0 ; i < checkbox.length; i++){
+        var ItemID = checkbox[i];
+        var quantity = req.body["quantity"+checkbox[i]];
+        sql2 = sql2 +"('"+ req.params.order+ "', '"+ ItemID+ "', '"+quantity+"'),";
+    }
+    sql2 = sql2.substring(0, sql2.length - 1) + ";";
+    sql.addToRefund(req.user, req.params.order, req.body.return_way, return_price, req.body.reason,sql2, function(err) {
+        res.redirect('/user/account_overview/refund_overview');
+    });
 });
 
 module.exports = router;
