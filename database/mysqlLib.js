@@ -738,8 +738,10 @@ exports.getOrderDetail = function(orderID, callback){
 exports.getItemByType = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` WHERE `item`.`Type`="+ "'"+category+"'"+
-        " GROUP BY `item`.`ItemID`";
+        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` ";
+    if(category !== 'all')
+        sql += " WHERE `item`.`Type`="+ "'"+category+"'";
+    sql += " GROUP BY `item`.`ItemID`";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
@@ -750,26 +752,13 @@ exports.getItemByType = function(category, callback) {
     });
 };
 
-exports.getAllItem = function(callback) {
-    var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
-        " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
-        " GROUP BY `item`.`ItemID`";
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
-        });
-    });
-};
-
 exports.sortItemHighToLow = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` WHERE `item`.`Type`="+ "'"+category+"'"+
-        " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` ASC";
+        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`";
+    if(category !== 'all')
+        sql += " WHERE `item`.`Type`="+ "'"+category+"'";
+    sql += " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` DESC";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
@@ -783,8 +772,10 @@ exports.sortItemHighToLow = function(category, callback) {
 exports.sortItemLowToHigh = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` WHERE `item`.`Type`="+ "'"+category+"'"+
-        " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` DESC";
+        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`";
+        if(category !== 'all')
+            sql += " WHERE `item`.`Type`="+ "'"+category+"'";
+        sql += " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` DESC";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
@@ -798,53 +789,10 @@ exports.sortItemLowToHigh = function(category, callback) {
 exports.sortItemReview = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` WHERE `item`.`Type`="+ "'"+category+"'"+
-        " GROUP BY `item`.`ItemID` ORDER BY `CumRate` DESC, `numOfReview` DESC";
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
-        });
-    });
-};
-
-exports.sortAllItemHighToLow = function(callback) {
-    var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
-        " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
-        " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` ASC";
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
-        });
-    });
-};
-
-exports.sortAllItemLowToHigh = function(callback) {
-    var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
-        " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
-        " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` DESC";
-    pool.getConnection(function(err, connection) {
-        if(err) { console.log(err); callback(true); return; }
-        connection.query(sql, function(err, results) {
-            connection.release();
-            if(err) { console.log(err); callback(true); return; }
-            callback(false, results);
-        });
-    });
-};
-
-exports.sortAllItemReview = function(callback) {
-    var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
-        " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
-        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
-        " GROUP BY `item`.`ItemID` ORDER BY `CumRate` DESC, `numOfReview` DESC";
+        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` ";
+    if(category !== 'all')
+        sql += " WHERE `item`.`Type`="+ "'"+category+"'";
+    sql += " GROUP BY `item`.`ItemID` ORDER BY `CumRate` DESC, `numOfReview` DESC";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {

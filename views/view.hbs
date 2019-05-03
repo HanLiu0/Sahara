@@ -9,25 +9,13 @@
         Sort by<span class="caret"></span></button>
     <ul class="dropdown-menu" role="menu">
         <li>
-            {{#if all}}
-                    <a href="/view/sort4/all">Price: Low to High</a>
-            {{else}}
-                    <a href="/view/sort2/{{type}}">Price: Low to High</a>
-            {{/if}}
+            <a href="/view/{{type}}/low_to_high">Price: Low to High</a>
         </li>
         <li>
-            {{#if all}}
-                <a href="/view/sort5/all">Price: High to Low</a>
-            {{else}}
-                <a href="/view/sort1/{{type}}">Price: High to Low</a>
-            {{/if}}
+            <a href="/view/{{type}}/high_to_low">Price: High to Low</a>
         </li>
         <li>
-            {{#if all}}
-                <a href="/view/sort6/all">Avg. Customer Review</a>
-            {{else}}
-                <a href="/view/sort3/{{type}}">Avg. Customer Review</a>
-            {{/if}}
+            <a href="/view/{{type}}/review_score">Avg. Customer Review</a>
         </li>
     </ul>
 </div>

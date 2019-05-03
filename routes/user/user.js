@@ -301,5 +301,5 @@ function isSeller(req, res, next) {
 }
 
 function getItemTypes(){
-    return ["Books", "Clothing/ Shoes/ Jewelry", "Electronics", "Entertainment", "Furniture", "Health care", "Home & Kitchen", "Music Instruments", "Pet Supplies", "Snake/Food", "Toy/Game/Movie"];
+    return ["Books", "Clothing, Shoes, Jewelry", "Electronics",  "Health Care", "Home & Kitchen", "Music Instrument", "Pet Supplies", "Snack, Food", "Toy, Game, Movie"];
 }
