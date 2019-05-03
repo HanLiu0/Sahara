@@ -43,12 +43,21 @@
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="/view/all">All</a>
+                                    <a class="dropdown-item" href="/view/Books">Books</a>
+                                    <a class="dropdown-item" href="/view/Electronics">Electronics</a>
+                                    <a class="dropdown-item" href="/view/Toy,%20Game,%20Movie">Toy, Game, Movie</a>
+                                    <a class="dropdown-item" href="/view/Home%20&%20Kitchen">Home & Kitchen</a>
+                                    <a class="dropdown-item" href="/view/Music%20Instruments">Music Instrument</a>
+                                    <a class="dropdown-item" href="/view/Pet%20Supplies">Pet Supplies</a>
+                                    <a class="dropdown-item" href="/view/Snack,%20Food">Snack, Food</a>
+                                    <a class="dropdown-item" href="/view/Clothing,%20Shoes,%20Jewelry">Clothing, Shoes, Jewelry</a>
+                                    <a class="dropdown-item" href="/view/Health%20Care">Health Care</a>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" style="min-width: 500px" aria-label="Text input with dropdown button">
+                            <form method="post" action = "/seller/seller_review/{{user.[UserID]}}">
+                                <input type="text" class="form-control" style="min-width: 500px" aria-label="Text input with dropdown button">
+                            </form>
                         </div>
                     </div>
                     {{#if login}}

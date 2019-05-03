@@ -2,9 +2,16 @@ var express = require('express');
 var router = express.Router();
 var sql = require('../database/mysqlLib');
 
-router.get('/all',  function (req, res, next) {
+router.get('/all/:page?',  function (req, res, next) {
     sql.getAllItem( function (err, result) {
-        res.render('view', {title: "Sahara.com: All items",items:result, all: true});
+        var page = 1;
+        if(req.params.page != undefined)
+            page = req.params.page[req.params.page.length -1];
+        var totalPages = [];
+        for(var i = 1; (i-1)*10 < result.length; i+=1)
+            totalPages.push(i);
+        var items = result.slice((page-1)*10, page*10);
+        res.render('view', {title: "Sahara.com: All items",items:items, all: true, totalPages: totalPages,});
     });
 });
 
@@ -44,7 +51,9 @@ router.get('/sort6/all',  function (req, res, next) {
     });
 });
 
-
+router.get('/search/all',  function (req, res, next) {
+    res.redirect("/");
+});
 
 
 router.get('/:category',  function (req, res, next) {
