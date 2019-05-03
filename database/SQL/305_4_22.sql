@@ -367,7 +367,7 @@ PRIMARY KEY (`Article ID`, `Seller ID`),
     ON UPDATE NO ACTION);
 
 CREATE TABLE `bidong`.`refund contains items` (
-  `Refund ID` INT ZEROFILL NOT NULL,
+  `Refund ID` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `Item ID` INT(15) ZEROFILL NOT NULL,
   `Quantity` INT NULL,
   PRIMARY KEY (`Refund ID`, `Item ID`),
