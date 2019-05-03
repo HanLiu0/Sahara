@@ -2,6 +2,19 @@ var express = require('express');
 var router = express.Router();
 var sql = require('../database/mysqlLib');
 
+router.post('/search/all',  function (req, res, next) {
+    sql.searchAllItem( req.body.search, function (err, result) {
+        var page = 1;
+        if(req.params.page != undefined)
+            page = req.params.page[req.params.page.length -1];
+        var totalPages = [];
+        for(var i = 1; (i-1)*10 < result.length; i+=1)
+            totalPages.push(i);
+        var items = result.slice((page-1)*10, page*10);
+        res.render('view', {title: "Sahara.com: All items",items:items, all: true, pagelink: '/view/search/all/',totalPages: totalPages});
+    });
+});
+
 router.get('/all/:page?',  function (req, res, next) {
     sql.getAllItem( function (err, result) {
         var page = 1;

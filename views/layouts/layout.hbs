@@ -55,8 +55,9 @@
                                     <a class="dropdown-item" href="/view/Health%20Care">Health Care</a>
                                 </div>
                             </div>
-                            <form method="post" action = "/seller/seller_review/{{user.[UserID]}}">
-                                <input type="text" class="form-control" style="min-width: 500px" aria-label="Text input with dropdown button">
+                            <form method="post" action = "/view/search/all">
+                                <input type="text" class="form-control" style="min-width: 500px" name="search" aria-label="Text input with dropdown button">
+                                <div class="hidden-submit"><input type="submit" tabindex="-1" style="display:none"></div>
                             </form>
                         </div>
                     </div>

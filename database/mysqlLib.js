@@ -1021,6 +1021,21 @@ exports.addToRefund = function(user, order, return_way, return_price, reason, sq
     });
 };
 
+exports.searchAllItem = function(keyword, callback) {
+    var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
+        " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
+        " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` WHERE `item`.`Item Name` LIKE "+"'%"+keyword+"%'"+
+        " GROUP BY `item`.`ItemID`";
+    pool.getConnection(function(err, connection) {
+        if(err) { console.log(err); callback(true); return; }
+        connection.query(sql, function(err, results) {
+            connection.release();
+            if(err) { console.log(err); callback(true); return; }
+            callback(false, results);
+        });
+    });
+};
+
 
 
 
