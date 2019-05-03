@@ -978,7 +978,7 @@ exports.getItemFromAnRefund = function(refundID,count, callback){
 
 //sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results) {
 exports.getReturnInfoByOrder = function(userID,orderID, callback) {
-    var sql = "SELECT * FROM `order contains item` INNER JOIN `item` ON `item`.`ItemID` = `order contains item`.`Item ID` WHERE `order contains item`.`Order ID`="+"'"+orderID+"'";
+    var sql = "SELECT * FROM `order contains item` INNER JOIN `item` ON `item`.`ItemID` = `order contains item`.`Item ID` WHERE `order contains item`.`Order ID`="+"'"+orderID+"' AND `Quantity` >0";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
@@ -990,6 +990,7 @@ exports.getReturnInfoByOrder = function(userID,orderID, callback) {
 };
 
 exports.addToRefundContainsItem = function(itemID,quantity,newQuantity,order,callback) {
+    console.log("new quantity: "+newQuantity);
     var sql = "INSERT INTO `refund contains items`(`Item ID`,`Quantity`) VALUES ('"+itemID+"','"+quantity+"')";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
