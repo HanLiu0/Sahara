@@ -207,6 +207,21 @@ router.get('/account_overview/select_return/:order', function (req, res, next) {
     });
 });
 
+router.post('/account_overview/return_confirmation/:order', function(req,res,next){
+    //console.log("order: "+req.params.order);console.log("user: "+req.user);console.log("reason: "+req.body.reason);console.log("return way: "+req.body.return_way);
+    var return_price = 0;
+    for(i in req.body.checkbox){
+        //console.log("checkbox: "+req.body.checkbox[i]);console.log("price: "+req.body[p]);console.log("quantity: "+req.body[q]);
+        var q = "quantity"+req.body.checkbox[i];
+        var p = "price"+req.body.checkbox[i];
+        return_price+=(req.body[q]*req.body[p]);
+        sql.addToRefundContainsItem(req.body.checkbox[i],req.body[q]);
+    }
+    //console.log("total price: "+return_price);
+    sql.addToRefund(req.user, req.params.order,req.body.return_way,return_price,req.body.reason );
+    res.redirect("/");
+});
+
 module.exports = router;
 
 function addItemToResult(orderDetail, callBack){

@@ -13,6 +13,7 @@
                     {{this.[Item Name]}}<br></a>
                     ${{this.[Price]}}<br>You bought: {{this.[Quantity]}}
                 <input type="hidden" name="price{{this.[Item ID]}}" value="{{this.[Price]}}">
+                <input type="hidden" name="original_quantity{{this.[Item ID]}}" value="{{this.[Quantity]}}">
                 Quantity to return: <input name = "quantity{{this.[Item ID]}}" type="number" id="quantity{{this.[Item ID]}}" min = "1" max = "{{this.Quantity}}" value = 1><br><br>
             {{/each}}
         </th>
