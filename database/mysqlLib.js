@@ -259,7 +259,8 @@ exports.removeItem = function(id, req, callback){
 };
 
 exports.getItemsFromWarehouse = function(callback) {
-    var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item` ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0";
+    var sql = "SELECT * FROM `item` INNER JOIN `warehouse has item` ON `item`.`ItemID` = `warehouse has item`.`Item ID` WHERE `warehouse has item`.Quantity>0 " +
+        "ORDER BY RAND() LIMIT 10";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
