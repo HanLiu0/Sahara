@@ -1,336 +1,342 @@
-body{
-    font-family:"Microsoft JhengHei UI Light";
+body {
+    font-family: "Microsoft JhengHei UI Light";
 }
 
-h1, h2, h3, h4, h5{
-  color: #A6550F;
+h1, h2, h3, h4, h5 {
+    color: #A6550F;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 a,
 a:hover,
 a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
 }
 
-.container{
-  padding: 30px 0px;
+.container {
+    padding: 30px 0px;
 }
 
-.card-border-top{
-  margin-top: 20px;
-  padding: 20px;
-  border: none;
-  border-top: 2px #A6550F solid;
+.card-border-top {
+    margin-top: 20px;
+    padding: 20px;
+    border: 3px solid transparent;
+    border-image: url(../images/bg/line.png)
+    2 /
+    3px 0px 0px 0px
+    round;
 }
 
-.card-border-top h2{
-    font-size:20pt;
+.card-border-top h2 {
+    font-size: 20pt;
     padding-top: 20px;
     padding-bottom: 15px;
 }
-.text-color-1{
-  color: #A6550F;
+
+.text-color-1 {
+    color: #A6550F;
 }
 
-.text-color-2{
-  color: #A6550F;
+.text-color-2 {
+    color: #A6550F;
 }
 
-.font-size-1{
-  font-size: 25px;
+.font-size-1 {
+    font-size: 25px;
 }
 
-.img-100{
-  width: 100%;
+.img-100 {
+    width: 100%;
 }
 
-.center{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
-.no-space{
-  margin: 0;
-  padding: 0;
+.no-space {
+    margin: 0;
+    padding: 0;
 }
 
-.top-padding{
-  padding-top: 20px;
+.top-padding {
+    padding-top: 20px;
 }
 
 .button-1 {
-  background-color: #A6550F;
-  color: white;
-  border: 0px;
-  padding: 5px 10px;
+    background-color: #A6550F;
+    color: white;
+    border: 0px;
+    padding: 5px 10px;
 }
 
-.btn-primary{
-  background-color: #A14B03; !important;
+.btn-primary {
+    background-color: #A14B03;
+!important;
 }
 
 
-.bgColor1{
-  background-color: #e5e5e5;
-  padding-bottom: 30px;
+.bgColor1 {
+    background-color: #e5e5e5;
+    padding-bottom: 30px;
 }
+
 /*--------      Background Images      --------*/
-.bgImage1{
-  height: calc(100vh);
-  background-image: url("../images/bg/signin_bg.png");
-  background-size: 100% 100%;
+.bgImage1 {
+    height: calc(100vh);
+    background-image: url("../images/bg/signin_bg.png");
+    background-size: 100% 100%;
 }
 
-.bgImage2{
-  height: calc(100vh);
-  background-image: url("../images/bg/home_banner.jpg");
-  background-size: 100% 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bgImage2 {
+    height: calc(100vh);
+    background-image: url("../images/bg/home_banner.jpg");
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.imageTextContainer{
-  border: 5px white solid;
-  padding: 40px;
+.imageTextContainer {
+    border: 5px white solid;
+    padding: 40px;
 }
 
-.imageText{
-  color: white;
-  font-size: 40px;
+.imageText {
+    color: white;
+    font-size: 40px;
 }
 
 /*--------      Side Bar      --------*/
 #sidebar {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background: white;
-  height: 100%;
-  width: 0px;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  transition: 0.5s;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: white;
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
 }
 
 #sidebar .sidebar-header {
-  padding: 20px;
-  background: lightgray;
-  color: black;
+    padding: 20px;
+    background: lightgray;
+    color: black;
 }
 
 #sidebar ul.components {
-  white-space: nowrap;
-  overflow: hidden;
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
 }
 
 #sidebar ul li a:hover {
-  color: #7386D5;
-  background: #fff;
+    color: #7386D5;
+    background: #fff;
 }
 
 /*------- Nav Bar--------*/
-.navbar{
-  position: absolute;
-  width: 100%;
-  background-image: linear-gradient(to bottom, #b1A9A6, transparent);
+.navbar {
+    position: absolute;
+    width: 100%;
+    background-image: linear-gradient(to bottom, #b1A9A6, transparent);
 }
 
 /*------- Sign in/sign up--------*/
 :root {
-  --input-padding-x: 1.5rem;
-  --input-padding-y: .75rem;
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
 }
 
-.card{
-  background-color: transparent;
+.card {
+    background-color: transparent;
 }
 
 .card-signin {
-  border: 0px ;
+    border: 0px;
 }
 
 .card-signin .card-title {
-  margin-bottom: 2rem;
-  font-weight: 300;
-  font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
 }
 
-.card-body{
-  border: 0px white solid;
+.card-body {
+    border: 0px white solid;
 }
 
 .card-signin .card-body {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 .form-signin {
-  width: 100%;
+    width: 100%;
 }
 
 .form-signin .btn {
-  font-size: 80%;
-  border-radius: 5rem;
-  letter-spacing: .1rem;
-  font-weight: bold;
-  padding: 1rem;
-  transition: all 0.2s;
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
 }
 
 .form-label-group {
-  position: relative;
-  margin-bottom: 1rem;
+    position: relative;
+    margin-bottom: 1rem;
 }
 
 .form-label-group input {
-  height: auto;
-  border-radius: 2rem;
+    height: auto;
+    border-radius: 2rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
-  padding: var(--input-padding-y) var(--input-padding-x);
+.form-label-group > input,
+.form-label-group > label {
+    padding: var(--input-padding-y) var(--input-padding-x);
 }
 
-.form-label-group>label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  margin-bottom: 0;
-  line-height: 1.5;
-  color: #A14B03;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
+.form-label-group > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    line-height: 1.5;
+    color: #A14B03;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input:-ms-input-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input::-ms-input-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input::-moz-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input::placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input:not(:placeholder-shown) {
-  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-  padding-bottom: calc(var(--input-padding-y) / 3);
+    padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+    padding-bottom: calc(var(--input-padding-y) / 3);
 }
 
-.form-label-group input:not(:placeholder-shown)~label {
-  padding-top: calc(var(--input-padding-y) / 3);
-  padding-bottom: calc(var(--input-padding-y) / 3);
-  font-size: 12px;
-  color: #777;
+.form-label-group input:not(:placeholder-shown) ~ label {
+    padding-top: calc(var(--input-padding-y) / 3);
+    padding-bottom: calc(var(--input-padding-y) / 3);
+    font-size: 12px;
+    color: #777;
 }
 
-#main{
-  transition: margin-left .5s;
+#main {
+    transition: margin-left .5s;
 }
 
-.footer{
-  padding: 2.5rem 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+.footer {
+    padding: 2.5rem 0;
+    color: #999;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: .05rem solid #e5e5e5;
 }
 
-.dropdown:hover>.dropdown-menu {
-  display: block;
+.dropdown:hover > .dropdown-menu {
+    display: block;
 }
 
 
 /*------- Banners--------*/
-.banner{
-  padding: 0 10%;
-  background-color: #F7F5F4;
-  height: 125px;
-  display: flex;
+.banner {
+    padding: 0 10%;
+    background-color: #F7F5F4;
+    height: 125px;
+    display: flex;
 }
 
-.bannerText{
-  color: #A6550F;
-  font-size: 40px;
-  display: inline-block;
-  align-self: flex-end;
+.bannerText {
+    color: #A6550F;
+    font-size: 40px;
+    display: inline-block;
+    align-self: flex-end;
 }
 
-.bannerImage{
-  height: calc(20vh);
-  background-image: url("../images/bg/viewpage_banner.png");
-  background-size: 100% 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bannerImage {
+    height: calc(20vh);
+    background-image: url("../images/bg/viewpage_banner.png");
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.bannerTitle{
-  color: #ffffff;
-  display: inline-block;
-  align-self: flex-end;
+.bannerTitle {
+    color: #ffffff;
+    display: inline-block;
+    align-self: flex-end;
 }
 
 /*------- Item Overview Page--------*/
-.item-card{
-  background-color: white;
-  border: 0;
-  margin: 20px 0;
-  padding: 20px 10px;
+.item-card {
+    background-color: white;
+    border: 0;
+    margin: 20px 0;
+    padding: 20px 10px;
 }
 
 .pagination a:hover,
 .pagination .active a {
-  border-bottom: 5px #A6550F solid;
-  color: #A6550F;
+    border-bottom: 5px #A6550F solid;
+    color: #A6550F;
 }
 
-.page-link{
-  background-color: transparent;
-  color: #A6550F;
-  border: 0;
-  border-bottom: 2px #A6550F solid;
+.page-link {
+    background-color: transparent;
+    color: #A6550F;
+    border: 0;
+    border-bottom: 2px #A6550F solid;
 }
 
 .page-item:last-child .page-link,
 .page-item:first-child .page-link {
-  margin-left: 0;
-  border-radius: 0;
+    margin-left: 0;
+    border-radius: 0;
 }
 
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-  background-color: #A6550F;
-  border-radius: 0px;
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #A6550F;
+    border-radius: 0px;
 }
