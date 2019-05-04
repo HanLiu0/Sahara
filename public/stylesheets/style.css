@@ -1,3 +1,7 @@
+body{
+    font-family:"Microsoft JhengHei UI Light";
+}
+
 h1, h2, h3, h4, h5{
   color: #A6550F;
 }
@@ -14,10 +18,6 @@ a:focus {
   transition: all 0.3s;
 }
 
-body{
-  font-family:"Microsoft JhengHei UI Light";
-}
-
 .container{
   padding: 30px 0px;
 }
@@ -28,13 +28,14 @@ body{
   border: none;
   border-top: 2px #A6550F solid;
 }
+
 .card-border-top h2{
-  font-size:20pt;
-  padding-top: 20px;
-  padding-bottom: 15px;
+    font-size:20pt;
+    padding-top: 20px;
+    padding-bottom: 15px;
 }
 .text-color-1{
-  color: #A14B03;
+  color: #A6550F;
 }
 
 .text-color-2{
@@ -47,7 +48,6 @@ body{
 
 .img-100{
   width: 100%;
-  height: auto;
 }
 
 .center{
@@ -77,9 +77,6 @@ body{
   background-color: #A14B03; !important;
 }
 
-.btn-primary:hover{
-  background-color: #BD4200; !important;
-}
 
 .bgColor1{
   background-color: #e5e5e5;
@@ -278,8 +275,8 @@ body{
 /*------- Banners--------*/
 .banner{
   padding: 0 10%;
-  background-color: #f7f5f4;
-  height: 200px;
+  background-color: #F7F5F4;
+  height: 125px;
   display: flex;
 }
 
@@ -329,10 +326,6 @@ body{
 .page-item:last-child .page-link,
 .page-item:first-child .page-link {
   margin-left: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
   border-radius: 0;
 }
 

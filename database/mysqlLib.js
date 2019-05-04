@@ -106,7 +106,7 @@ exports.getSellerByID = function(id, callback) {
 };
 
 exports.editAccountInformation = function(req, callback){
-    var sql = 'UPDATE `seller` ' +
+    var sql = 'UPDATE `customer` ' +
         'SET `First Name` = \'' + req.body.firstName + '\', `Last Name` = \'' + req.body.lastName +
         '\', `Middle Name` = \'' + req.body.middleName  + '\', ' +
         ' `Street Address Line 1` = \'' + req.body.address1 + '\', ' +
