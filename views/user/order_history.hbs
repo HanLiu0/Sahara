@@ -1,38 +1,44 @@
+<div class="banner">
+    <p class="bannerText">Order History</p>
+</div>
+
 <div class="container">
-    <a href="/user/account_overview" class="btn btn-primary mb-2">Back</a>
-    <h1>Order History</h1>
+    <a href="/user/account_overview" class="text-color-2 font-size-1 fas fa-chevron-left">Back</a>
     <div>
         {{#if order_detail}}
             {{# each order_detail}}
-                <div class="card mb-3">
+                <div class="card mb-3 card-border-top">
                     <div class="card-body">
-                        <div class = "row">
-                            <div class = "col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-8">
                                 <h5 class="card-title">Order Number: {{this.[order number]}}</h5>
-                                <p class="card-text">
+                                <div class="card-text">
                                     {{# each this.[items]}}
                                         <div class="row">
                                             <div class="col-6 col-md-4">
-                                                <img style="max-height: 120px; width: auto;" src = "/images/{{this.ItemID}}.jpg" alt="Item image for {{this.ItemID}}" />
+                                                <img style="max-height: 120px; width: auto;"
+                                                     src="/images/{{this.ItemID}}.jpg"
+                                                     alt="Item image for {{this.ItemID}}"/>
                                             </div>
                                             <div class="col-12 col-md-8">
-                                                <a href = "/item/{{this.[ItemID]}}">{{this.[Item Name]}}</a>
+                                                <a href="/item/{{this.[ItemID]}}">{{this.[Item Name]}}</a>
                                                 <p>Quantity: {{this.[Quantity]}}</p>
                                             </div>
                                         </div>
                                     {{/each}}
-                                </p>
+                                </div>
+                                <div class="row">
+                                    <p>Total Price: {{this.[Total price]}}</p>
+                                </div>
                             </div>
                             <div class="col-sm-4">
-                                <a href = "https://www.ups.com/track?loc=en_US&requester=WT/" class="btn btn-light btn-block btn-outline-dark">{{this.[Tracking Number]}}</a>
-                                <a href = "order_history/order_detail/{{this.[order number]}}" class="btn btn-light btn-block btn-outline-dark">Order details</a>
-                                <a href = "../account_overview/select_return/{{this.[order number]}}" class="btn btn-light btn-block btn-outline-dark">Return</a>
-                                <a href = "#" class="btn btn-light btn-block btn-outline-dark">Leave feedback</a>
-                                <div class = "row">
-                                    <br />
-                                    <p>Total Price: {{this.[Total price]}}
-                                    </p>
-                                </div>
+                                <a href="https://www.ups.com/track?loc=en_US&requester=WT/"
+                                   class="btn btn-light btn-block btn-outline-dark">{{this.[Tracking Number]}}</a>
+                                <a href="order_history/order_detail/{{this.[order number]}}"
+                                   class="btn btn-light btn-block btn-outline-dark">Order details</a>
+                                <a href="../account_overview/select_return/{{this.[order number]}}"
+                                   class="btn btn-light btn-block btn-outline-dark">Return</a>
+                                <a href="#" class="btn btn-light btn-block btn-outline-dark">Leave feedback</a>
                             </div>
 
                         </div>
@@ -40,7 +46,7 @@
                 </div>
             {{/each}}
         {{else}}
-            <p>You have not purchased anything on Sahara yet! Click <a href = "/">here</a> to back to our homepage!</p>
+            <p>You have not purchased anything on Sahara yet! Click <a href="/">here</a> to back to our homepage!</p>
         {{/if}}
     </div>
 </div>

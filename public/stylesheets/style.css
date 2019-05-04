@@ -1,13 +1,9 @@
-a {
-  color: #00B7FF;
+h1, h2, h3, h4, h5{
+  color: #A6550F;
 }
 
-p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
+a {
+  color: #00B7FF;
 }
 
 a,
@@ -18,11 +14,67 @@ a:focus {
   transition: all 0.3s;
 }
 
+.container{
+  padding: 30px 0px;
+}
+
+.card-border-top{
+  margin-top: 20px;
+  padding: 20px;
+  border: none;
+  border-top: 2px #A6550F solid;
+}
+
 .text-color-1{
   color: #A14B03;
 }
+
+.text-color-2{
+  color: #A6550F;
+}
+
+.font-size-1{
+  font-size: 25px;
+}
+
+.img-100{
+  width: 100%;
+}
+
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.no-space{
+  margin: 0;
+  padding: 0;
+}
+
+.top-padding{
+  padding-top: 20px;
+}
+
+.button-1 {
+  background-color: #A6550F;
+  color: white;
+  border: 0px;
+  padding: 5px 10px;
+}
+
 .btn-primary{
   background-color: #A14B03; !important;
+}
+
+.btn-primary:hover{
+  background-color: #BD4200; !important;
+}
+
+.bgColor1{
+  background-color: #e5e5e5;
+  padding-bottom: 30px;
 }
 /*--------      Background Images      --------*/
 .bgImage1{
@@ -201,10 +253,6 @@ a:focus {
   transition: margin-left .5s;
 }
 
-.container{
-  margin-bottom: 50px;
-}
-
 .footer{
   padding: 2.5rem 0;
   color: #999;
@@ -218,5 +266,69 @@ a:focus {
 }
 
 
-/*------- Sign in/sign up--------*/
+/*------- Banners--------*/
+.banner{
+  padding: 0 10%;
+  background-color: #e5e5e5;
+  height: 125px;
+  display: flex;
+}
 
+.bannerText{
+  color: #A6550F;
+  font-size: 40px;
+  display: inline-block;
+  align-self: flex-end;
+}
+
+.bannerImage{
+  height: calc(20vh);
+  background-image: url("../images/bg/viewpage_banner.png");
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerTitle{
+  color: #ffffff;
+  display: inline-block;
+  align-self: flex-end;
+}
+
+/*------- Item Overview Page--------*/
+.item-card{
+  background-color: white;
+  border: 0;
+  margin: 20px 0;
+  padding: 20px 10px;
+}
+
+.pagination a:hover,
+.pagination .active a {
+  border-bottom: 5px #A6550F solid;
+  color: #A6550F;
+}
+
+.page-link{
+  background-color: transparent;
+  color: #A6550F;
+  border: 0;
+  border-bottom: 2px #A6550F solid;
+}
+
+.page-item:last-child .page-link,
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-radius: 0;
+}
+
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  background-color: #A6550F;
+  border-radius: 0px;
+}

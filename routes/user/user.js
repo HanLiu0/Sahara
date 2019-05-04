@@ -206,8 +206,8 @@ router.get('/account_overview/select_return/:order', function (req, res, next) {
         sql.getItemFromAnRefund(req.params.order, 0, function(err, results2){
             for(var i = 0 ; i < results2.length; i++){
                 for(var j = 0 ; j < results1.length; j++){
-                    if(results1[i]['Item ID'] === results2[j]['Item ID']){
-                        results1[i]['Quantity'] -= results2[j]['Quantity'];
+                    if(results1[j]['Item ID'] === results2[i]['Item ID']){
+                        results1[j]['Quantity'] -= results2[i]['Quantity'];
                     }
                 }
             }

@@ -1,8 +1,15 @@
+<div class="banner">
+    <p class="bannerText">Your Account</p>
+</div>
+{{#if errors}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{messages}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/if}}
 <div class="container">
-    {{#if errors}}
-        <p>{{messages}}</p>
-    {{/if}}
-     <h1>Your Account</h1>
     <div class="row">
         <div class="col-1" style="padding-right:0px;">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">

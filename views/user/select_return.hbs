@@ -1,43 +1,63 @@
+<div class="banner">
+    <p class="bannerText">Return/Refund</p>
+</div>
+<div class="container">
+    <a href="/user/account_overview/order_history" class="text-color-2 font-size-1 fas fa-chevron-left">Back</a>
 {{#if error}}
-    <p>No item available for return.</p>
+        <p>No item available for return.</p>
 {{else}}
-
-<table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
-    <form method="post" action="/user/account_overview/return_confirmation/{{result.[Order ID]}}">
-        <fieldset>
-    <col style="width:60%">
-    <tr>
-        <td COLSPAN=2><h1>Return/ Refund</h1></td>
-    </tr>
-    <tr>
-        <th>
-            {{#each results}}
-                <input type="checkbox" id="checkbox_{{this.[Item ID]}}" name="checkbox" style="float:left" value="{{this.[Item ID]}}">
-                <a href= "../../../item/{{this.[Item ID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" src="../../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}">
-                    {{this.[Item Name]}}<br></a>
-                    ${{this.[Price]}}<br>You bought: {{this.[Quantity]}}
-                <input type="hidden" name="price{{this.[Item ID]}}" value="{{this.[Price]}}">
-                Quantity to return: <input name = "quantity{{this.[Item ID]}}" type="number" id="quantity{{this.[Item ID]}}" min = "1" max = "{{this.Quantity}}" value = 1><br><br>
-            {{/each}}
-        </th>
-        <td>
-            <input type="submit" value="Submit now" />
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Reason to return? <br><input type="text" name="reason" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your reason here...">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Return Method: <br>
-            <input checked="checked" type="radio" name="return_way" value="gift"> Gift Card<br />
-            <input type="radio" name="return_way" value="debit" > Debit Card<br />
-            <input type="radio" name="return_way" value="credit" > Credit Card<br />
-        </td>
-    </tr>
-        </fieldset>
-    </form>
-</table>
+        <form method="post" action="/user/account_overview/return_confirmation/{{result.[Order ID]}}">
+            <div class="row top-padding">
+                <div class="col-10">
+                    <h4>Items to return?</h4>
+                    <fieldset>
+                        {{#each results}}
+                            <div class="row justify-content-between">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-1 " align="center">
+                                            <input type="checkbox" id="checkbox_{{this.[Item ID]}}" name="checkbox"
+                                                   value="{{this.[Item ID]}}">
+                                        </div>
+                                        <a class="col-11" href="/item/{{this.[Item ID]}}">
+                                            <img
+                                                style="display:inline-block; height: auto; width: auto; max-width: 150px; max-height: 150px;"
+                                                class="d-block w-100" src="/images/{{this.[Item ID]}}.jpg"
+                                                alt="Image for {{this.[Item ID]}}">
+                                        </a>
+                                    </div>
+                                        {{this.[Item Name]}}</a>
+                                    <p class="no-space">${{this.[Price]}}</p>
+                                    <p class="no-space">You bought: {{this.[Quantity]}}</p>
+                                    <input type="hidden" name="price{{this.[Item ID]}}" value="{{this.[Price]}}">
+                                </div>
+                                <div class="col-4">
+                                    <p>Quantity:</p> <input name="quantity{{this.[Item ID]}}" type="number"
+                                                                      id="quantity{{this.[Item ID]}}" min="1"
+                                                                      max="{{this.Quantity}}"
+                                                                      value=1>
+                                </div>
+                            </div>
+                        {{/each}}
+                        <div class="card-border-top">
+                            <h4>Reason to return</h4>
+                            <input type="text" name="reason" maxlength="2000"
+                                                             style="width:900px; height:150px;"
+                                                             placeholder="Write your reason here...">
+                        </div>
+                        <div class="card-border-top">
+                                <h4>Return Method:</h4>
+                                <p><input checked="checked" type="radio" name="return_way" value="gift"> Gift Card</p>
+                                <p><input type="radio" name="return_way" value="debit"> Debit Card</p>
+                                <p><input type="radio" name="return_way" value="credit"> Credit Card</p>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-2">
+                    <input class= "button-1" type="submit" value="Submit now"/>
+                </div>
+            </div>
+        </form>
+    </div>
 {{/if}}
+</div>

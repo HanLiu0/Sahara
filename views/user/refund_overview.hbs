@@ -1,9 +1,39 @@
-<h1>Your Refunds</h1><br><br>
-{{# each refunds}}
-     Order Number: {{this.[Order ID]}}
-     {{#each this.items}}
-        <img style="height: auto; width: auto; max-width: 450px; max-height: 450px;" class="d-block w-100" style="overflow:hidden" src="../../images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}">
-        Quantity: {{this.[Quantity]}}<br>
-     {{/each}}
-     Reason: {{this.[Refund Reason]}}<br>
- {{/each}}
+<div class="banner">
+    <p class="bannerText">Your Refunds</p>
+</div>
+<div class="container">
+    <a href="/user/account_overview" class="text-color-2 font-size-1 fas fa-chevron-left">Back</a>
+    {{#if refunds}}
+        {{# each refunds}}
+            <div class="card mb-3 card-border-top">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5 class="card-title">Refund Number: {{this.[Order ID]}}</h5>
+                            <div class="card-text">
+                                {{#each this.items}}
+                                    <div class="row">
+                                        <div class="col-6 col-md-4">
+                                            <img style="max-height: 120px; width: auto;"
+                                                 src="/images/{{this.[Item ID]}}.jpg"
+                                                 alt="Item image for {{this.[Item ID]}}"/>
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <a href="/item/{{this.[Item ID]}}">{{this.[Item Name]}}</a>
+                                            <p>Quantity: {{this.[Quantity]}}</p>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <p>Total Price: {{this.[Refund Price]}}</p>
+                            <p>Reason: {{this.[Refund Reason]}}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>You have not refunded anything on Sahara yet! Click <a href="/">here</a> to back to our homepage!</p>
+    {{/if}}
+</div>

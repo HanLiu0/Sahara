@@ -1,4 +1,10 @@
-<h1>All Sellers: <br><br></h1>
-{{# each sellers}}
-    <label style="font-size:30px;"><a href= "/seller/{{this.[UserID]}}">{{this.[Username]}}</a></label><br>
-{{/each}}
+<div class="bannerImage">
+    <h1 class="bannerTitle">Our Sellers</h1>
+</div>
+<div class="bgColor1">
+    <div>
+        {{# each sellers}}
+            <p align="center" class="text-color-2 no-space" style="font-size:30px;"><a href= "/seller/{{this.[UserID]}}">{{this.[Username]}}</a></p>
+        {{/each}}
+    </div>
+</div>

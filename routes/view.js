@@ -6,7 +6,7 @@ router.get('/:category/:orderby/:page?', function(req, res, next){
     var page = 1;
     if(req.params.page != undefined)
         page = req.params.page[req.params.page.length -1];
-    var types = ["books", "clothing, shoes, jewelry", "electronics",  "health Care", "home & kitchen", "music instrument", "pet supplies", "snack, food", "toy, game, movie"];
+    var types = ["all", "books", "clothing, shoes, jewelry", "electronics",  "health Care", "home & kitchen", "music instrument", "pet supplies", "snack, food", "toy, game, movie"];
     if(!types.includes((req.params.category.toLowerCase()))){
         sql.searchAllItem(req.params.category, function (err, result) {
             res.render('view', {title: "Sahara.com: All "+req.params.category , items:result.slice((page-1)*10, page*10), all: req.params.category === 'all',
@@ -47,7 +47,10 @@ function getTotalPages(result){
 }
 
 router.post('/search/all',  function (req, res, next) {
-    res.redirect("/view/" + req.body.search + "/default");
+    var search = req.body.search;
+    if(req.body.search === '')
+        search = 'all';
+    res.redirect("/view/" + search + "/default");
 });
 
 

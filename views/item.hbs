@@ -1,38 +1,44 @@
 <div class="banner">
-
+    <p class="bannerText">From {{item.[Type]}}</p>
 </div>
 <div class="container">
     <div class="item-details">
         <h2>{{item.[Item Name]}}</h2>
-        <p><a href= "/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
-        <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
-        {{#if login}}
-            <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
-                Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
-                <input type="submit" value="Add To Cart" data-toggle="popover" title="Login before adding to cart">
-            </form>
+        <p><a class="text-color-2" href= "/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
+        {{#if no_review}}
+            <p>No Rating (0)</p>
         {{else}}
-            <a href= "/signin">Login before adding to cart!</a>
+            <p>Rating: {{rate.[CumRate]}} out of 5 ({{rate.[numOfReview]}})</p>
         {{/if}}
+        <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
+        <div style="padding: 0 40px;" class="row justify-content-between">
+            <p>${{item.[Price]}}</p>
+            {{#if login}}
+                <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
+                    Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
+                    <input class="button-1" type="submit" value="Add To Cart" data-toggle="popover" title="Add to cart">
+                </form>
+            {{else}}
+                <div><a class="button-1" href= "/signin">Login before adding to cart!</a></div>
+            {{/if}}
+        </div>
     </div>
-    <hr />
-    <div>
+    <div class="card-border-top">
         <h2>Product Description</h2>
         <p>{{item.[Description]}}</p>
     </div>
-    <hr />
-    <div>
+    <div class="card-border-top">
         <h2>Customer Reviews</h2>
         {{#if no_review}}
             <p>No Review so far...</p>
         {{else}}
             {{# each list}}
                 <div class="row">
-                    <div class="col-3">
-                        <img src="/images/icons/user_profile.png" alt="User Profile" />
-                        <p>{{this.[Username]}}</p>
+                    <div class="col-2">
+                        <img class="img-100" src="/images/icons/user_profile.png" alt="User Profile" />
+                        <p align="center">{{this.[Username]}}</p>
                     </div>
-                    <div class="col-9">
+                    <div class="col-10">
                         <p>{{this.[Detail]}}</p>
                         <p>Rating: {{this.[Rating]}}</p>
                         <p style="font-size:10px;">{{this.[Write Date]}}</p>

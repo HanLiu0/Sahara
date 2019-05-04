@@ -1,37 +1,55 @@
-{{#if all}}
-    <h1>All Items</h1>
-{{else}}
-    <h1>All of {{type}}</h1>
-{{/if}}
-
-<div class="btn-group">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        Sort by<span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu">
-        <li>
-            <a href="/view/{{type}}/low_to_high">Price: Low to High</a>
-        </li>
-        <li>
-            <a href="/view/{{type}}/high_to_low">Price: High to Low</a>
-        </li>
-        <li>
-            <a href="/view/{{type}}/review_score">Avg. Customer Review</a>
-        </li>
-    </ul>
+<div class="bannerImage">
+    <h1 class="bannerTitle">
+        {{#if all}}
+            All Items
+        {{else}}
+            All of {{type}}
+        {{/if}}
+    </h1>
 </div>
-<br>
-{{# each items}}
-    <label><a href= "/item/{{this.[ItemID]}}">{{this.[Item Name]}}</label><br>
-    <a href= "/item/{{this.[ItemID]}}"><img style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100" style="overflow:hidden" src="/images/{{this.[ItemID]}}.jpg" alt="Image for {{this.[ItemID]}}">
-    </a>
-        Ratings: {{this.[CumRate]}} ({{this.[numOfReview]}})<br>
-    ${{this.[Price]}}<br><br>
-{{/each}}
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        {{#each totalPages}}
-            <li class="page-item"><a class="page-link" href="{{../pagelink}}page{{this}}">{{this}}</a></li>
+<div class="bgColor1">
+    <div class="container">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Sort by<span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="/view/{{type}}/low_to_high">Price: Low to High</a>
+                </li>
+                <li>
+                    <a href="/view/{{type}}/high_to_low">Price: High to Low</a>
+                </li>
+                <li>
+                    <a href="/view/{{type}}/review_score">Avg. Customer Review</a>
+                </li>
+            </ul>
+        </div>
+
+        {{# each items}}
+            <div class="item-card">
+                <p><a href="/item/{{this.[ItemID]}}">{{this.[Item Name]}}</p>
+                <a href="/item/{{this.[ItemID]}}"><img class="center"
+                        style="height: auto; width: auto; max-width: 200px; max-height: 200px;" class="d-block w-100"
+                        src="/images/{{this.[ItemID]}}.jpg" alt="Image for {{this.[ItemID]}}">
+                </a>
+                <p>Ratings:
+                    {{#if this.[CumRate]}}
+                        {{this.[CumRate]}}
+                    {{else}}
+                        0
+                    {{/if}}
+                            ({{this.[numOfReview]}})</p>
+                <p>${{this.[Price]}}</p>
+                </div>
         {{/each}}
-    </ul>
-</nav>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {{#each totalPages}}
+                    <li class="page-item"><a class="page-link" href="{{../pagelink}}page{{this}}">{{this}}</a></li>
+                {{/each}}
+            </ul>
+        </nav>
+    </div>
+</div>
