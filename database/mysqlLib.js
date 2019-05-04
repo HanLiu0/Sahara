@@ -480,7 +480,7 @@ exports.clearShoppingCart = function(shoppingCartID, callback){
 }
 
 //4. insert shipment，employee ships shipment, order has shipment。
-exports.updateShipments = function(checkoutInfo, orderID, shipmentType, date, callback){
+exports.updateShipments = function(req, orderID, shipmentType, date, callback){
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         var trackingNumber= '';
@@ -502,9 +502,9 @@ exports.updateShipments = function(checkoutInfo, orderID, shipmentType, date, ca
                 break;
             default:
         }
+
         var sql1 = "INSERT INTO `bidong`.`shipment` (`Tracking Number`,`Details`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Charge`) VALUES ('" +
-            trackingNumber +"','"+ shipmentType+ "','"+ checkoutInfo[0]['Street Address Line 1']+"','"+checkoutInfo[0]['Street Address Line 2']+
-            "','"+ checkoutInfo[0]['City'] + "','"+ checkoutInfo[0]['State/Province/Region'] + "','"+checkoutInfo[0]['Country']+ "','"+ checkoutInfo[0]['Zip Code'] +"','"+shipmentPrice+ "')";
+            trackingNumber +"','"+ shipmentType+ "','"+ req.body.address+"','"+ req.body.address2+"','"+req.body.city +"','"+req.body.state+"','"+req.body.country+"','"+req.body.zip+"','"+shipmentPrice+ "')";
         connection.query(sql1, function(err, shipment) {
             var sql2 = "INSERT INTO `order has shipment`(`Order ID`, `Tracking Number`) VALUES ('"+ orderID+"', '"+trackingNumber+"')";
             connection.query(sql2, function(err, orderHasShipment) {
