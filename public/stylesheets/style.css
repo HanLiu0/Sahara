@@ -66,6 +66,15 @@ a:focus {
     padding: 0;
 }
 
+.no-button{
+    border-style: none;
+    background-color: transparent;
+    color: #A6550F;
+    font-size: 20px;
+    box-sizing: content-box;
+
+}
+
 .top-padding {
     padding-top: 20px;
 }

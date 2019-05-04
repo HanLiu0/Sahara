@@ -27,6 +27,17 @@
         <h2>Product Description</h2>
         <p>{{item.[Description]}}</p>
     </div>
+    {{#if login}}
+        <div class="card-border-top">
+        <h2>Write Your Review</h2>
+        <form method="post" action = "/item/item_review/{{item.[ItemID]}}">
+            <span> Overall Rating: </span><input name = "rating" type="number" min = "1" max = "5" required="required">
+            <p>Write Your Review:</p>
+            <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
+            <button style="display: block" class="button-1" type="submit" data-toggle="popover" title="Login before submitting review">Submit Review</button>
+        </form>
+        </div>
+    {{/if}}
     <div class="card-border-top">
         <h2>Customer Reviews</h2>
         {{#if no_review}}
