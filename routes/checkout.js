@@ -3,24 +3,21 @@ var router = express.Router();
 var sql = require('../database/mysqlLib');
 
 router.get('/',isLoggedIn, function(req, res, next) {
-    sql.getCheckoutInfo(req.user, function(err, checkoutInfo) {
-        sql.getAllItemsFromShoppingCart(req.user, function(err, itemsInShoppingCart,AllItemsInWarehouse) {
-            sql.getPayments(req.user, function (err, payments) {
-                for(var i = 0; i<payments.length; i++){
-                    payments[i]['Credit Card Number'] = payments[i]['Credit Card Number'].substr(-4,4);
-                }
-                var totalItem=0;
-                for(var i = 0; i<itemsInShoppingCart.length; i++){
-                    totalItem = totalItem + parseInt(itemsInShoppingCart[i]['quantity'],10);
-                }
-                res.render('checkout', {
-                    title: "Sahara.com: Checkout",
-                    userId: req.user,
-                    shopping_cart: itemsInShoppingCart,
-                    checkoutInfo: checkoutInfo,
-                    paymentInfo: payments,
-                    totalItem: totalItem
-                });
+    sql.getAllItemsFromShoppingCart(req.user, function(err, itemsInShoppingCart,AllItemsInWarehouse) {
+        sql.getPayments(req.user, function (err, payments) {
+            for(var i = 0; i<payments.length; i++){
+                payments[i]['Credit Card Number'] = payments[i]['Credit Card Number'].substr(-4,4);
+            }
+            var totalItem=0;
+            for(var i = 0; i<itemsInShoppingCart.length; i++){
+                totalItem = totalItem + parseInt(itemsInShoppingCart[i]['quantity'],10);
+            }
+            res.render('checkout', {
+                title: "Sahara.com: Checkout",
+                userId: req.user,
+                shopping_cart: itemsInShoppingCart,
+                paymentInfo: payments,
+                totalItem: totalItem
             });
         });
     });
@@ -41,11 +38,13 @@ router.post('/place_order/:id', function(req, res, next){
     if(mm<10) mm='0'+mm;
     today = yyyy+'-'+mm+'-'+dd;
 
+
+
     sql.getAllItemsFromShoppingCart(req.user, function(err, itemsInShoppingCart,AllItemsInWarehouse) {
         sql.updateOrder(itemsInShoppingCart, req.body.hiddenTotalPrice, today, paymentId, function (err, orderId) {
             sql.clearShoppingCart(itemsInShoppingCart[0]['shoppingCart Id'],function (err, clearShopping) {
                 sql.getCheckoutInfo(req.user, function(err, checkoutInfo) {
-                    sql.updateShipments(checkoutInfo, orderId, req.body.shipment,today,function (err, trackingNumber) {
+                    sql.updateShipments(req ,orderId, req.body.shipment,today,function (err, trackingNumber) {
                         sql.updateWarehouse(itemsInShoppingCart,function (err) {
                             res.render('place_order', {
                                 title: "Sahara.com: Order Confirmation",
