@@ -26,28 +26,29 @@ a:focus {
 }
 /*--------      Background Images      --------*/
 .bgImage1{
-  height: calc(90vh);
+  height: calc(100vh);
   background-image: url("../images/bg/signin_bg.png");
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
 .bgImage2{
-  height: calc(90vh);
+  height: calc(100vh);
   background-image: url("../images/bg/home_banner.jpg");
-  background-size: cover;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageTextContainer{
+  border: 5px white solid;
+  padding: 40px;
 }
 
 .imageText{
-  border: 5px white solid;
-  padding: 20px;
   color: white;
   font-size: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
-
 
 /*--------      Side Bar      --------*/
 #sidebar {
@@ -85,6 +86,13 @@ a:focus {
 #sidebar ul li a:hover {
   color: #7386D5;
   background: #fff;
+}
+
+/*------- Nav Bar--------*/
+.navbar{
+  position: absolute;
+  width: 100%;
+  background-image: linear-gradient(to bottom, #b1A9A6, transparent);
 }
 
 /*------- Sign in/sign up--------*/
@@ -208,4 +216,7 @@ a:focus {
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
+
+
+/*------- Sign in/sign up--------*/
 

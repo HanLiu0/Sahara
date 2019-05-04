@@ -1,58 +1,44 @@
-<table style="width:100%; border-collapse: separate; border-spacing: 20px;" class="table table-striped">
-    <col style="width:60%">
-    <tr>
-        <td COLSPAN=2><b>From </b>{{item.[Type]}}</td>
-    </tr>
-    <tr>
-        <th style="font-size:30px;">{{item.[Item Name]}} <br> by <label><a href= "/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</label></th>
-        <td>
-            {{#if login}}
+<div class="banner">
+
+</div>
+<div class="container">
+    <div class="item-details">
+        <h2>{{item.[Item Name]}}</h2>
+        <p><a href= "/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
+        <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
+        {{#if login}}
             <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
-            Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
-            <input type="submit" value="Add To Cart" data-toggle="popover" title="Login before adding to cart">
+                Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
+                <input type="submit" value="Add To Cart" data-toggle="popover" title="Login before adding to cart">
             </form>
-            {{else}}
-                <label style="font-size:30px;"><a href= "/signin">Login before adding to cart!</a></label>
-            {{/if}}
-        </td>
-    </tr>
-    <tr>
-        {{#if no_review}}
-            <td><b>No Rating (0)</b></td>
         {{else}}
-            <td><b>Rating: </b>{{rate.[CumRate]}} out of 5 ({{rate.[numOfReview]}})</td>
+            <a href= "/signin">Login before adding to cart!</a>
         {{/if}}
-    </tr>
-    <tr>
-        <td><img style="height: auto; width: auto; max-width: 450px; max-height: 450px;" class="d-block w-100" style="overflow:hidden" src="../../images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[ItemID]}}"></td>
-    </tr>
-    <tr>
-        <td style="font-size:20px;"><b>${{item.[Price]}}</b></td>
-    </tr>
-    <tr>
-        <td><b>Product Description: </b><br>{{item.[Description]}}</td>
-    </tr>
-    <tr>
-        <td><b>Customer Reviews: </b><br>
-            {{#if no_review}}
-                No Review so far...
-            {{else}}
-                {{# each list}}
-                    <b>{{this.[Username]}}: </b>
-                    {{this.[Detail]}}<br>
-                    <p style="font-size:10px;">{{this.[Write Date]}} Rating: {{this.[Rating]}}</p><br>
-                {{/each}}
-            {{/if}}
-            {{#if login}}
-            <form method="post" action = "/item/item_review/{{item.[ItemID]}}">
-                Overall Rating: <input name = "rating" type="number" min = "1" max = "5" required="required">
-                <br>Write Your Review:
-                <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
-                <input type="submit" value="Submit Review" data-toggle="popover" title="Login before submitting review">
-            </form>
-            {{/if}}
-        </td>
-    </tr>
-</table>
-
-
+    </div>
+    <hr />
+    <div>
+        <h2>Product Description</h2>
+        <p>{{item.[Description]}}</p>
+    </div>
+    <hr />
+    <div>
+        <h2>Customer Reviews</h2>
+        {{#if no_review}}
+            <p>No Review so far...</p>
+        {{else}}
+            {{# each list}}
+                <div class="row">
+                    <div class="col-3">
+                        <img src="/images/icons/user_profile.png" alt="User Profile" />
+                        <p>{{this.[Username]}}</p>
+                    </div>
+                    <div class="col-9">
+                        <p>{{this.[Detail]}}</p>
+                        <p>Rating: {{this.[Rating]}}</p>
+                        <p style="font-size:10px;">{{this.[Write Date]}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+</div>
