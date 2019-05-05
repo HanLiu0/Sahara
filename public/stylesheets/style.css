@@ -48,11 +48,12 @@ a:focus {
 }
 
 .text-color-2 {
+    font-family: "Microsoft JhengHei UI Light";
     color: #A6550F;
 }
 
 .font-size-1 {
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .img-100 {
@@ -335,7 +336,7 @@ a:focus {
 }
 
 .bannerText {
-    color: #A6550F;
+    color: #000000;
     font-size: 40px;
     display: inline-block;
     align-self: flex-end;
