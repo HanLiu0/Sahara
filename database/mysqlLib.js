@@ -698,7 +698,7 @@ exports.addToShoppingCart = function(itemID,userID, quantity, callback){
             var sql2 = "SELECT * FROM `shopping cart contains items` WHERE `shopping cart contains items`.`shoppingCart Id`="+SCID+" AND `shopping cart contains items`.`ItemID`="+itemID;
             connection.query(sql2, function (err, results) {
                 if(results[0]===undefined) //shopping cart doesn't contain item
-                    var sql3 = "INSERT INTO `shopping cart contains items`(`shoppingCart Id`, `quantity`, `ItemID`) VALUES ('"+SCID+"','"+1+"','"+itemID+"')";
+                    var sql3 = "INSERT INTO `shopping cart contains items`(`shoppingCart Id`, `quantity`, `ItemID`) VALUES ('"+SCID+"','"+quantity+"','"+itemID+"')";
                 else {
                     var sql3 = 'UPDATE `shopping cart contains items` ' +
                         'SET `quantity` = \'' + results[0]['quantity'] + '\'+\'' + quantity + '\'' +
