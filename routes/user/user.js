@@ -203,26 +203,7 @@ router.get('/account_overview/refund_overview', function (req, res, next) {
 
 router.get('/account_overview/select_return/:order', function (req, res, next) {
     sql.getReturnInfoByOrder(req.user, req.params.order, function (err, results1) {
-        sql.getItemFromAnRefund(req.params.order, 0, function(err, results2){
-            for(var i = 0 ; i < results2.length; i++){
-                for(var j = 0 ; j < results1.length; j++){
-                    if(results1[j]['Item ID'] === results2[i]['Item ID']){
-                        results1[j]['Quantity'] -= results2[i]['Quantity'];
-                    }
-                }
-            }
-            var results = [];
-            for(var i = 0 ; i < results1.length; i++){
-                if(results1[i]['Quantity'] > 0)
-                    results.push(results1[i]);
-            }
-            if(results.length != 0){
-                res.render('user/select_return', {title: "Return Page", results: results, result:results[0]});
-            }
-            else{
-                res.render('user/select_return', {title: "Return Page", error: true});
-            }
-        })
+        res.render('user/select_return', {title: "Return Page", results: results1, result:results1[0]});
     });
 });
 

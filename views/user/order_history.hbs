@@ -36,8 +36,13 @@
                                    class="btn btn-light btn-block btn-outline-dark">{{this.[Tracking Number]}}</a>
                                 <a href="order_history/order_detail/{{this.[order number]}}"
                                    class="btn btn-light btn-block btn-outline-dark">Order details</a>
-                                <a href="../account_overview/select_return/{{this.[order number]}}"
-                                   class="btn btn-light btn-block btn-outline-dark">Return</a>
+                                {{#if this.[Refund Price]}}<!--If already refunded-->
+                                    <a class="btn btn-light btn-block btn-outline-dark">You are only allowed to return once</a>
+                                {{else}}
+                                    <a href="../account_overview/select_return/{{this.[order number]}}"
+                                       class="btn btn-light btn-block btn-outline-dark">Return</a>
+                                {{/if}}
+
                                 <a href="#" class="btn btn-light btn-block btn-outline-dark">Leave feedback</a>
                             </div>
 
