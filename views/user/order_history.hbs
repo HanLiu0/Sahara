@@ -3,7 +3,7 @@
 </div>
 
 <div class="container">
-    <a href="/user/account_overview" class="text-color-2"><i class="fas fa-chevron-left"></i>Back</a>
+    <a href="/user/account_overview" class="text-color-2"><i class="fas fa-caret-left"></i> Back</a>
     <div>
         {{#if order_detail}}
             {{# each order_detail}}
@@ -51,7 +51,7 @@
                 </div>
             {{/each}}
         {{else}}
-            <p>You have not purchased anything on Sahara yet! Click <a href="/">here</a> to back to our homepage!</p>
+            <p class="error-message">You have not purchased anything on Sahara yet! Click <a href="/">here</a> to back to our homepage!</p>
         {{/if}}
     </div>
 </div>

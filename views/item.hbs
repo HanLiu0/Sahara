@@ -6,11 +6,7 @@
         <div class="item-details">
             <h2>{{item.[Item Name]}}</h2>
             <p><a class="text-color-2" href="/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
-            {{#if no_review}}
-                <p>No Rating (0)</p>
-            {{else}}
-                <p>Rating: {{#stars rate.[CumRate]}}{{/stars}} ({{rate.[numOfReview]}})</p>
-            {{/if}}
+                <p>Rating: {{#stars rate.[CumRate]}}{{/stars}} ({{rate.[numOfReview]}} reviews)</p>
             <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
             <div style="padding: 0 40px;" class="row justify-content-between">
                 <p>${{item.[Price]}}</p>
@@ -59,7 +55,7 @@
                         </div>
                         <div class="col-10">
                             <p>{{this.[Detail]}}</p>
-                            <p>Rating: {{this.[Rating]}}</p>
+                            <p>Rating: {{#stars this.[Rating]}}{{/stars}}</p>
                             <p style="font-size:10px;">{{this.[Write Date]}}</p>
                         </div>
                     </div>

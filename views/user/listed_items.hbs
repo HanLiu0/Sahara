@@ -11,7 +11,7 @@
     </div>
 {{/if}}
 <div class="container">
-    <a href="/user/account_overview" class="text-color-2"><i class="fas fa-chevron-left"></i>Back</a>
+    <a href="/user/account_overview" class="text-color-2"><i class="fas fa-caret-left"></i> Back</a>
     {{#if items}}
         {{#each items}}
             <div class="card p-m-40 text-center">
@@ -55,9 +55,9 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="type" class="col-form-label">Type</label>
-                                        <select class="custom-select" id="type" name="type" value="{{this.[Type]}}">
+                                        <select class="custom-select" id="type" name="type">
                                             {{#each ../itemTypes}}
-                                                <option>{{this}}</option>
+                                                <option {{#ifeq this ../[Type]}}selected{{/ifeq}}>{{this}}</option>
                                             {{/each}}
                                         </select>
                                     </div>

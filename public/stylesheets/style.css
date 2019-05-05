@@ -344,7 +344,7 @@ a:focus {
 .banner {
     padding: 0 10%;
     background-color: #F7F5F4;
-    height: 125px;
+    height: 160px;
     display: flex;
 }
 
@@ -433,4 +433,17 @@ a:focus {
     top:20px;
     right: 20px;
     text-align: left;
+}
+
+.unchecked{
+    color: lightgray;
+}
+
+.checked {
+    color: gold;
+}
+
+.error-message{
+    text-align: center;
+    padding: 40px;
 }

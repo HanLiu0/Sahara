@@ -6,16 +6,12 @@
     <a href="/seller/all_sellers" class="text-color-2 font-size-1"><i class=" fas fa-chevron-left"></i>All sellers</a>
     <div class="row card-border-top">
         <div class="col-3">
-            <img class="img-100" src="/images/icons/user_profile.png" alt="Seller Profile" />
+            <img class="img-100" src="/images/icons/seller_profile.png" alt="Seller Profile" />
         </div>
         <div class="col-9">
             <h2>{{user.[Username]}}</h2>
             <h4>{{user.[Company Name]}}</h4>
-            {{# if no_review}}
-                <p>Overall Rating: No Review ({{avg.[numOfReview]}})</p>
-            {{else}}
-                <p>Overall Rating: {{avg.[CumRate]}} out of 5 ({{avg.[numOfReview]}})</p>
-            {{/if}}
+            <p>Overall Rating: {{#stars avg.[CumRate]}} {{/stars}} ({{avg.[numOfReview]}} reviews)</p>
             {{#if user.[Description]}}
                 <p>{{user.[Description]}}</p>
             {{else}}
@@ -62,7 +58,7 @@
                         </div>
                         <div class="col-10">
                             <p>{{this.[Detail]}}</p>
-                            <p>Rating: {{this.[Rating]}}</p>
+                            <p>Rating: {{#stars this.[Rating]}}{{/stars}}</p>
                             <p style="font-size:10px;">{{this.[Write Date]}}</p>
                         </div>
                     </div>

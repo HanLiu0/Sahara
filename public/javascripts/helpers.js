@@ -3,10 +3,23 @@ var register = function(Handlebars) {
         // put all of your helpers inside this object
         stars: function(n) {
             var accum = '';
-            var i = 0;
-            for(; i < n; ++i)
-                accum += '<span class="fa fa-star checked"></span>';
+            var i = 1;
+            for(; i <= n; ++i)
+                accum += '<span class="checked"><i class="fas fa-star"></i></span>';
+            if(n % 1 != 0) {
+                accum += '<span class="checked"><i class="fas fa-star-half-alt"></i></span>';
+                i++;
+            }
+            while(i <= 5) {
+                accum += '<span class="unchecked"><i class="fas fa-star"></i></span>';
+                i++;
+            }
             return accum;
+        },
+        ifeq: function(v1, v2, options){
+            if(v1 === v2) {
+                return options.fn(this);
+            }
         }
     };
 
