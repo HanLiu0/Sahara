@@ -98,7 +98,7 @@ a:focus {
 
 
 .bgColor1 {
-    background-color: #e5e5e5;
+    background-color: #F7F5F4;
     padding-bottom: 30px;
 }
 
@@ -168,6 +168,7 @@ a:focus {
 
 /*------- Nav Bar--------*/
 .navbar {
+    z-index: 9999;
     position: absolute;
     white-space: nowrap;
     width: 100%;
@@ -199,6 +200,9 @@ a:focus {
     color:black;
 }
 
+.dropdown-item:hover{
+    background-color: #A6550F;
+}
 /*------- Sign in/sign up--------*/
 :root {
     --input-padding-x: 1.5rem;
@@ -319,6 +323,9 @@ a:focus {
 
 
 /*------- Banners--------*/
+.space-taker{
+    height: 30px;
+}
 .banner {
     padding: 0 10%;
     background-color: #F7F5F4;
@@ -379,4 +386,29 @@ a:focus {
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     background-color: #A6550F;
     border-radius: 0px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-size: 100%, 100%;
+    border: none;
+    background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+    content: '>';
+    font-size: 40px;
+    font-weight: bolder;
+    color: #A6550F;
+}
+
+.carousel-control-prev-icon:after {
+    font-weight: bolder;
+    content: '<';
+    font-size: 40px;
+    color: #A6550F;
 }

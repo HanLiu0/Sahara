@@ -4,53 +4,69 @@
         <p class="imageText" align="center">Sahara</p>
     </div>
 </div>
-<div class="container">
-    <h1>Popular Items</h1>
-    <div id="popularItemsCarouselControls" class="carousel slide" data-ride="carousel"  data-interval="false">
-        <div class="carousel-inner">
-            <div class="carousel-inner">
-                {{#each mostPopular}}
-                    <div class="carousel-item {{#if @first}}active{{/if}}">
-                        <div class="row">
-                            {{#each this}}
-                                <div class="col-sm"><a href= "item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image for {{this.[Item ID]}}"></a></div>
-                {{/each}}
-                        </div>
+<div class="bgColor1">
+    <div class="container">
+        <div class="item-card">
+            <h2 align="center">Popular Items</h2>
+            <div id="popularItemsCarouselControls" class="carousel slide top-padding" data-ride="carousel"
+                 data-interval="false">
+                <div class="carousel-inner">
+                    <div class="carousel-inner">
+                        {{#each mostPopular}}
+                            <div class="carousel-item {{#if @first}}active{{/if}}">
+                                <div class="row">
+                                    {{#each this}}
+                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
+                                                                                                   style="overflow:hidden"
+                                                                                                   src="images/{{this.[Item ID]}}.jpg"
+                                                                                                   alt="Image for {{this.[Item ID]}}"></a>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        {{/each}}
                     </div>
-                {{/each}}
+                </div>
+                <a class="carousel-control-prev" href="#popularItemsCarouselControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only" style="background-color: black;">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#popularItemsCarouselControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#popularItemsCarouselControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only" style="background-color: black;">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#popularItemsCarouselControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <h1>Recommendation</h1>
-    <div id="recommendItemsCarouselControls" class="carousel slide" data-ride="carousel"  data-interval="false">
-        <div class="carousel-inner">
-            <div class="carousel-inner">
-                {{#each recommend}}
-                    <div class="carousel-item {{#if @first}}active{{/if}}">
-                        <div class="row">
-                            {{#each this}}
-                                <div class="col-sm"><a href= "item/{{this.[Item ID]}}"><img class="d-block w-100" style="overflow:hidden" src="images/{{this.[Item ID]}}.jpg" alt="Image"></div>
-                            {{/each}}
-                        </div>
+        <div class="item-card">
+            <h2 align="center">Recommendation</h2>
+            <div id="recommendItemsCarouselControls" class="carousel slide top-padding" data-ride="carousel"
+                 data-interval="false">
+                <div class="carousel-inner">
+                    <div class="carousel-inner">
+                        {{#each recommend}}
+                            <div class="carousel-item {{#if @first}}active{{/if}}">
+                                <div class="row">
+                                    {{#each this}}
+                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
+                                                                                                   style="overflow:hidden"
+                                                                                                   src="images/{{this.[Item ID]}}.jpg"
+                                                                                                   alt="Image"></a>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        {{/each}}
                     </div>
-                {{/each}}
+                </div>
+                <a class="carousel-control-prev" href="#recommendItemsCarouselControls" role="button" data-slide="prev">
+                    <span class="text-color-2 carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only" style="background-color: black;">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#recommendItemsCarouselControls" role="button" data-slide="next">
+                    <span class="text-color-2 carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#recommendItemsCarouselControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only" style="background-color: black;">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#recommendItemsCarouselControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 </div>

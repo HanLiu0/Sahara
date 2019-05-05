@@ -137,9 +137,9 @@ exports.editSellerInformation = function(req, callback){
         '`State/Province/Region` = \'' + req.body.state + '\', ' +
         '`Country` = \'' + req.body.country + '\', ' +
         '`Zip Code` = \'' + req.body.zipCode + '\', ' +
-        '`Phone Number` = \'' + req.body.phoneNumber + '\' ' +
+        '`Phone Number` = \'' + req.body.phoneNumber + '\', ' +
+        '`Description` = \'' + req.body.description + '\' ' +
         'WHERE (`SellerID` = ' + req.user + ');';
-
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); }
         // make the query
