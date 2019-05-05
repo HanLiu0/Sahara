@@ -36,6 +36,7 @@ CREATE TABLE `bidong`.`seller` (
   `State/Province/Region` VARCHAR(20) NULL,
   `Country` VARCHAR(20) NULL,
   `Zip Code` CHAR(10) NULL,
+  `Description` VARCHAR(500) NULL,
   PRIMARY KEY (`SellerID`),
   CONSTRAINT `UserFK in seller`
     FOREIGN KEY (`SellerID`) REFERENCES `bidong`.`user` (`UserID`)
