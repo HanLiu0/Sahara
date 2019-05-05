@@ -5,7 +5,7 @@
     <div class="container">
         <div class="item-details">
             <h2>{{item.[Item Name]}}</h2>
-            <p><a class="text-color-2" href="/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
+            <p><a class="text-color-2 links" href="/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
                 <p>Rating: {{#stars rate.[CumRate]}}{{/stars}} ({{rate.[numOfReview]}} reviews)</p>
             <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
             <div style="padding: 0 40px;" class="row justify-content-between">
