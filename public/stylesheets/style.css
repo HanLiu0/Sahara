@@ -2,6 +2,11 @@ body {
     font-family: "Microsoft JhengHei UI Light";
 }
 
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+
 h1, h2, h3, h4, h5 {
     color: #A6550F;
 }
@@ -164,8 +169,34 @@ a:focus {
 /*------- Nav Bar--------*/
 .navbar {
     position: absolute;
+    white-space: nowrap;
     width: 100%;
     background-image: linear-gradient(to bottom, #b1A9A6, transparent);
+}
+
+.search-icon{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+.nav-item{
+    padding: 0px 10px;
+}
+
+.nav-item a{
+    font-size: 24px;
+    font-weight: normal;
+    font-family: inherit;
+    color: white;
+}
+
+.nav-item .dropdown-menu a{
+    font-size: 16px;
+    color:black;
 }
 
 /*------- Sign in/sign up--------*/
