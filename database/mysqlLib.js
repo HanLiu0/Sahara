@@ -228,11 +228,13 @@ exports.editItem = function(id, req, callback){
         'SET `Item Name` = \'' + req.body.itemName + '\',' +
         '`Type` = \'' + req.body.type + '\', ' +
         '`Price` = \'' + req.body.price + '\', ' +
-        '`Description` = \'' + req.body.description + '\', ' +
-        'WHERE (`ItemID` = ' + id + ');';
-    var sql2 = 'UPDATE `warehouse has item` ' +
-        'SET `Quantity` = \'' + req.body.quantity + '\',' +
-        'WHERE (`Item ID` = ' + id + ');';
+        '`Description` = \'' + req.body.description +"' "+
+        ' WHERE (`ItemID` = \'' + id + '\');';
+    var sql2 = "UPDATE `warehouse has item` " +
+        " SET Quantity = '" + req.body.quantity +"' "+
+        " WHERE `warehouse has item`.`Item ID` = '" + id + "';";
+
+
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); }
         // make the query
@@ -247,12 +249,9 @@ exports.editItem = function(id, req, callback){
 
 exports.removeItem = function(id, req, callback){
     var sql1 = 'DELETE FROM `warehouse has item` ' +
-        'WHERE (`Item ID` = ' + id + ');';
+        'WHERE (`Item ID` =' + id + ');';
     pool.getConnection(function(err, connection) {
-        if (err) {
-            console.log(err);
-        }
-        // make the query
+        if (err) { console.log(err);}
         connection.query(sql1, function (err, results) {
             connection.release();
             callback(false, results);
@@ -326,7 +325,9 @@ exports.getAllSellers = function(callback) {
 };
 
 exports.getSellerItems = function(req, callback) {
-    var sql = "SELECT * FROM item INNER JOIN `seller supplies item` ON `seller supplies item`.`Item ID` = `item`.`ItemID` WHERE `seller supplies item`.`Seller ID` = " +
+    var sql = "SELECT * FROM item INNER JOIN `seller supplies item` ON `seller supplies item`.`Item ID` = `item`.`ItemID` " +
+        "INNER JOIN `warehouse has item` ON `item`.`ItemID` = `warehouse has item`.`Item ID`"+
+        "WHERE `seller supplies item`.`Seller ID` = " +
         req.user;
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
