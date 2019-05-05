@@ -533,6 +533,7 @@ exports.updateWarehouse = function(itemsInShoppingCart, callback){
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         var sql = "";
+        var boolean = true;
         for (var i = 0; i < itemsInShoppingCart.length; i++) {
             var ItemID = itemsInShoppingCart[i]['ItemID'];
             var quantity = itemsInShoppingCart[i]['quantity'];
@@ -541,13 +542,17 @@ exports.updateWarehouse = function(itemsInShoppingCart, callback){
             if(newQuantity>0){  //If there are still items in the warehouse.
                 sql = "UPDATE `warehouse has item` SET `Quantity` = '"+newQuantity +"' WHERE `Item ID` = '"+ ItemID +"'; ";
             }
-            else{
+            else if (newQuantity == 0){
                 sql = "DELETE FROM `warehouse has item` WHERE `Item ID` = '"+ ItemID+"'; ";
+            }
+            else{
+                boolean = false;
+                break;
             }
             connection.query(sql);
         }
             connection.release();
-            callback(false);
+            callback(false, boolean);
     });
 }
 

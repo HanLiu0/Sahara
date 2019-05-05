@@ -38,25 +38,31 @@ router.post('/place_order/:id', function(req, res, next){
     if(mm<10) mm='0'+mm;
     today = yyyy+'-'+mm+'-'+dd;
 
-
-
     sql.getAllItemsFromShoppingCart(req.user, function(err, itemsInShoppingCart,AllItemsInWarehouse) {
-        sql.updateOrder(itemsInShoppingCart, req.body.hiddenTotalPrice, today, paymentId, function (err, orderId) {
-            sql.clearShoppingCart(itemsInShoppingCart[0]['shoppingCart Id'],function (err, clearShopping) {
-                sql.getCheckoutInfo(req.user, function(err, checkoutInfo) {
-                    sql.updateShipments(req ,orderId, req.body.shipment,today,function (err, trackingNumber) {
-                        sql.updateWarehouse(itemsInShoppingCart,function (err) {
-                            res.render('place_order', {
-                                title: "Sahara.com: Order Confirmation",
-                                order_number: orderId,
-                                order_date: today,
-                                tracking_number:trackingNumber,
-                                user_info:checkoutInfo
+        sql.updateWarehouse(itemsInShoppingCart,function (err, success) {
+            if(success == false){
+                res.render('place_order', {
+                    title: "Sahara.com: Order Failed",
+                    errors: true
+                });
+            }
+            else{
+                sql.updateOrder(itemsInShoppingCart, req.body.hiddenTotalPrice, today, paymentId, function (err, orderId) {
+                    sql.clearShoppingCart(itemsInShoppingCart[0]['shoppingCart Id'],function (err, clearShopping) {
+                        sql.getCheckoutInfo(req.user, function(err, checkoutInfo) {
+                            sql.updateShipments(req ,orderId, req.body.shipment,today,function (err, trackingNumber) {
+                                res.render('place_order', {
+                                    title: "Sahara.com: Order Confirmation",
+                                    order_number: orderId,
+                                    order_date: today,
+                                    tracking_number:trackingNumber,
+                                    user_info:checkoutInfo
+                                });
                             });
                         });
                     });
                 });
-            });
+            }
         });
     });
 });

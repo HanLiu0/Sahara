@@ -1,14 +1,22 @@
-<div class = "container">
-    <h1 class="alert alert-success">Order Confirmation</h1>
-    <p>Dear <strong>{{user_info.0.[First Name]}}</strong>, thank you for purchasing at Sahara! <br />
-        Your order <strong>{{order_number}}</strong> has been placed on {{order_date}}, and your package is already on the way!
-        <br />Your tracking number is <strong>{{tracking_number}}</strong>.<br />
+{{#if errors}}
+    <div class = "container">
+        <h1 class="alert alert-danger">Order Failed</h1>
+        <p>
+            Your order failed because the items in your shopping cart is not longer available, please update the quantity in your shopping cart!
+        </p>
+    </div>
+{{else}}
+    <div class = "container">
+        <h1 class="alert alert-success">Order Confirmation</h1>
+        <p>Dear <strong>{{user_info.0.[First Name]}}</strong>, thank you for purchasing at Sahara! <br />
+            Your order <strong>{{order_number}}</strong> has been placed on {{order_date}}, and your package is already on the way!
+            <br />Your tracking number is <strong>{{tracking_number}}</strong>.<br />
 
-        Have a nice day!<br />
-        <a href="/">Back to home page</a>
-    </p>
-</div>
-
+            Have a nice day!<br />
+            <a href="/">Back to home page</a>
+        </p>
+    </div>
+{{/if}}
 
 
 
