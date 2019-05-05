@@ -99,10 +99,6 @@ a:focus {
     margin: 40px;
 }
 
-.img-padding{
-    padding: 10px;
-}
-
 .no-button{
     border-style: none;
     background-color: transparent;
@@ -112,7 +108,7 @@ a:focus {
 }
 
 .no-button:hover{
-    color: #E41F00;
+    color: black;
 }
 
 
@@ -134,13 +130,24 @@ a:focus {
 !important;
 }
 
-.btn-primary:hover,
-.btn-primary:not(:disabled):not(.disabled):active{
+.btn-primary:hover{
     background-color: #BB461F;
 }
 
+.btn-primary:not(:disabled):not(.disabled):active{
+    background-color: #911C00;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active{
+    background-color: #911C00;
+}
+
+.sort:not(:disabled):not(.disabled):active{
+    background-color: #911C00;
+}
+
 .btn-order{
-    background-color: #F0EAE6;
+    background-color: #F5F3F4;
 }
 
 .btn-order:hover{
@@ -375,7 +382,7 @@ a:focus {
 }
 
 .footer-element:hover{
-    color: #BB461F;
+    color: #E41F00;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -503,4 +510,12 @@ a:focus {
 
 .links:hover{
     color: #E41F00;
+}
+
+.about{
+    padding-top: 15px;
+}
+
+.all_sellers{
+    padding-top: 30px;
 }

@@ -34,17 +34,17 @@
                             </div>
                             <div class="col-sm-4">
                                 <a href="https://www.ups.com/track?loc=en_US&requester=WT/"
-                                   class="btn btn-light btn-block btn-order">{{this.[Tracking Number]}}</a>
+                                   class="btn btn-block btn-order">{{this.[Tracking Number]}}</a>
                                 <a href="order_history/order_detail/{{this.[order number]}}"
-                                   class="btn btn-light btn-block btn-order">Order details</a>
+                                   class="btn btn-block btn-order">Order details</a>
                                 {{#if this.[Refund Price]}}<!--If already refunded-->
-                                    <a class="btn btn-light btn-block btn-order">You are only allowed to return once</a>
+                                    <a class="btn btn-block btn-order">You are only allowed to return once</a>
                                 {{else}}
                                     <a href="../account_overview/select_return/{{this.[order number]}}"
-                                       class="btn btn-light btn-block btn-order">Return</a>
+                                       class="btn btn-block btn-order">Return</a>
                                 {{/if}}
 
-                                <a href="#" class="btn btn-light btn-block btn-order">Leave feedback</a>
+                                <a href="#" class="btn-order btn btn-block">Leave feedback</a>
                             </div>
 
                         </div>
