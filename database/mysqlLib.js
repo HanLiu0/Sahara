@@ -635,7 +635,7 @@ exports.getItemByID = function(id, callback) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
             var copyResults = results;
-            var sql2 = "SELECT * FROM `item` INNER JOIN `seller supplies item`"+
+            var sql2 = "SELECT *,`item`.`Description` FROM `item` INNER JOIN `seller supplies item`"+
                 " ON `seller supplies item`.`Item ID` = `item`.`ItemID`"+
                 " INNER JOIN `seller` On `seller supplies item`.`Seller ID` = `seller`.`SellerID`"+
                 " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
