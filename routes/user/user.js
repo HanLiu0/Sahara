@@ -209,8 +209,8 @@ router.get('/account_overview/select_return/:order', function (req, res, next) {
 
 router.post('/account_overview/return_confirmation/:order', function(req,res,next){
     var return_price = 0;
-    var checkbox = [];
-    checkbox.push(req.body.checkbox);
+    var a = [];
+    var checkbox = a.concat(req.body.checkbox);
     for(var i = 0 ; i < checkbox.length; i++){
         var q = "quantity"+checkbox[i];
         var p = "price"+checkbox[i];
