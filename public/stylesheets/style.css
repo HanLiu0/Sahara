@@ -182,6 +182,8 @@ a:focus {
     white-space: nowrap;
     width: 100%;
     background-image: linear-gradient(to bottom, #b1A9A6, transparent);
+    background-image: -o-linear-gradient(to bottom, #b1A9A6, transparent);
+    background-image: -moz-linear-gradient(to bottom, #b1A9A6, transparent);
     background-image: -webkit-linear-gradient(to bottom, #b1A9A6, transparent);
 
 }

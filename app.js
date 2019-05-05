@@ -26,7 +26,8 @@ var aboutRouterAndContact = require('./routes/about_and_contact');
 var app = express();
 
 // view engine setup
-app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs',
+    helpers: require("./public/javascripts/helpers.js").helpers}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

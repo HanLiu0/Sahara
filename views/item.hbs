@@ -1,67 +1,73 @@
 {{# if item}}
-<div class="banner">
-    <p class="bannerText">From {{item.[Type]}}</p>
-</div>
-<div class="container">
-    <div class="item-details">
-        <h2>{{item.[Item Name]}}</h2>
-        <p><a class="text-color-2" href= "/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
-        {{#if no_review}}
-            <p>No Rating (0)</p>
-        {{else}}
-            <p>Rating: {{rate.[CumRate]}} out of 5 ({{rate.[numOfReview]}})</p>
-        {{/if}}
-        <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
-        <div style="padding: 0 40px;" class="row justify-content-between">
-            <p>${{item.[Price]}}</p>
-            <p>In Stock: {{item.[Quantity]}}</p>
-            {{#if login}}
-                <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
-                    Quantity: <input name = "quantity" type="number" min = "1" max="{{item.[Quantity]}}" required="required" value="1">
-                    <input class="button-1" type="submit" value="Add To Cart" data-toggle="popover" title="Add to cart">
-                </form>
+    <div class="banner">
+        <p class="bannerText">From {{item.[Type]}}</p>
+    </div>
+    <div class="container">
+        <div class="item-details">
+            <h2>{{item.[Item Name]}}</h2>
+            <p><a class="text-color-2" href="/seller/{{item.[SellerID]}}">{{item.[Company Name]}}</a></p>
+            {{#if no_review}}
+                <p>No Rating (0)</p>
             {{else}}
-                <div><a class="button-1" href= "/signin">Login before adding to cart!</a></div>
+                <p>Rating: {{#stars rate.[CumRate]}}{{/stars}} ({{rate.[numOfReview]}})</p>
+            {{/if}}
+            <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
+            <div style="padding: 0 40px;" class="row justify-content-between">
+                <p>${{item.[Price]}}</p>
+                <p>In Stock: {{item.[Quantity]}}</p>
+                {{#if login}}
+                    <form method="post" action="/item/add_to_cart/{{item.[ItemID]}}">
+                        Quantity: <input name="quantity" type="number" min="1" max="{{item.[Quantity]}}"
+                                         required="required" value="1">
+                        <input class="button-1" type="submit" value="Add To Cart" data-toggle="popover"
+                               title="Add to cart">
+                    </form>
+                {{else}}
+                    <div><a class="button-1" href="/signin">Login before adding to cart!</a></div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="card-border-top">
+            <h2>Product Description</h2>
+            <p>{{item.[Description]}}</p>
+        </div>
+        {{#if login}}
+            <div class="card-border-top">
+                <h2>Write Your Review</h2>
+                <form method="post" action="/item/item_review/{{item.[ItemID]}}">
+                    <span> Overall Rating: </span><input name="rating" type="number" min="1" max="5"
+                                                         required="required">
+                    <p>Write Your Review:</p>
+                    <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;"
+                           placeholder="Write your review here...">
+                    <button style="display: block" class="button-1" type="submit" data-toggle="popover"
+                            title="Login before submitting review">Submit Review
+                    </button>
+                </form>
+            </div>
+        {{/if}}
+        <div class="card-border-top">
+            <h2>Customer Reviews</h2>
+            {{#if no_review}}
+                <p>No Review so far...</p>
+            {{else}}
+                {{# each list}}
+                    <div class="row">
+                        <div class="col-2">
+                            <img class="img-100" src="/images/icons/user_profile.png" alt="User Profile"/>
+                            <p align="center">{{this.[Username]}}</p>
+                        </div>
+                        <div class="col-10">
+                            <p>{{this.[Detail]}}</p>
+                            <p>Rating: {{this.[Rating]}}</p>
+                            <p style="font-size:10px;">{{this.[Write Date]}}</p>
+                        </div>
+                    </div>
+                {{/each}}
             {{/if}}
         </div>
     </div>
-    <div class="card-border-top">
-        <h2>Product Description</h2>
-        <p>{{item.[Description]}}</p>
-    </div>
-    {{#if login}}
-        <div class="card-border-top">
-        <h2>Write Your Review</h2>
-        <form method="post" action = "/item/item_review/{{item.[ItemID]}}">
-            <span> Overall Rating: </span><input name = "rating" type="number" min = "1" max = "5" required="required">
-            <p>Write Your Review:</p>
-            <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;" placeholder="Write your review here...">
-            <button style="display: block" class="button-1" type="submit" data-toggle="popover" title="Login before submitting review">Submit Review</button>
-        </form>
-        </div>
-    {{/if}}
-    <div class="card-border-top">
-        <h2>Customer Reviews</h2>
-        {{#if no_review}}
-            <p>No Review so far...</p>
-        {{else}}
-            {{# each list}}
-                <div class="row">
-                    <div class="col-2">
-                        <img class="img-100" src="/images/icons/user_profile.png" alt="User Profile" />
-                        <p align="center">{{this.[Username]}}</p>
-                    </div>
-                    <div class="col-10">
-                        <p>{{this.[Detail]}}</p>
-                        <p>Rating: {{this.[Rating]}}</p>
-                        <p style="font-size:10px;">{{this.[Write Date]}}</p>
-                    </div>
-                </div>
-            {{/each}}
-        {{/if}}
-    </div>
-</div>
 {{else}}
-    <br /><br /><br />
+    <br/><br/><br/>
     <h1>This item just sold out!</h1>
 {{/if}}
