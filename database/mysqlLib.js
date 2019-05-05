@@ -841,7 +841,9 @@ exports.getSellerForPage = function(id, callback) {
                     var sql4 = "SELECT * FROM `seller`"+
                         "INNER JOIN `seller supplies item` ON `seller`.`SellerID` = `seller supplies item`.`Seller ID`"+
                         "INNER JOIN `user` ON `user`.`UserID` = `seller`.`SellerID` "+
-                        "INNER JOIN `item` ON `item`.`ItemID` = `seller supplies item`.`Item ID` WHERE `SellerID` =" + id;
+                        "INNER JOIN `item` ON `item`.`ItemID` = `seller supplies item`.`Item ID` " +
+                        "INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
+                        "WHERE `SellerID` =" + id;
                     connection.query(sql4, function(err, results) {
                         var itemResult = results;
                         var sql5 = "SELECT * FROM `seller`"+
