@@ -37,3 +37,11 @@ function readText(input) {
         });
     }, false);
 })();
+
+function checkInputBox() {
+    if (document.getElementById('bike').checked || document.getElementById('car').checked) {
+        document.getElementById("btn").disabled = false;
+    } else {
+        document.getElementById("btn").disabled = true;
+    }
+}

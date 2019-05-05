@@ -76,6 +76,10 @@ a:focus {
     width: 100%;
 }
 
+.img-padding{
+    padding: 10px;
+}
+
 .div-center{
     position: relative;
     top: 50%;
