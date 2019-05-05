@@ -36,6 +36,14 @@ a:focus {
     2 /
     3px 0px 0px 0px
     round;
+    -webkit-border-image: url(../images/bg/line.png)
+    2 /
+    3px 0px 0px 0px
+    round;
+    -o-border-image: url(../images/bg/line.png)
+    2 /
+    3px 0px 0px 0px
+    round;
 }
 
 .card-border-top h2 {
