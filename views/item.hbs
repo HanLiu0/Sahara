@@ -15,8 +15,9 @@
                     <form method="post" action="/item/add_to_cart/{{item.[ItemID]}}">
                         Quantity: <input name="quantity" type="number" min="1" max="{{item.[Quantity]}}"
                                          required="required" value="1">
-                        <input class="button-1" type="submit" value="Add To Cart" data-toggle="popover"
-                               title="Add to cart">
+                        <!--<input class="button-1" type="submit" value="Add To Cart" data-toggle="popover"
+                               title="Add to cart">-->
+                        <button class="button-1" type="submit" value="Add To Cart" data-toggle="popover"><i class="fas fa-cart-plus"></i>  Add to cart  </button>
                     </form>
                 {{else}}
                     <div><a class="button-1" href="/signin">Login before adding to cart!</a></div>
