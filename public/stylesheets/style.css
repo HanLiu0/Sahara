@@ -98,7 +98,7 @@ a:focus {
 
 
 .bgColor1 {
-    background-color: #e5e5e5;
+    background-color: #F7F5F4;
     padding-bottom: 30px;
 }
 
@@ -172,6 +172,7 @@ a:focus {
     white-space: nowrap;
     width: 100%;
     background-image: linear-gradient(to bottom, #b1A9A6, transparent);
+
 }
 
 .search-icon{
