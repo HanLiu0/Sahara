@@ -788,7 +788,7 @@ exports.sortItemLowToHigh = function(category, callback) {
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`";
         if(category !== 'all')
             sql += " WHERE `item`.`Type`="+ "'"+category+"'";
-        sql += " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` DESC";
+        sql += " GROUP BY `item`.`ItemID` ORDER BY `item`.`Price` ASC";
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
