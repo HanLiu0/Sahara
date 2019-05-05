@@ -1,13 +1,13 @@
-INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000001,'apple99','11111','cecilia.chapman@yahoo.com');
-INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000002,'angel88','22222','iris.watson@gmail.com');
-INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000003,'bubbles1`','33333','celeste.slater@gmail.com');
-INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000004,'adsf23123','44444','theodore.lowe@gmail.com');
+INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000001,'bling','1','bingling.dong@stonybrook.edu');
+INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000002,'mmddyy','1','manyin.kwok@stonybrook.edu');
+INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000003,'han`','1','han.liu.1@stonybrook.edu');
+INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000004,'adsf23123','44444','cecilia.chapman@yahoo.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000005,'VashWriting','55555','calista.wise@gmail.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000006,'BooksBeat','66666','kyla.olsen@sbu.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000007,'bookBeat','77777','forrest@ray.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000008,'livetekah','88888','Hiroko.potter@ab.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000009,'roza','99999','nyssa.vazquez@gmail.com');
-INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000010,'bling','00000','araon.hawkins@yahoo.com');
+INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000010,'bling2','0','bingling.dong@ee.edu');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000011,'googleInc','googleIsTheBest','google@gmail.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000012,'ebayInc','wowEbay','ebay@gmail.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000013,'appleInc','youWantAnApple','apple@apple.com');
@@ -18,6 +18,7 @@ INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VAL
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000018,'taobaoInc','???????','taobao@taobao.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000019,'alibabaInc','cantThinkOfAny','alibaba@mayun.com');
 INSERT INTO `bidong`.`user` (`UserID`,`Username`,`Password`,`Email Address`) VALUES (000000000000020,'abcInc','00000','abc@gmail.com');
+
 
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`, `Description`) VALUES ('000000000000011', 'musicMagpie','1599 Curabitur Rd.',NULL,'Ciara','NC','USA','13251','6316329999', 'musicMagpie is one of Sahara’s most popular and trusted sellers. Save money on our huge range of tech,music, film, games and books at amazing prices.');
 INSERT INTO `bidong`.`seller` (`SellerID`, `Company Name`,`Street Address Line 1`,`Street Address Line 2`,`City`,`State/Province/Region`,`Country`,`Zip Code`,`Phone Number`, `Description`) VALUES ('000000000000012', 'World of Books','1599 Curabitur Rd.',NULL,'Ciara','NC','USA','13251','6316329999', 'World of Books is the US’s largest seller of used books online. We sell quality used books as well as CDs and DVDs at competitive prices. We are a circular economy, for profit company that supports charities.');

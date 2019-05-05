@@ -176,7 +176,7 @@ exports.changePassword = function(req, callback){
 
 exports.addSeller = function(req, callback){
     var sql = 'INSERT INTO `seller`(`SellerID`, `Company Name`, `Street Address Line 1`, `Street Address Line 2`, `City`,' +
-        '`State/Province/Region`, `Country`, `Zip Code`, `Phone Number`) values (\'' +
+        '`State/Province/Region`, `Country`, `Zip Code`, `Phone Number`, `Description`) values (\'' +
         req.user + '\', \'' +
         req.body.companyName + '\', \'' +
         req.body.address1 + '\', \'' +
@@ -185,7 +185,9 @@ exports.addSeller = function(req, callback){
         req.body.state + '\', \'' +
         req.body.country + '\', \'' +
         req.body.zipCode + '\', \'' +
-        req.body.phoneNumber + '\')';
+        req.body.phoneNumber + '\', \'' +
+        req.body.description+ '\')'
+    ;
 
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); }

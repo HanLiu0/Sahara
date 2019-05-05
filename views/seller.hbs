@@ -16,6 +16,11 @@
             {{else}}
                 <p>Overall Rating: {{avg.[CumRate]}} out of 5 ({{avg.[numOfReview]}})</p>
             {{/if}}
+            {{#if user.[Description]}}
+                <p>{{user.[Description]}}</p>
+            {{else}}
+                <p>The seller has no description yet! </p>
+            {{/if}}
         </div>
     </div>
     <div class="card-border-top">
@@ -51,7 +56,7 @@
     <div class="card-border-top">
         <h2>Customer Reviews: </h2>
             {{# if no_review}}
-                <p>No Review for this seller...</p>>
+                <p>No Review for this seller...</p>
             {{else}}
                 {{# each reviews}}
                     <div class="row">
