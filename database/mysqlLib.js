@@ -992,7 +992,7 @@ exports.searchAllItem = function(keyword, callback) {
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`" +
         " WHERE ";
         for(var i in words){
-            sql+="`item`.`Item Name` LIKE '%"+words[i]+"%' OR ";
+            sql+="`item`.`Item Name` LIKE '%"+words[i]+"%' OR `item`.`Description` LIKE '%"+words[i]+"%' OR ";
         }
         sql = sql.substring(0,sql.length-3);
         sql+=" GROUP BY `item`.`ItemID`";
