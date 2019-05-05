@@ -1,16 +1,16 @@
-{{#if errors}}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{messages}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-{{/if}}
 <div class="bgImage1">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
+                    {{#if errors}}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{messages}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {{/if}}
                     <h5 class="card-title text-center">Sign Up</h5>
                     <form class="form-signin" method="post" action="signup">
                         <div class="form-label-group">
