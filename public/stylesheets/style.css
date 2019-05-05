@@ -60,6 +60,12 @@ a:focus {
     width: 100%;
 }
 
+.div-center{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -122,9 +128,6 @@ a:focus {
     height: calc(100vh);
     background-image: url("../images/bg/home_banner.jpg");
     background-size: 100% 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .imageTextContainer {
