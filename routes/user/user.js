@@ -214,6 +214,7 @@ router.post('/account_overview/return_confirmation/:order', function(req,res,nex
     for(var i = 0 ; i < checkbox.length; i++){
         var q = "quantity"+checkbox[i];
         var p = "price"+checkbox[i];
+        return_price+=(req.body[p]*req.body[q]);
     }
     var sql2 = " INSERT INTO `bidong`.`refund contains items` (`Refund ID`, `Item ID`, `Quantity`) VALUES ";
     for(var i = 0 ; i < checkbox.length; i++){
