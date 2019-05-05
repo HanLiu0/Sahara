@@ -278,6 +278,7 @@ exports.getItemsFromWarehouse = function(callback) {
 exports.getMostPopularItems = function(callback) {
     var sql = "SELECT T.`Item ID`, SUM(T.Quantity) " +
         "AS Quantity FROM `order contains item` T  " +
+        " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = T.`Item ID`"+
         "GROUP BY T.`Item ID` ORDER BY Quantity DESC";
     // get a connection from the pool
     pool.getConnection(function(err, connection) {
@@ -746,6 +747,7 @@ exports.getOrderDetail = function(orderID, callback){
 
 exports.getItemByType = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
+        " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` ";
     if(category !== 'all')
@@ -763,6 +765,7 @@ exports.getItemByType = function(category, callback) {
 
 exports.sortItemHighToLow = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
+        " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`";
     if(category !== 'all')
@@ -780,6 +783,7 @@ exports.sortItemHighToLow = function(category, callback) {
 
 exports.sortItemLowToHigh = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
+        " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`";
         if(category !== 'all')
@@ -797,6 +801,7 @@ exports.sortItemLowToHigh = function(category, callback) {
 
 exports.sortItemReview = function(category, callback) {
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
+        " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID` ";
     if(category !== 'all')
@@ -981,6 +986,7 @@ exports.addToRefund = function(user, order, return_way, return_price, reason, sq
 exports.searchAllItem = function(keyword, callback) {
     var words = keyword.split(" ");
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
+        " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`" +
         " WHERE ";
@@ -989,7 +995,6 @@ exports.searchAllItem = function(keyword, callback) {
         }
         sql = sql.substring(0,sql.length-3);
         sql+=" GROUP BY `item`.`ItemID`";
-        console.log(sql);
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
