@@ -99,6 +99,10 @@ a:focus {
     margin: 40px;
 }
 
+.img-padding{
+    padding: 10px;
+}
+
 .no-button{
     border-style: none;
     background-color: transparent;
@@ -108,7 +112,7 @@ a:focus {
 }
 
 .no-button:hover{
-    color: black;
+    color: #E41F00;
 }
 
 
@@ -495,8 +499,4 @@ a:focus {
 .error-message{
     text-align: center;
     padding: 40px;
-}
-
-.links:hover{
-    color: #E41F00;
 }

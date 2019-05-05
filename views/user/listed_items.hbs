@@ -20,20 +20,21 @@
                     <img style="max-width: 150px;" class="center" src="/images/{{this.ItemID}}.jpg"
                          alt="Item image for {{this.ItemID}}"></a>
                     <div class="top-left">
-                        <button type="button" class="no-button text-color-2 links" data-toggle="modal"
+                        <button type="button" class="d-block no-button text-color-2 " data-toggle="modal"
                                 data-target="#editItem{{this.ItemID}}">
                             <i class="far fa-edit"></i> Edit
                         </button>
-                        <form method="post" action="remove_item/{{this.[ItemID]}}" encType="multipart/form-data">
-                            <button type="submit" class="no-button text-color-2 links"><i class="far fa-times-circle"></i> Remove Item</button>
-                        </form>
+                        <button type="button" class="d-block no-button text-color-2 " data-toggle="modal"
+                                data-target="#removeItem{{this.ItemID}}">
+                            <i class="far fa-times-circle"></i> Remove Item
+                        </button>
                     </div>
                 </div>
-                <p class="text-color-2 no-space"><a class="links" href="/item/{{this.ItemID}}">{{this.[Item Name]}}</a></p>
+                <p class="text-color-2 no-space"><a href="/item/{{this.ItemID}}">{{this.[Item Name]}}</a></p>
                 <p class="text-color-2 no-space">{{this.[Type]}}</p>
-                <p class="text-color-2 no-space">$ {{this.[Price]}}</p>
+                <p class="text-color-2 no-space">{{this.[Price]}}</p>
                 <p>{{this.[Description]}}</p>
-                <!-- Modal -->
+                <!-- Edit Modal -->
                 <div class="modal fade text-left" style="z-index: 10000" id="editItem{{this.ItemID}}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -97,6 +98,28 @@
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Remove Modal-->
+                <div class="modal" id="removeItem{{this.ItemID}}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>This action will delete the item. Are you sure?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="remove_item/{{this.[ItemID]}}" encType="multipart/form-data">
+                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                </form>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
