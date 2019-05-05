@@ -11,62 +11,76 @@
     </div>
 {{/if}}
 <div class="container">
-    <a href="/user/account_overview" class="text-color-2 font-size-1 fas fa-chevron-left">Back</a>
-    <form class="needs-validation" novalidate method="post" action = "edit_account_information">
-        <h4>Personal Information</h4>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" value="{{customer.[First Name]}}" required autofocus>
-                <div class="invalid-feedback">
-                    Valid first name is required.
+    <a href="/user/account_overview" class="text-color-2"><i class="fas fa-chevron-left"></i>Back</a>
+    <form class="needs-validation" novalidate method="post" action="edit_account_information">
+        <div class="card-border-top">
+            <h4>Personal Information</h4>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
+                           value="{{customer.[First Name]}}" required autofocus>
+                    <div class="invalid-feedback">
+                        Valid first name is required.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="middleName">Middle name</label>
+                    <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name"
+                           value="{{customer.[Middle Name]}}">
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="middleName">Middle name</label>
-                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle Name" value="{{customer.[Middle Name]}}">
+            <div class="mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName " name="lastName" placeholder="Last Name"
+                       value="{{customer.[Last Name]}}" required>
+                <div class="invalid-feedback">
+                    Valid last name is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number"
+                       value="{{customer.[Phone Number]}}">
             </div>
         </div>
-        <div class="mb-3">
-            <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName "name="lastName" placeholder="Last Name" value="{{customer.[Last Name]}}" required>
-            <div class="invalid-feedback">
-                Valid last name is required.
+        <div class="card-border-top">
+            <h4>Address</h4>
+            <div class="mb-3">
+                <label for="address1">Street Address Line 1</label>
+                <input type="text" class="form-control" id="address1" name="address1"
+                       placeholder="Street Address Line 1" value="{{customer.[Street Address Line 1]}}">
+            </div>
+            <div class="mb-3">
+                <label for="address2">Street Address Line 2</label>
+                <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment or suite"
+                       value="{{customer.[Street Address Line 2]}}">
+            </div>
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City"
+                           value="{{customer.[City]}}">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State/Province/Region"
+                           value="{{customer.[State/Province/Region]}}">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
+                           value="{{customer.[Zip Code]}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Country"
+                           value="{{customer.[Country]}}">
+                </div>
             </div>
         </div>
-        <div class="mb-3">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control"  id="phoneNumber" name="phoneNumber" placeholder="Phone Number" value="{{customer.[Phone Number]}}">
-        </div>
-        <h4>Address</h4>
-        <div class="mb-3">
-            <label for="address1">Street Address Line 1</label>
-            <input type="text" class="form-control" id="address1" name="address1" placeholder="Street Address Line 1" value="{{customer.[Street Address Line 1]}}">
-        </div>
-        <div class="mb-3">
-            <label for="address2">Street Address Line 2</label>
-            <input type="text" class="form-control" id="address2" name ="address2" placeholder="Apartment or suite" value="{{customer.[Street Address Line 2]}}">
-        </div>
-        <div class="row">
-            <div class="col-md-5 mb-3">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{customer.[City]}}">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" name="state" placeholder="State/Province/Region" value="{{customer.[State/Province/Region]}}">
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="zipCode">Zip Code</label>
-                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code" value="{{customer.[Zip Code]}}">
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" name="country" placeholder="Country" value="{{customer.[Country]}}">
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary mb-2 center">Done</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Done</button>
     </form>
 </div>

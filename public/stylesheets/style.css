@@ -72,13 +72,21 @@ a:focus {
     padding: 0;
 }
 
+.p-m-40{
+    padding: 40px;
+    margin: 40px;
+}
+
 .no-button{
     border-style: none;
     background-color: transparent;
     color: #A6550F;
     font-size: 20px;
     box-sizing: content-box;
+}
 
+.no-button:hover{
+    color: black;
 }
 
 .top-padding {
@@ -174,15 +182,18 @@ a:focus {
     white-space: nowrap;
     width: 100%;
     background-image: linear-gradient(to bottom, #b1A9A6, transparent);
+    background-image: -webkit-linear-gradient(to bottom, #b1A9A6, transparent);
 
 }
 
 .search-icon{
-    height: 40px;
     width: 40px;
-    border-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+    -webkit-border-bottom-right-radius: 50%;
+    -webkit-border-top-right-radius: 50%;
     background-color: transparent;
-    border: none;
+    border: 1px white solid;
     color: white;
 }
 
@@ -413,4 +424,11 @@ a:focus {
     content: '<';
     font-size: 40px;
     color: #A6550F;
+}
+
+.top-left{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    text-align: left;
 }

@@ -11,58 +11,61 @@
     </div>
 {{/if}}
 <div class="container">
-    <a href="/user/account_overview" class="text-color-2 font-size-1 fas fa-chevron-left">Back</a>
+    <a href="/user/account_overview" class="text-color-2"><i class="fas fa-chevron-left"></i>Back</a>
     <form method="post" action="edit_seller_information">
-        <h4>Company Information</h4>
-        <div class="form-group row">
-            <label for="firstName" class="col-sm-2 col-form-label">Company Name:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="companyName" placeholder="Company Name" value="{{seller.[Company Name]}}">
+        <div class="card-border-top">
+            <h4>Company Information</h4>
+            <div class="mb-3">
+                <label for="companyName">Company Name</label>
+                <input type="text" class="form-control" name="companyName" placeholder="Company Name"
+                       value="{{seller.[Company Name]}}">
+            </div>
+            <div class="mb-3">
+                    <label for="description">Company Description:</label>
+                    <textarea class="form-control" rows="5" cols="50" name="description" id="description"
+                              placeholder="Description">{{seller.Description}}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber">Company Phone Number</label>
+                <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number"
+                       value="{{seller.[Phone Number]}}">
             </div>
         </div>
-        <div class="form-group row">
-            <label for="phoneNumber" class="col-sm-2 col-form-label">Company Phone Number:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number" value="{{seller.[Phone Number]}}">
+        <div class="card-border-top">
+            <h4>Address</h4>
+            <div class="mb-3">
+                <label for="address1">Street Address Line 1</label>
+                <input type="text" class="form-control" name="address1" placeholder="Street Address Line 1"
+                       value="{{seller.[Street Address Line 1]}}">
             </div>
-        </div>
-        <h4>Address</h4>
-        <div class="form-group row">
-            <label for="address1" class="col-sm-2 col-form-label">Street Address Line 1:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="address1" placeholder="Street Address Line 1" value="{{seller.[Street Address Line 1]}}">
+            <div class="mb-3">
+                <label for="address2">Street Address Line 2</label>
+                <input type="text" class="form-control" name="address2" placeholder="Street Address Line 2"
+                       value="{{seller.[Street Address Line 2]}}">
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="address2" class="col-sm-2 col-form-label">Street Address Line 2:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="address2" placeholder="Street Address Line 2" value="{{seller.[Street Address Line 2]}}">
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City"
+                           value="{{seller.[City]}}">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State/Province/Region"
+                           value="{{seller.[State/Province/Region]}}">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
+                           value="{{seller.[Zip Code]}}">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5 mb-3">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{seller.[City]}}">
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" name="state" placeholder="State/Province/Region" value="{{seller.[State/Province/Region]}}">
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="zipCode">Zip Code</label>
-                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code" value="{{seller.[Zip Code]}}">
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" name="country" placeholder="Country" value="{{seller.[Country]}}">
-            </div>
-        </div>
-        <div class = "row">
-            <div class="col-12">
-                <label for="description">Description</label>
-                <textarea class="form-control" rows = "5" cols = "50" name = "description" id="description" placeholder="Description">{{seller.Description}}</textarea>
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Country"
+                           value="{{seller.[Country]}}">
+                </div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary mb-2 center">Done</button>

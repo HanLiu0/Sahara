@@ -13,13 +13,16 @@
     <div class="row">
         <div class="col-1" style="padding-right:0px;">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active " id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">User</a>
-                <a class="nav-link " id="v-pills-seller-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Seller</a>
+                <a class="nav-link active " id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                   aria-controls="v-pills-home" aria-selected="true">User</a>
+                <a class="nav-link " id="v-pills-seller-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="false">Seller</a>
             </div>
         </div>
         <div class="col-11" style="padding-left: 0px;">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                     aria-labelledby="v-pills-home-tab">
                     <div class="card">
                         <div class="card-body">
                             <a href="account_overview/order_history"><h5 class="card-title">Your Orders</h5></a>
@@ -34,7 +37,8 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <a href="account_overview/edit_account_information"><h5 class="card-title">Edit Account Information</h5></a>
+                            <a href="account_overview/edit_account_information"><h5 class="card-title">Edit Account
+                                Information</h5></a>
                             <p class="card-text">Edit name, mobile number, and addresses.</p>
                         </div>
                     </div>
@@ -55,7 +59,8 @@
                     {{#if isSeller}}
                         <div class="card">
                             <div class="card-body">
-                                <a href="account_overview/listed_items"><h5 class="card-title">Your Listed Items</h5></a>
+                                <a href="account_overview/listed_items"><h5 class="card-title">Your Listed Items</h5>
+                                </a>
                                 <p class="card-text">All items currently listed online. Edit/Remove</p>
                             </div>
                         </div>
@@ -67,7 +72,8 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <a href="account_overview/edit_seller_information"><h5 class="card-title">Edit Seller Information</h5></a>
+                                <a href="account_overview/edit_seller_information"><h5 class="card-title">Edit Seller
+                                    Information</h5></a>
                                 <p class="card-text">Edit company name, address, and phone number.</p>
                             </div>
                         </div>
@@ -75,63 +81,69 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1 align="center">Sign up to be a Seller</h1>
-                                <form method="post" action="seller_sign_up">
-                                    <h4>Company Information</h4>
-                                    <div class="form-group row">
-                                        <label for="firstName" class="col-sm-2 col-form-label">Company Name:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="companyName" placeholder="Company Name" required>
+                                <form class="needs-validation" novalidate method="post" action="seller_sign_up" >
+                                    <div class="card-border-top">
+                                        <h4>Company Information</h4>
+                                        <div class="mb-3">
+                                            <label for="firstName">Company Name</label>
+                                            <input type="text" class="form-control" name="companyName"
+                                                   placeholder="Company Name" required>
                                             <div class="invalid-feedback">
                                                 Please enter a company name.
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="phoneNumber" class="col-sm-2 col-form-label">Company Phone Number:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number">
+                                        <div class="mb-3">
+                                            <label for="description">Comapany Description</label>
+                                            <textarea class="form-control" rows="5" cols="50" name="description"
+                                                      id="description" placeholder="Description"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phoneNumber">Company Phone
+                                                Number</label>
+                                            <input type="text" class="form-control" name="phoneNumber"
+                                                   placeholder="Phone Number">
                                         </div>
                                     </div>
-                                    <h4>Address</h4>
-                                    <div class="form-group row">
-                                        <label for="address1" class="col-sm-2 col-form-label">Street Address Line 1:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="address1" placeholder="Street Address Line 1">
+                                    <div class="card-border-top">
+                                        <h4>Address</h4>
+                                        <div class="mb-3">
+                                            <label for="address1">Street Address Line
+                                                1</label>
+                                            <input type="text" class="form-control" name="address1"
+                                                   placeholder="Street Address Line 1">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="address2">Street Address Line
+                                                2</label>
+                                            <input type="text" class="form-control" name="address2"
+                                                   placeholder="Street Address Line 2">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 mb-3">
+                                                <label for="city">City</label>
+                                                <input type="text" class="form-control" id="city" name="city"
+                                                       placeholder="City">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="state">State</label>
+                                                <input type="text" class="form-control" id="state" name="state"
+                                                       placeholder="State/Province/Region">
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="zipCode">Zip Code</label>
+                                                <input type="text" class="form-control" id="zipCode" name="zipCode"
+                                                       placeholder="Zip Code">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 mb-3">
+                                                <label for="country">Country</label>
+                                                <input type="text" class="form-control" id="country" name="country"
+                                                       placeholder="Country">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="address2" class="col-sm-2 col-form-label">Street Address Line 2:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="address2" placeholder="Street Address Line 2">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-5 mb-3">
-                                            <label for="city">City</label>
-                                            <input type="text" class="form-control" id="city" name="city" placeholder="City">
-                                        </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label for="state">State</label>
-                                            <input type="text" class="form-control" id="state" name="state" placeholder="State/Province/Region">
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="zipCode">Zip Code</label>
-                                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code">
-                                        </div>
-                                    </div>
-                                    <div class = "row">
-                                        <div class="col-md-5 mb-3">
-                                            <label for="country">Country</label>
-                                            <input type="text" class="form-control" id="country" name="country" placeholder="Country">
-                                        </div>
-                                    </div>
-                                    <div class = "row">
-                                        <div class="col-12">
-                                            <label for="description">Description</label>
-                                            <textarea class="form-control" rows = "5" cols = "50" name = "description" id="description" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mb-2 center">Done</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Done</button>
                                 </form>
                             </div>
                         </div>
