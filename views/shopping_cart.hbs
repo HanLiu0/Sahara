@@ -12,6 +12,10 @@
                     <div class="col-2">
                         <p>Quantity</p>
                     </div>
+                    <div class="col-2" align="center">
+                        <p>Remove</p>
+                    </div>
+
                 </div>
                 {{# each shopping_cart }}
                     <div class="row card-border-top">
@@ -23,6 +27,7 @@
                         <div class="col-5">
                             <a href="item/{{this.[Item ID]}}">{{this.[Item Name]}}</a>
                             <p>${{this.Price}}</p>
+                            <p>In Stock: {{this.Quantity}}</p>
                         </div>
                         <div class="col-2">
                             <form method="post" action="shopping_cart/edit_in_shopping_cart/{{this.ItemID}}">
@@ -31,7 +36,7 @@
                                 <button class="no-button" type="submit"><i class="far fa-check-circle"></i></button>
                             </form>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2" align="center">
                             <a class="no-button"
                                href="shopping_cart/remove_from_shopping_cart/{{this.ItemID}}"><i class="far fa-times-circle"></i></a>
                         </div>

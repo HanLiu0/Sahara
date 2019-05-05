@@ -1,3 +1,4 @@
+{{# if item}}
 <div class="banner">
     <p class="bannerText">From {{item.[Type]}}</p>
 </div>
@@ -13,9 +14,10 @@
         <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}">
         <div style="padding: 0 40px;" class="row justify-content-between">
             <p>${{item.[Price]}}</p>
+            <p>In Stock: {{item.[Quantity]}}</p>
             {{#if login}}
                 <form method="post" action = "/item/add_to_cart/{{item.[ItemID]}}">
-                    Quantity: <input name = "quantity" type="number" min = "1" max = "99" required="required" value="1">
+                    Quantity: <input name = "quantity" type="number" min = "1" max="{{item.[Quantity]}}" required="required" value="1">
                     <input class="button-1" type="submit" value="Add To Cart" data-toggle="popover" title="Add to cart">
                 </form>
             {{else}}
@@ -59,3 +61,7 @@
         {{/if}}
     </div>
 </div>
+{{else}}
+    <br /><br /><br />
+    <h1>This item just sold out!</h1>
+{{/if}}
