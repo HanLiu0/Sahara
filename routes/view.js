@@ -8,7 +8,7 @@ router.get('/:category/:orderby/:page?', function(req, res, next){
         page = req.params.page[req.params.page.length -1];
     var types = ["all", "books", "clothing, shoes, jewelry", "electronics",  "health Care", "home & kitchen", "music instrument", "pet supplies", "snack, food", "toy, game, movie"];
     if(!types.includes((req.params.category.toLowerCase()))){
-        sql.searchAllItem(req.params.category, function (err, result) {
+        sql.searchAllItem(req.params.category, req.params.orderby, function (err, result) {
             res.render('view', {title: "Sahara.com: All "+req.params.category , items:result.slice((page-1)*10, page*10), all: req.params.category === 'all',
                 type: req.params.category, pagelink: '/view/' + req.params.category + '/' + req.params.orderby + '/',totalPages: getTotalPages(result)});
         });

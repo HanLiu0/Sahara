@@ -985,18 +985,26 @@ exports.addToRefund = function(user, order, return_way, return_price, reason, sq
     });
 };
 
-exports.searchAllItem = function(keyword, callback) {
+exports.searchAllItem = function(keyword, sort, callback) {
     var words = keyword.split(" ");
     var sql = "SELECT `item`.`ItemID`,`item`.`Item Name`,`item`.`Price`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item`"+
         " INNER JOIN `warehouse has item` On `warehouse has item`.`Item ID` = `item`.`ItemID`"+
         " LEFT OUTER JOIN `item has review` On `item`.`ItemID` = `item has review`.`Item ID`"+
         " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`" +
         " WHERE ";
-        for(var i in words){
-            sql+="`item`.`Item Name` LIKE '%"+words[i]+"%' OR `item`.`Description` LIKE '%"+words[i]+"%' OR ";
-        }
-        sql = sql.substring(0,sql.length-3);
-        sql+=" GROUP BY `item`.`ItemID`";
+    for(var i in words){
+        sql+="`item`.`Item Name` LIKE '%"+words[i]+"%' OR `item`.`Description` LIKE '%"+words[i]+"%' OR ";
+    }
+    sql = sql.substring(0,sql.length-3);
+    sql+=" GROUP BY `item`.`ItemID`";
+
+    if(sort === 'high_to_low'){
+        sql += " ORDER BY `item`.`Price` DESC";
+    }else if( sort === 'low_to_high'){
+        sql += " ORDER BY `item`.`Price` ASC";
+    }else if (sort === 'review_score'){
+        sql += " ORDER BY `CumRate` DESC, `numOfReview` DESC";
+    }
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
