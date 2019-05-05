@@ -1,5 +1,6 @@
+
 body {
-    font-family: "Microsoft JhengHei UI Light";
+    font-family: "Microsoft JhengHei UI Light", 'Roboto', sans-serif;
 }
 
 *, ::after, ::before {
@@ -95,9 +96,6 @@ a:focus {
     color: black;
 }
 
-.top-padding {
-    padding-top: 20px;
-}
 
 .button-1 {
     background-color: #A6550F;
@@ -380,7 +378,7 @@ a:focus {
 .item-card {
     background-color: white;
     border: 0;
-    margin: 20px 0;
+    margin: 40px 0;
     padding: 20px 10px;
 }
 
@@ -432,6 +430,13 @@ a:focus {
     content: '<';
     font-size: 40px;
     color: #A6550F;
+}
+
+.carousel-control-prev{
+    left: -100px;
+}
+.carousel-control-next{
+    right: -100px;
 }
 
 .top-left{
