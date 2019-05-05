@@ -16,12 +16,13 @@
                                     {{# each this.[items]}}
                                         <div class="row">
                                             <div class="col-6 col-md-4">
-                                                <img style="max-height: 120px; width: auto;"
+                                                <a href="/item/{{this.[ItemID]}}"><img style="max-height: 120px; width: auto;"
                                                      src="/images/{{this.ItemID}}.jpg"
                                                      alt="Item image for {{this.ItemID}}"/>
+                                                </a>
                                             </div>
                                             <div class="col-12 col-md-8">
-                                                <a href="/item/{{this.[ItemID]}}">{{this.[Item Name]}}</a>
+                                                <a class="links" href="/item/{{this.[ItemID]}}">{{this.[Item Name]}}</a>
                                                 <p>Quantity: {{this.[Quantity]}}</p>
                                             </div>
                                         </div>
@@ -33,17 +34,17 @@
                             </div>
                             <div class="col-sm-4">
                                 <a href="https://www.ups.com/track?loc=en_US&requester=WT/"
-                                   class="btn btn-light btn-block btn-outline-dark">{{this.[Tracking Number]}}</a>
+                                   class="btn btn-light btn-block btn-order">{{this.[Tracking Number]}}</a>
                                 <a href="order_history/order_detail/{{this.[order number]}}"
-                                   class="btn btn-light btn-block btn-outline-dark">Order details</a>
+                                   class="btn btn-light btn-block btn-order">Order details</a>
                                 {{#if this.[Refund Price]}}<!--If already refunded-->
-                                    <a class="btn btn-light btn-block btn-outline-dark">You are only allowed to return once</a>
+                                    <a class="btn btn-light btn-block btn-order">You are only allowed to return once</a>
                                 {{else}}
                                     <a href="../account_overview/select_return/{{this.[order number]}}"
-                                       class="btn btn-light btn-block btn-outline-dark">Return</a>
+                                       class="btn btn-light btn-block btn-order">Return</a>
                                 {{/if}}
 
-                                <a href="#" class="btn btn-light btn-block btn-outline-dark">Leave feedback</a>
+                                <a href="#" class="btn btn-light btn-block btn-order">Leave feedback</a>
                             </div>
 
                         </div>

@@ -20,18 +20,18 @@
                     <img style="max-width: 150px;" class="center" src="/images/{{this.ItemID}}.jpg"
                          alt="Item image for {{this.ItemID}}"></a>
                     <div class="top-left">
-                        <button type="button" class="no-button text-color-2 " data-toggle="modal"
+                        <button type="button" class="no-button text-color-2 links" data-toggle="modal"
                                 data-target="#editItem{{this.ItemID}}">
                             <i class="far fa-edit"></i> Edit
                         </button>
                         <form method="post" action="remove_item/{{this.[ItemID]}}" encType="multipart/form-data">
-                            <button type="submit" class="no-button text-color-2"><i class="far fa-times-circle"></i> Remove Item</button>
+                            <button type="submit" class="no-button text-color-2 links"><i class="far fa-times-circle"></i> Remove Item</button>
                         </form>
                     </div>
                 </div>
-                <p class="text-color-2 no-space"><a href="/item/{{this.ItemID}}">{{this.[Item Name]}}</a></p>
+                <p class="text-color-2 no-space"><a class="links" href="/item/{{this.ItemID}}">{{this.[Item Name]}}</a></p>
                 <p class="text-color-2 no-space">{{this.[Type]}}</p>
-                <p class="text-color-2 no-space">{{this.[Price]}}</p>
+                <p class="text-color-2 no-space">$ {{this.[Price]}}</p>
                 <p>{{this.[Description]}}</p>
                 <!-- Modal -->
                 <div class="modal fade text-left" style="z-index: 10000" id="editItem{{this.ItemID}}" tabindex="-1" role="dialog"

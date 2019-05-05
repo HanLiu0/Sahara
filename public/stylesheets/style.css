@@ -55,14 +55,21 @@ a:focus {
 
 .text-color-1 {
     color: #A6550F;
+    /*color: #A14B00;*/
 }
 
 .text-color-2 {
     color: #A6550F;
+    /*color: #A14B00;*/
 }
 
 .font-size-1 {
     font-size: 18px;
+}
+
+.font-size-2 {
+    font-size: 25px;
+    color: #A14B00;
 }
 
 .img-100 {
@@ -110,11 +117,30 @@ a:focus {
     color: white;
     border: 0px;
     padding: 5px 10px;
+
+}
+
+.button-1:hover{
+    color:white;
+    background-color: #BB461F;
 }
 
 .btn-primary {
     background-color: #A14B03;
 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled):active{
+    background-color: #BB461F;
+}
+
+.btn-order{
+    background-color: #F0EAE6;
+}
+
+.btn-order:hover{
+    background-color: #E0C9B6;
 }
 
 
@@ -228,7 +254,7 @@ a:focus {
 }
 
 .dropdown-item:hover{
-    background-color: #A6550F;
+    background-color: #E0C9B6;
 }
 /*------- Sign in/sign up--------*/
 :root {
@@ -338,10 +364,14 @@ a:focus {
 
 .footer {
     padding: 2.5rem 0;
-    color: #999;
+    color: #666;
     text-align: center;
     background-color: #f9f9f9;
     border-top: .05rem solid #e5e5e5;
+}
+
+.footer-element:hover{
+    color: #BB461F;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -465,4 +495,8 @@ a:focus {
 .error-message{
     text-align: center;
     padding: 40px;
+}
+
+.links:hover{
+    color: #E41F00;
 }
