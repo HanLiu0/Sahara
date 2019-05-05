@@ -500,3 +500,7 @@ a:focus {
     text-align: center;
     padding: 40px;
 }
+
+.links:hover{
+    color: #E41F00;
+}
