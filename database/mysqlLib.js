@@ -1017,7 +1017,3 @@ exports.searchAllItem = function(keyword, sort, callback) {
         });
     });
 };
-
-
-
-
