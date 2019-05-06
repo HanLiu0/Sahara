@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="bgColor1">
-    <div class="container">
+    <div class="container padding-top">
         <div class="item-card">
             <h2 align="center">Popular Items</h2>
             <div id="popularItemsCarouselControls" class="carousel slide p-m-40" data-ride="carousel"
@@ -16,10 +16,10 @@
                             <div class="carousel-item {{#if @first}}active{{/if}}">
                                 <div class="row">
                                     {{#each this}}
-                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
-                                                                                                   style="overflow:hidden"
-                                                                                                   src="images/{{this.[Item ID]}}.jpg"
-                                                                                                   alt="Image for {{this.[Item ID]}}"></a>
+                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img
+                                                style="overflow:hidden; max-width: 150px; max-height: 150px"
+                                                src="images/{{this.[Item ID]}}.jpg"
+                                                alt="Image for {{this.[Item ID]}}"></a>
                                         </div>
                                     {{/each}}
                                 </div>
@@ -37,6 +37,7 @@
                 </a>
             </div>
         </div>
+        <br><br>
         <div class="item-card">
             <h2 align="center">Recommendation</h2>
             <div id="recommendItemsCarouselControls" class="carousel slide p-m-40" data-ride="carousel"
@@ -47,10 +48,11 @@
                             <div class="carousel-item {{#if @first}}active{{/if}}">
                                 <div class="row">
                                     {{#each this}}
-                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
-                                                                                                   style="overflow:hidden"
-                                                                                                   src="images/{{this.[Item ID]}}.jpg"
-                                                                                                   alt="Image"></a>
+                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}">
+                                            <img
+                                                    style="overflow:hidden; max-width: 150px; max-height: 150px"
+                                                    src="images/{{this.[Item ID]}}.jpg"
+                                                    alt="Image"></a>
                                         </div>
                                     {{/each}}
                                 </div>
