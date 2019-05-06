@@ -19,9 +19,10 @@
                 <a class="dropdown-item" href="/view/{{type}}/review_score">Avg. Customer Review</a>
             </div>
         </div>
+        <div class="d-flex row justify-content-center m-5" style="background-color: white">
         {{#if items}}
             {{# each items}}
-                <div class="item-card p-m-40 text-center">
+                <div class="item-card col-5  text-center">
                     <p><a class="text-color-2 links" href="/item/{{this.[ItemID]}}">{{this.[Item Name]}}</p>
                     <a href="/item/{{this.[ItemID]}}"><img class="center"
                                                            style="height: auto; width: auto; max-width: 200px; max-height: 200px;"
@@ -38,11 +39,17 @@
                         ({{this.[numOfReview]}})</p>
                     <p>${{this.[Price]}}</p>
                 </div>
+                {{#ifeven @../index}}
+                    <div class="w-100"></div>
+                {{/ifeven}}
+                {{#if @last}}
+                    <div class="w-100"></div>
+                {{/if}}
             {{/each}}
         {{else}}
             <p class="error-message">No item matches the search. Please try again.</p>
         {{/if}}
-
+        </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {{#each totalPages}}
