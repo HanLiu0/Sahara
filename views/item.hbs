@@ -32,11 +32,16 @@
             <div class="card-border-top">
                 <h2>Write Your Review</h2>
                 <form method="post" action="/item/item_review/{{item.[ItemID]}}">
-                    <span> Overall Rating: </span><input name="rating" type="number" min="1" max="5"
-                                                         required="required">
+                    <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Overall Rating:</label>
+                        <div class="col-sm-3">
+                            <input name="rating" class="col-2" type="number" min="1" max="5"
+                                   required="required" value="1">
+                        </div>
+                    </div>
                     <p>Write Your Review:</p>
-                    <input type="text" name="detail" maxlength="2000" style="width:900px; height:150px;"
-                           placeholder="Write your review here...">
+                    <textarea type="text" name="detail"  style="width:900px; height:150px;"
+                              placeholder="Write your review here..."></textarea>
                     <button style="display: block" class="button-1" type="submit" data-toggle="popover"
                             title="Login before submitting review">Submit Review
                     </button>

@@ -39,9 +39,12 @@ function readText(input) {
 })();
 
 function checkInputBox() {
-    if (document.getElementById('bike').checked || document.getElementById('car').checked) {
-        document.getElementById("btn").disabled = false;
-    } else {
-        document.getElementById("btn").disabled = true;
+    var inputs = document.querySelectorAll("input[type='checkbox']");
+    console.log(inputs);
+    var checked = true;
+    for(var i = 0 ; i < inputs.length; i++){
+        if(inputs[i].checked)
+            checked = false;
     }
+    document.getElementById("return-submit").disabled = checked;
 }

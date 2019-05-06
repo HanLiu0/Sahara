@@ -7,54 +7,61 @@
         <p>No item available for return.</p>
 {{else}}
         <form method="post" action="/user/account_overview/return_confirmation/{{result.[Order ID]}}">
-            <div class="row card-border-top">
-                <div class="col-10">
-                    <h4>Items to return?</h4>
-                    <fieldset>
-                        {{#each results}}
-                            <div class="row justify-content-between">
-                                <div class="col-8">
-                                    <div class="row">
-                                        <div class="col-1 " align="center">
-                                            <input type="checkbox" id="checkbox_{{this.[Item ID]}}" name="checkbox"
-                                                   value="{{this.[Item ID]}}">
+            <div class="row">
+                <div class="col-10 ">
+                    <div class="card-border-top">
+                        <h4>Items to return?</h4>
+                        <fieldset>
+                            {{#each results}}
+                                <div class="row justify-content-between all_sellers">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-1" align="center">
+                                                <label class="checkbox-label" onchange="checkInputBox()">
+                                                    <input type="checkbox" id="checkbox_{{this.[Item ID]}}"
+                                                           name="checkbox"
+                                                           value="{{this.[Item ID]}}" checked
+                                                           onchange="checkInputBox()">
+                                                    <span class="checkbox-custom" onchange="checkInputBox()"></span>
+                                                </label>
+                                            </div>
+                                            <a class="col-11" href="/item/{{this.[Item ID]}}">
+                                                <img
+                                                        style="display:inline-block; height: auto; width: auto; max-width: 150px; max-height: 150px;"
+                                                        class="d-block w-100" src="/images/{{this.[Item ID]}}.jpg"
+                                                        alt="Image for {{this.[Item ID]}}">
+                                            </a>
                                         </div>
-                                        <a class="col-11" href="/item/{{this.[Item ID]}}">
-                                            <img
-                                                style="display:inline-block; height: auto; width: auto; max-width: 150px; max-height: 150px;"
-                                                class="d-block w-100" src="/images/{{this.[Item ID]}}.jpg"
-                                                alt="Image for {{this.[Item ID]}}">
-                                        </a>
+                                            {{this.[Item Name]}}</a>
+                                        <p class="no-space">${{this.[Price]}}</p>
+                                        <p class="no-space">You bought: {{this.[Quantity]}}</p>
+                                        <input type="hidden" name="price{{this.[Item ID]}}" value="{{this.[Price]}}">
                                     </div>
-                                        {{this.[Item Name]}}</a>
-                                    <p class="no-space">${{this.[Price]}}</p>
-                                    <p class="no-space">You bought: {{this.[Quantity]}}</p>
-                                    <input type="hidden" name="price{{this.[Item ID]}}" value="{{this.[Price]}}">
+                                    <div class="col-4">
+                                        <span>Quantity:</span> <input name="quantity{{this.[Item ID]}}" type="number" class="col-2"
+                                                                id="quantity{{this.[Item ID]}}" min="1"
+                                                                max="{{this.Quantity}}"
+                                                                value="1">
+                                    </div>
                                 </div>
-                                <div class="col-4">
-                                    <p>Quantity:</p> <input name="quantity{{this.[Item ID]}}" type="number"
-                                                                      id="quantity{{this.[Item ID]}}" min="1"
-                                                                      max="{{this.Quantity}}"
-                                                                      value=1>
-                                </div>
-                            </div>
-                        {{/each}}
-                        <div class="card-border-top">
-                            <h4>Reason to return</h4>
-                            <input type="text" name="reason" maxlength="2000"
-                                                             style="width:900px; height:150px;"
-                                                             placeholder="Write your reason here...">
-                        </div>
-                        <div class="card-border-top">
-                                <h4>Return Method:</h4>
-                                <p><input checked="checked" type="radio" name="return_way" value="gift"> Gift Card</p>
-                                <p><input type="radio" name="return_way" value="debit"> Debit Card</p>
-                                <p><input type="radio" name="return_way" value="credit"> Credit Card</p>
-                        </div>
-                    </fieldset>
+                            {{/each}}
+                        </fieldset>
+                    </div>
+                    <div class="card-border-top">
+                        <h4>Reason to return</h4>
+                        <textarea type="text" name="reason"
+                                  style="width:900px; height:150px;"
+                                  placeholder="Write your reason here..."></textarea>
+                    </div>
+                    <div class="card-border-top">
+                        <h4>Return Method:</h4>
+                        <p><input checked="checked" type="radio" name="return_way" value="gift"> Gift Card</p>
+                        <p><input type="radio" name="return_way" value="debit"> Debit Card</p>
+                        <p><input type="radio" name="return_way" value="credit"> Credit Card</p>
+                    </div>
                 </div>
                 <div class="col-2">
-                    <input class= "button-1" type="submit" value="Submit now"/>
+                    <input class="button-1" id="return-submit" type="submit" value="Submit now"/>
                 </div>
             </div>
         </form>

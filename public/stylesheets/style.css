@@ -25,12 +25,116 @@ a:focus {
     transition: all 0.3s;
 }
 
-.container {
-    padding: 30px 0px;
+input[type="number"]{
+    border: 2px solid #e5e5e5;
+    text-align: center;
+}
+
+textarea {
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #e5e5e5;
+    border-radius: 4px;
+    resize: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox-label {
+    display: block;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 24px;
+    height: 24px;
+    width: 24px;
+    clear: both;
+}
+
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-label .checkbox-custom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 24px;
+    width: 24px;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    border: 2px solid transparent;
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom {
+    background-color: #D5E8D2;
+    border-radius: 5px;
+    -webkit-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+    opacity:1;
+    border: 2px solid transparent;
+}
+
+
+.checkbox-label .checkbox-custom::after {
+    position: absolute;
+    content: "";
+    left: 12px;
+    top: 12px;
+    height: 0px;
+    width: 0px;
+    border-radius: 5px;
+    border: solid #009BFF;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(0deg) scale(0);
+    -ms-transform: rotate(0deg) scale(0);
+    transform: rotate(0deg) scale(0);
+    opacity:1;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom::after {
+    -webkit-transform: rotate(45deg) scale(1);
+    -ms-transform: rotate(45deg) scale(1);
+    transform: rotate(45deg) scale(1);
+    opacity:1;
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid #57BD4D;
+    border-width: 0 2px 2px 0;
+    background-color: transparent;
+    border-radius: 0;
 }
 
 .card-border-top {
-    margin-top: 20px;
     padding: 20px;
     border: 3px solid transparent;
     border-image: url(../images/bg/line.png)
@@ -103,6 +207,11 @@ a:focus {
     margin: 40px;
 }
 
+.p-m-20{
+    margin: 20px;
+    padding: 20px;
+}
+
 .no-button{
     border-style: none;
     background-color: transparent;
@@ -128,6 +237,10 @@ a:focus {
     color:white;
     background-color: #BB461F;
 }
+
+.button-1:disabled{
+    background-color: #e5e5e5;
+ }
 
 .btn-primary {
     background-color: #A14B03;
@@ -231,7 +344,7 @@ a:focus {
 /*------- Nav Bar--------*/
 .navbar {
     z-index: 9999;
-    position: absolute;
+    position: fixed;
     white-space: nowrap;
     width: 100%;
     background-image: linear-gradient(to bottom, #b1A9A6, transparent);
@@ -523,3 +636,4 @@ a:focus {
 .all_sellers{
     padding-top: 30px;
 }
+

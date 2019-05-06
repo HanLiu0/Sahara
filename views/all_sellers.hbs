@@ -2,10 +2,13 @@
     <h1 class="bannerTitle">Our Sellers</h1>
 </div>
 <div class="bgColor1">
-    <div class="all_sellers">
-        <a href="/" class="text-color-2 links"><i class="fas fa-caret-left"></i> Back</a>
-        {{# each sellers}}
-            <p align="center" class="text-color-2 no-space links" style="font-size:30px;"><a href= "/seller/{{this.[UserID]}}">{{this.[Username]}}</a></p>
-        {{/each}}
+    <div class="container">
+        <div class="all_sellers">
+            <a href="/" class="text-color-2 links"><i class="fas fa-caret-left"></i> Back</a>
+            {{# each sellers}}
+                <p align="center" class="text-color-2 no-space links" style="font-size:30px;"><a
+                        href="/seller/{{this.[UserID]}}">{{this.[Username]}}</a></p>
+            {{/each}}
+        </div>
     </div>
 </div>
