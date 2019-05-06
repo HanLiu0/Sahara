@@ -1,6 +1,6 @@
 {{# if item}}
     <div class="banner">
-        <p class="bannerText">From {{item.[Type]}}</p>
+        <p class="bannerText">From <a href="../view/{{item.[Type]}}/default" class="links">{{item.[Type]}}</a></p>
     </div>
     {{#if errors}}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,6 +41,16 @@
             <div class="card-border-top">
                 <h2>Write Your Review</h2>
                 <form method="post" action="/item/item_review/{{item.[ItemID]}}">
+                    <table style="width:100%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Telephone</th>
+                        </tr>
+                        <tr>
+                            <td>Bill Gates</td>
+                            <td>55577854</td>
+                        </tr>
+                    </table>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Overall Rating:</label>
                         <div class="col-sm-3">
