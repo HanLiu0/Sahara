@@ -182,6 +182,10 @@ input[type=number] {
     color: #A14B00;
 }
 
+.font-size-3{
+    font-size: 20px;
+}
+
 .img-100 {
     width: 100%;
 }

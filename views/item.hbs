@@ -18,7 +18,7 @@
             <img src="/images/{{item.[ItemID]}}.jpg" alt="Image for {{item.[Item Name]}}" class="center img-padding"
                  style="height: auto; width: auto; max-width: 250px; max-height: 250px;">
             <div style="padding: 0 40px;" class="row justify-content-between">
-                <p>${{item.[Price]}}</p>
+                <p class="font-size-3">${{item.[Price]}}</p>
                 <p>In Stock: {{item.[Quantity]}}</p>
                 {{#if login}}
                     <form method="post" action="/item/add_to_cart/{{item.[ItemID]}}">
