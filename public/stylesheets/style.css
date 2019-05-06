@@ -31,6 +31,8 @@ input[type="number"]{
 }
 
 textarea {
+    width: 100%;
+    height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #e5e5e5;
@@ -52,7 +54,7 @@ input[type=number] {
 }
 
 .container{
-    padding-bottom: 40px;
+    padding: 40px 0 ;
 }
 
 .checkbox-label {
@@ -198,12 +200,16 @@ input[type=number] {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    vertical-align: middle;
 }
 
 .no-space {
     margin: 0;
     padding: 0;
+}
+
+.p-20{
+    padding: 20px;
 }
 
 .p-m-40{
@@ -270,7 +276,7 @@ input[type=number] {
     background-color: #911C00;
 }
 
-.sort:not(:disabled):not(.disabled):active{
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
     background-color: #911C00;
 }
 
@@ -356,13 +362,13 @@ input[type=number] {
 .navbar {
     z-index: 9999;
     position: fixed;
-    white-space: nowrap;
     width: 100%;
+    box-sizing: border-box;
     background-image: linear-gradient(to bottom, #b1A9A6, transparent);
     background-image: -o-linear-gradient(to bottom, #b1A9A6, transparent);
     background-image: -moz-linear-gradient(to bottom, #b1A9A6, transparent);
     background-image: -webkit-linear-gradient(to bottom, #b1A9A6, transparent);
-
+    transition: .5s;
 }
 
 .search-icon{
@@ -564,6 +570,12 @@ input[type=number] {
     color: #A6550F;
 }
 
+.page-item.active .page-link{
+    border-bottom: 5px #A6550F solid;
+    background-color: #BB461F;
+    color: white;
+}
+
 .page-link {
     background-color: transparent;
     color: #A6550F;
@@ -609,10 +621,10 @@ input[type=number] {
 }
 
 .carousel-control-prev{
-    left: -100px;
+    left: -80px;
 }
 .carousel-control-next{
-    right: -100px;
+    right: -80px;
 }
 
 .top-left{
@@ -636,7 +648,11 @@ input[type=number] {
 }
 
 .error-message a{
-    color: #E41F00;
+    color: #A6550F;
+}
+
+.error-message a:hover{
+    color: #BB461F;
 }
 
 .links:hover{

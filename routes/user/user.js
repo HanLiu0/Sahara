@@ -105,7 +105,8 @@ router.get('/account_overview/listed_items/:page?', isSeller , function (req, re
             totalPages: totalPages,
             itemTypes: getItemTypes(),
             messages: messages[0],
-            errors: messages.length > 0
+            errors: messages.length > 0,
+            page: page
         });
     });
 });

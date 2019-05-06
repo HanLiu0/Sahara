@@ -15,13 +15,14 @@
                                 <div class="card-text">
                                     {{# each this.[items]}}
                                         <div class="row img-padding">
-                                            <div class="col-6 col-md-4">
+                                            <div class="col-6 col-md-3">
                                                 <a href="/item/{{this.[ItemID]}}"><img style="max-height: 120px; width: auto;"
+                                                                                       class="img-padding center"
                                                      src="/images/{{this.ItemID}}.jpg"
                                                      alt="Item image for {{this.ItemID}}"/>
                                                 </a>
                                             </div>
-                                            <div class="col-12 col-md-8">
+                                            <div class="col-12 col-md-9">
                                                 <a class="links" href="/item/{{this.[ItemID]}}">{{this.[Item Name]}}</a>
                                                 <p>Quantity: {{this.[Quantity]}}</p>
                                             </div>

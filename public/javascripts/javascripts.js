@@ -3,10 +3,13 @@ function toggleNav() {
     if(sidebar.style.width === "250px"){
         document.getElementById("sidebar").style.width = "0px";
         document.getElementById("main").style.marginLeft = "0px";
+        document.getElementById("navbar").style.width = "100%";
+
     }
     else{
         document.getElementById("sidebar").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
+        document.getElementById("navbar").style.width = "calc(100% - 250px)";
     }
 }
 

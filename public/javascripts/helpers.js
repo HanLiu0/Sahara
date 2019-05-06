@@ -17,15 +17,20 @@ var register = function(Handlebars) {
             return accum;
         },
         ifeq: function(v1, v2, options){
-            if(v1 === v2) {
+            if(v1 == v2) {
                 return options.fn(this);
             }
         },
         ifeqelse: function(v1, v2, options){
-            if(v1 === v2) {
+            if(v1 == v2) {
                 return options.fn(this);
             }
             return options.inverse(this);
+        },
+        ifeven: function(v1, options){
+            if(v1 % 2 == 0) {
+                return options.fn(this);
+            }
         }
     };
 

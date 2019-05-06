@@ -128,12 +128,12 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {{#each totalPages}}
-                    <li class="page-item"><a class="page-link"
+                    <li class="page-item {{#ifeq ../page this }}active{{/ifeq}}"><a class="page-link"
                                              href="/user/account_overview/listed_items/page{{this}}">{{this}}</a></li>
                 {{/each}}
             </ul>
         </nav>
     {{else}}
-        <p>You have not listed any items yet!</p>
+        <p class="error-message">You have not listed any items yet!</p>
     {{/if}}
 </div>

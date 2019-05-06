@@ -13,20 +13,21 @@
     <nav id="sidebar">
         <div class="sidebar-header">
             <a onclick="toggleNav()" style="font-size: 24px; float: right; cursor: pointer">&times;</a>
-            <h3>Welcome to Sahara!</h3>
+            <h3 class="text-nowrap">Welcome to</h3>
+            <h3>Sahara!</h3>
         </div>
 
         <ul class="list-unstyled components">
             <li><a href="/view/all/default">All</a></li>
             <li><a href="/view/Books/default">Books</a></li>
+            <li><a href="/view/Clothing, Shoes, Jewelry/default">Clothing, Shoes, Jewelry</a></li>
             <li><a href="/view/Electronics/default">Electronics</a></li>
-            <li><a href="/view/Toy, Game, Movie/default">Toy, Game, Movie</a></li>
+            <li><a href="/view/Health Care/default">Health Care</a></li>
             <li><a href="/view/Home & Kitchen/default">Home & Kitchen</a></li>
             <li><a href="/view/Music Instruments/default">Music Instrument</a></li>
             <li><a href="/view/Pet Supplies/default">Pet Supplies</a></li>
             <li><a href="/view/Snack, Food/default">Snack, Food</a></li>
-            <li><a href="/view/Clothing, Shoes, Jewelry/default">Clothing, Shoes, Jewelry</a></li>
-            <li><a href="/view/Health Care/default">Health Care</a></li>
+            <li><a href="/view/Toy, Game, Movie/default">Toy, Game, Movie</a></li>
             <hr/>
             <li><a href="/about_and_contact">About/Contact</a></li>
             <li><a href="user/logout">Log out</a></li>
@@ -34,7 +35,7 @@
     </nav>
 
     <div id="main">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg" id="navbar">
             <button class="no-button text-white" onclick="toggleNav()"><i class="fas fa-list"></i></button>
             <button class="navbar-toggler text-black" type="button" data-toggle="collapse" data-target="#navbarToggler"
                     aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,15 +52,15 @@
                             <div class="dropdown-menu" style="z-index: 9999">
                                 <a class="dropdown-item" href="/view/all/default">All</a>
                                 <a class="dropdown-item" href="/view/Books/default">Books</a>
+                                <a class="dropdown-item" href="/view/Clothing,%20Shoes,%20Jewelry/default">Clothing,
+                                    Shoes, Jewelry</a>
                                 <a class="dropdown-item" href="/view/Electronics/default">Electronics</a>
-                                <a class="dropdown-item" href="/view/Toy,%20Game,%20Movie/default">Toy, Game, Movie</a>
+                                <a class="dropdown-item" href="/view/Health%20Care/default">Health Care</a>
                                 <a class="dropdown-item" href="/view/Home%20&%20Kitchen/default">Home & Kitchen</a>
                                 <a class="dropdown-item" href="/view/Music%20Instruments/default">Music Instrument</a>
                                 <a class="dropdown-item" href="/view/Pet%20Supplies/default">Pet Supplies</a>
                                 <a class="dropdown-item" href="/view/Snack,%20Food/default">Snack, Food</a>
-                                <a class="dropdown-item" href="/view/Clothing,%20Shoes,%20Jewelry/default">Clothing,
-                                    Shoes, Jewelry</a>
-                                <a class="dropdown-item" href="/view/Health%20Care/default">Health Care</a>
+                                <a class="dropdown-item" href="/view/Toy,%20Game,%20Movie/default">Toy, Game, Movie</a>
                             </div>
                         </div>
                         <input type="text" class="form-control" style="min-width: 500px" name="search"
@@ -84,14 +85,14 @@
                         </span>
                         </li>
                         <li class="nav-item">
-                            <a href="/user/account_overview/order_history"><i class="far fa-file-alt"></i>Orders</a>
+                            <a href="/user/account_overview/order_history"><i class="far fa-file-alt"></i> Orders</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/shopping_cart"><i style="font-size: 30px; padding-left: 10px" class="fas fa-shopping-cart"></i></a>
+                            <a href="/shopping_cart"><i style="font-size: 30px; padding-left: 10px" class="fas fa-shopping-cart"></i> </a>
                         </li>
                     {{else}}
                         <li class="nav-item">
-                            <a href="/signin"><i class="fas fa-user"></i>Sign in</a>
+                            <a href="/signin"><i class="fas fa-user"></i> Sign in</a>
                         </li>
                         <li class="nav-item">
                             <a href="/signup"><i class="fas fa-user-plus"></i> Sign up</a>

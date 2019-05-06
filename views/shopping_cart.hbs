@@ -1,7 +1,7 @@
 <div class="banner">
     <p class="bannerText">Shopping Cart</p>
 </div>
-<div class="container">
+<div class="container padding-top">
     {{#if this.shopping_cart}}
         <div class="row">
             <div class="col-9">
@@ -29,14 +29,14 @@
                             <p>${{this.Price}}</p>
                             <p>In Stock: {{this.Quantity}}</p>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 text-center">
                             <form method="post" action="shopping_cart/edit_in_shopping_cart/{{this.ItemID}}">
                                 <input name="quantity" type="number" min="1" max="{{this.Quantity}}"
                                        value= {{this.quantity}}>
                                 <button class="no-button" type="submit"><i class="far fa-check-circle"></i></button>
                             </form>
                         </div>
-                        <div class="col-2" align="center">
+                        <div class="col-2 text-center">
                             <a class="no-button"
                                href="shopping_cart/remove_from_shopping_cart/{{this.ItemID}}"><i
                                     class="far fa-times-circle"></i></a>
@@ -47,7 +47,7 @@
             <div class="col-3">
                 {{#if this.shopping_cart}}
                     <p>Subtotal: ${{shopping_cart.0.[Total Price]}}</p>
-                    <a href="/checkout" class="button-1" role="button">Proceed to Checkout</a>
+                    <a href="/checkout" class="button-1" role="button">Checkout</a>
                 {{/if}}
             </div>
         </div>
@@ -56,15 +56,17 @@
     {{/if}}
     <div>
         {{# if recommend}}
-            <div id="shoppingCart_bottom">
-                <div id="shoppingCart_Recommend" class="carousel slide" data-ride="carousel" data-interval="false">
-                    <div class="carousel-inner" style="padding-top: 50px">
+            <div class="item-card" id="shoppingCart_bottom">
+                <h2 align="center">Recommendation</h2>
+                <div id="shoppingCart_Recommend" class="carousel slide p-m-40" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner">
                         <div class="carousel-inner">
                             {{#each recommend}}
                                 <div class="carousel-item {{#if @first}}active{{/if}}">
                                     <div class="row">
                                         {{#each this}}
                                             <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img
+                                                    class="center"
                                                     style="overflow:hidden; max-width: 150px; max-height: 150px"
                                                     src="images/{{this.[Item ID]}}.jpg"
                                                     alt="Image for {{this.[Item ID]}}"></a>
@@ -77,7 +79,7 @@
                     </div>
                     <a class="carousel-control-prev" href="#shoppingCart_Recommend" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only" style="background-color: black;">Previous</span>
+                        <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#shoppingCart_Recommend" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>

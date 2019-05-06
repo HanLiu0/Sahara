@@ -17,6 +17,7 @@
                                 <div class="row">
                                     {{#each this}}
                                         <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img
+                                                class="center"
                                                 style="overflow:hidden; max-width: 150px; max-height: 150px"
                                                 src="images/{{this.[Item ID]}}.jpg"
                                                 alt="Image for {{this.[Item ID]}}"></a>
@@ -29,7 +30,7 @@
                 </div>
                 <a class="carousel-control-prev" href="#popularItemsCarouselControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only" style="background-color: black;">Previous</span>
+                    <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#popularItemsCarouselControls" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -49,7 +50,7 @@
                                 <div class="row">
                                     {{#each this}}
                                         <div class="col-sm"><a href="item/{{this.[Item ID]}}">
-                                            <img
+                                            <img    class="center"
                                                     style="overflow:hidden; max-width: 150px; max-height: 150px"
                                                     src="images/{{this.[Item ID]}}.jpg"
                                                     alt="Image"></a>
