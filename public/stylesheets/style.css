@@ -212,6 +212,18 @@ input[type=number] {
     padding: 20px;
 }
 
+.padding-top{
+    padding: 40px;
+}
+
+.margin-top{
+    margin: 40px;
+}
+
+.hover-link{
+    color: #E41F00;
+}
+
 .no-button{
     border-style: none;
     background-color: transparent;
@@ -223,7 +235,6 @@ input[type=number] {
 .no-button:hover{
     color: black;
 }
-
 
 .button-1 {
     background-color: #A6550F;
@@ -544,7 +555,6 @@ input[type=number] {
 .item-card {
     background-color: white;
     border: 0;
-    margin: 40px 0;
     padding: 20px 10px;
 }
 
