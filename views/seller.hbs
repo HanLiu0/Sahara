@@ -25,11 +25,11 @@
             {{# if no_item}}
                 <p>No Product from this seller...</p>
             {{else}}
-                <div class="d-flex row justify-content-around">
+                <div class="d-flex row justify-content-around pb-5 pl-5 pr-5">
                     {{# each items}}
-                        <div class="col-6">
+                        <div class="col-6 pt-3">
                             <a class="text-color-2 links" href="/item/{{this.[Item ID]}}">{{this.[Item Name]}}</a><br>
-                            <a href="/item/{{this.[Item ID]}}"><img class="d-block w-100"
+                            <a href="/item/{{this.[Item ID]}}"><img class="d-block w-100 pt-3"
                                                                     style="overflow:hidden; height: auto; width: auto; max-width: 200px; max-height: 200px;"
                                                                     src="/images/{{this.[Item ID]}}.jpg"
                                                                     alt="Image for {{this.[Item ID]}}"></a>

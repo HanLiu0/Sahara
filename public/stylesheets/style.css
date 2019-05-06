@@ -531,7 +531,12 @@ button:focus{
     color: #666;
     text-align: center;
     background-color: #f9f9f9;
-    border-top: .05rem solid #e5e5e5;
+    border-top: .05rem solid #e5e5e5
+}
+
+.footer-element{
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .footer-element:hover{

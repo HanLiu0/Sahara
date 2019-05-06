@@ -652,7 +652,6 @@ exports.getItemByID = function(id, callback) {
                 " LEFT OUTER JOIN `item review` On `item review`.`Item Article ID` = `item has review`.`Article ID`"+
                 " LEFT OUTER JOIN `user` On `user`.`UserID` = `item review write by`.`Customer ID` WHERE `item`.`ItemID`="+id;
             connection.query(sql2, function(err, results) {
-                console.log(results);
                 var copyResults2 = results;
                 var sql3 = "SELECT `item`.`ItemID`,AVG(`item review`.`Rating`) AS CumRate, COUNT(`item review`.`Rating`) AS numOfReview FROM `item` INNER JOIN `seller supplies item`"+
                     " ON `seller supplies item`.`Item ID` = `item`.`ItemID`"+
@@ -1010,7 +1009,6 @@ exports.searchAllItem = function(keyword, sort, callback) {
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); callback(true); return; }
         connection.query(sql, function(err, results) {
-            console.log(results);
             connection.release();
             if(err) { console.log(err); callback(true); return; }
             callback(false, results);
