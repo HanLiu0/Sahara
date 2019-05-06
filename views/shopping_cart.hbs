@@ -38,7 +38,8 @@
                         </div>
                         <div class="col-2" align="center">
                             <a class="no-button"
-                               href="shopping_cart/remove_from_shopping_cart/{{this.ItemID}}"><i class="far fa-times-circle"></i></a>
+                               href="shopping_cart/remove_from_shopping_cart/{{this.ItemID}}"><i
+                                    class="far fa-times-circle"></i></a>
                         </div>
                     </div>
                 {{/each}}
@@ -63,10 +64,10 @@
                                 <div class="carousel-item {{#if @first}}active{{/if}}">
                                     <div class="row">
                                         {{#each this}}
-                                            <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
-                                                                                                       style="overflow:hidden"
-                                                                                                       src="images/{{this.[Item ID]}}.jpg"
-                                                                                                       alt="Image for {{this.[Item ID]}}"></a>
+                                            <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img
+                                                    style="overflow:hidden; max-width: 150px; max-height: 150px"
+                                                    src="images/{{this.[Item ID]}}.jpg"
+                                                    alt="Image for {{this.[Item ID]}}"></a>
                                             </div>
                                         {{/each}}
                                     </div>

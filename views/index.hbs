@@ -16,10 +16,10 @@
                             <div class="carousel-item {{#if @first}}active{{/if}}">
                                 <div class="row">
                                     {{#each this}}
-                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
-                                                                                                   style="overflow:hidden"
-                                                                                                   src="images/{{this.[Item ID]}}.jpg"
-                                                                                                   alt="Image for {{this.[Item ID]}}"></a>
+                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img
+                                                style="overflow:hidden; max-width: 150px; max-height: 150px"
+                                                src="images/{{this.[Item ID]}}.jpg"
+                                                alt="Image for {{this.[Item ID]}}"></a>
                                         </div>
                                     {{/each}}
                                 </div>
@@ -47,10 +47,11 @@
                             <div class="carousel-item {{#if @first}}active{{/if}}">
                                 <div class="row">
                                     {{#each this}}
-                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}"><img height=150
-                                                                                                   style="overflow:hidden"
-                                                                                                   src="images/{{this.[Item ID]}}.jpg"
-                                                                                                   alt="Image"></a>
+                                        <div class="col-sm"><a href="item/{{this.[Item ID]}}">
+                                            <img
+                                                    style="overflow:hidden; max-width: 150px; max-height: 150px"
+                                                    src="images/{{this.[Item ID]}}.jpg"
+                                                    alt="Image"></a>
                                         </div>
                                     {{/each}}
                                 </div>
