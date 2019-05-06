@@ -183,7 +183,7 @@ input[type=number] {
 }
 
 .font-size-3{
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .img-100 {
@@ -678,4 +678,8 @@ input[type=number] {
 
 .container-pad{
     padding-top: 30px;
+}
+
+.align-price{
+    text-align: right;
 }
