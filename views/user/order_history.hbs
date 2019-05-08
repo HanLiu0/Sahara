@@ -29,11 +29,9 @@
                                         </div>
                                     {{/each}}
                                 </div>
-                                <div class="row">
-                                    <p class="font-size-3">Total Price: {{this.[Total price]}}</p>
-                                </div>
                             </div>
                             <div class="col-sm-4">
+                                <p class="font-size-3">Total Price: {{this.[Total price]}}</p>
                                 <a href="https://www.ups.com/track?loc=en_US&requester=WT/"
                                    class="btn btn-block btn-order">{{this.[Tracking Number]}}</a>
                                 <a href="order_history/order_detail/{{this.[order number]}}"
