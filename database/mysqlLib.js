@@ -234,7 +234,6 @@ exports.editItem = function(id, req, callback){
         " SET Quantity = '" + req.body.quantity +"' "+
         " WHERE `warehouse has item`.`Item ID` = '" + id + "';";
 
-
     pool.getConnection(function(err, connection) {
         if(err) { console.log(err); }
         // make the query
